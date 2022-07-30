@@ -3,14 +3,20 @@ from bs4 import BeautifulSoup
 from pkg_resources import resource_listdir
 import requests
 
+i = 1
 with open("popular_restaurants" + ".csv", "w") as f:
 	headers = {'User-Agent': 'window.navigator.userAgent'}
 	html_text = requests.get('https://www.foodpanda.com.mm/en/city/yangon', headers=headers).text
 	soup = BeautifulSoup(html_text, 'lxml')
-	restaurant_list_uls = soup.find('ul', class_ = 'vendor-list')
-	print(str(len(restaurant_list_uls)) + " restaurants found")
-	restaurant_names_spans = restaurant_list_uls.find_all('span', class_ = 'name fn')
-	# print(restaurant_names_spans)
-	for restaurant_name in restaurant_names_spans:
-		f.write(str(restaurant_name.text) + '\n')
+	restaurant_list_ul = soup.find('ul', class_ = 'vendor-list')
+	restaurant_list_a_s = restaurant_list_ul.find_all('a', href=True)
+	print(str(len(restaurant_list_a_s)) + " restaurants found")
+	for restaurant_list in restaurant_list_a_s:
+		# print("Loop no ", i)
+		name = restaurant_list.find('span', class_='name fn')
+		# print("Name is ", name)
+		link = restaurant_list['href']
+		output = f"{name.text},{link}\n"
+		f.write(output)
+		i += 1
 		
