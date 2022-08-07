@@ -4,7 +4,8 @@ from pkg_resources import resource_listdir
 import requests
 
 i = 1
-with open("popular_restaurants" + ".csv", "w") as f:
+with open("bkup_restaurants" + ".csv", "w") as f:
+	f.write("name,link\n")
 	headers = {'User-Agent': 'window.navigator.userAgent'}
 	html_text = requests.get('https://www.foodpanda.com.mm/en/city/yangon', headers=headers).text
 	soup = BeautifulSoup(html_text, 'lxml')
@@ -14,9 +15,9 @@ with open("popular_restaurants" + ".csv", "w") as f:
 	for restaurant_list in restaurant_list_a_s:
 		# print("Loop no ", i)
 		name = restaurant_list.find('span', class_='name fn')
+		mod_name = name.text.replace(',', '.').replace('/', '.')
 		# print("Name is ", name)
 		link = restaurant_list['href']
-		output = f"{name.text},{link}\n"
+		output = f"{mod_name},{link}\n"
 		f.write(output)
 		i += 1
-		
