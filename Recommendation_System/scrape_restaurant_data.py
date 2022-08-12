@@ -39,6 +39,7 @@ with open("missed_restaurants" + ".csv", "w") as m:
 				print("Missed getting ", data.name[i])
 				output = f"{data.link[i]}\n"
 				m.write(output)
+				continue
 			else:
 				name = data.name[i]
 				link = data.link[i]
