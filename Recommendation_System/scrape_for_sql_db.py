@@ -50,10 +50,11 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 		create_order = """CREATE TABLE `order` (
 													`orderID` int(11) NOT NULL,
 													`foodID` int(11) NOT NULL,
-													`cartID` int(11) NOT NULL
+													`cartID` int(11) NOT NULL,
+													`rating` int(3) NOT NULL
 												) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\n"""
 		f.write(create_order)
-		insert_into_order = """INSERT INTO `order` (`orderID`, `foodID`, `cartID`) VALUES"""
+		insert_into_order = """INSERT INTO `order` (`orderID`, `foodID`, `cartID`, `rating`) VALUES"""
 
 
 		food_id = 1
@@ -117,7 +118,7 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 	
 
 
-		for i in range(100):
+		for i in range(50):
 			print("Getting data for cart, ", i, " th loop")
 			cart_id = i + 1
 			user_id = rand.randint(1, last_user_id)
@@ -128,13 +129,14 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 		f.write(insert_into_cart)
 		last_cart_id = cart_id
 
-		for i in range(200):
+		for i in range(300):
 			print("Getting data for order, ", i, " th loop with restaurant_id ", restaurant_id)
 			order_id = i + 1
 			cart_id = rand.randint(1, last_cart_id)
 			restaurant_id = cart_restaurant_dict[cart_id]
 			food_id = rand.randint(restaurant_food_dict[restaurant_id][0], restaurant_food_dict[restaurant_id][-1])
-			insert_into_order = insert_into_order + f"""\n({order_id}, {food_id}, {cart_id}),"""
+			rating = rand.randint(1, 10)
+			insert_into_order = insert_into_order + f"""\n({order_id}, {food_id}, {cart_id}, {rating}),"""
 		insert_into_order = insert_into_order[:-1] + ";" + "\n\n"
 		f.write(insert_into_order)
 			
