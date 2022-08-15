@@ -19,9 +19,9 @@ import pandas as pd
 # Accessing data using pandas method
 try:
 	mydb = connection.connect(host="localhost", port="3306", user="root", password="", database="food_ordering_db")
-	query = "Select * from User;"
+	query = "Select * from user;"
 	result_dataFrame = pd.read_sql(query,mydb)
-	print(result_dataFrame)
+	print(result_dataFrame.head())
 	mydb.close() #close the connection
 except Exception as e:
 	mydb.close()
