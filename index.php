@@ -1,11 +1,21 @@
 <?php include 'headtag.php'; ?>
 <?php include 'header.php'; ?>
 
+<?php
+    $id = 4;
+    $url = "http://127.0.0.1:5000/get/{$id}";
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_URL, $url);
+    $result = curl_exec($ch);
+    curl_close($ch);
+?>
+
 <section class="breadcrumb_area">
             <img class="breadcrumb_shap" src="img/breadcrumb/banner_bg.png" alt="">
             <div class="container">
                 <div class="breadcrumb_content text-center">
-                    <h1 class="f_p f_700 f_size_50 w_color l_height50 mb_20">Blog Single</h1>
+                    <h1 class="f_p f_700 f_size_50 w_color l_height50 mb_20"><?php echo $result?></h1>
                     <p class="f_400 w_color f_size_16 l_height26">Why I say old chap that is spiffing off his nut arse pear shaped plastered<br> Jeffrey bodge barney some dodgy.!!</p>
                 </div>
             </div>
