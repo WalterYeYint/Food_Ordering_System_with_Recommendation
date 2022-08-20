@@ -19,4 +19,6 @@
     <link rel="stylesheet" href="vendors/scroll/jquery.mCustomScrollbar.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <!-- <link rel="stylesheet" href="/opt/lampp/htdocs/Food_Ordering_System_with_Recommendation/css/fontawesome.min.css"> -->
+    <script src="https://kit.fontawesome.com/3903a86fb1.js" crossorigin="anonymous"></script>
 </head>

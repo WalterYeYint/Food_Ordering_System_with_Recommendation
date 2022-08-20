@@ -1,5 +1,5 @@
 <body>
-    <div id="preloader">
+    <!-- <div id="preloader">
         <div id="ctn-preloader" class="ctn-preloader">
             <div class="animation-preloader">
                 <div class="spinner"></div>
@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="body_wrapper">
         <header class="header_area">
             <nav class="navbar navbar-expand-lg menu_one menu_four">
@@ -567,6 +567,7 @@
                             </li>
                         </ul>
                         <a class="btn_get btn_hover hidden-sm hidden-xs" href="#get-app">Sign In</a>
+                        <a href="#get-app"><i class="fas fa-shopping-cart" style="font-size:40px;color:black"></i></i></a>
                     </div>
                 </div>
             </nav>
