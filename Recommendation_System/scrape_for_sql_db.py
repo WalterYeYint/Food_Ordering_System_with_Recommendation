@@ -7,7 +7,7 @@ import csv
 import random as rand
 import json
 
-data = pd.read_csv("popular_restaurants.csv", delimiter=",", encoding="utf-8")		# Doesn't support myanmar font
+data = pd.read_csv("popular_restaurants.csv", delimiter=",", encoding="utf-8")
 name_data = pd.read_csv("adjusted-name-combinations-list.csv")
 
 # Writing data into .json file
