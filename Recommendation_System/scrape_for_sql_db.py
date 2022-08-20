@@ -17,19 +17,21 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 													`restaurantID` int(11) NOT NULL,
 													`restaurantName` varchar(50) NOT NULL,
 													`latitude` float(20),
-													`longitude` float(20)
+													`longitude` float(20),
+													`image` varchar(200)
 												) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\n"""
 		f.write(create_restaurant)
-		insert_into_restaurant = """INSERT INTO `restaurant` (`restaurantID`, `restaurantName`, `latitude`, `longitude`) VALUES"""
+		insert_into_restaurant = """INSERT INTO `restaurant` (`restaurantID`, `restaurantName`, `latitude`, `longitude`, `image`) VALUES"""
 
 		create_food = """CREATE TABLE `food` (
 													`foodID` int(11) NOT NULL,
 													`restaurantID` int(11) NOT NULL,
 													`foodName` varchar(50) NOT NULL,
-													`price` int(20)
+													`price` int(20),
+													`image` varchar(200)
 												) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\n"""
 		f.write(create_food)
-		insert_into_food = """INSERT INTO `food` (`foodID`, `restaurantID`, `foodName`, `price`) VALUES"""
+		insert_into_food = """INSERT INTO `food` (`foodID`, `restaurantID`, `foodName`, `price`, `image`) VALUES"""
 
 		create_user = """CREATE TABLE `user` (
 													`userID` int(11) NOT NULL,
@@ -96,9 +98,9 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 					str_price = dish_card.find('span', class_="price p-price").text
 					price = int(str_price.replace(',', '').replace('from ', '').replace('MMK ', ''))
 					restaurant_food_dict[restaurant_id].append(food_id)
-					insert_into_food = insert_into_food + f"""\n({food_id}, {restaurant_id}, "{product_name}", {price}),"""
+					insert_into_food = insert_into_food + f"""\n({food_id}, {restaurant_id}, "{product_name}", {price}, ""),"""
 					food_id += 1
-				insert_into_restaurant = insert_into_restaurant + f"""\n({restaurant_id}, "{name}", {latitude}, {longitude}),"""
+				insert_into_restaurant = insert_into_restaurant + f"""\n({restaurant_id}, "{name}", {latitude}, {longitude}, ""),"""
 				restaurant_id += 1
 		insert_into_restaurant = insert_into_restaurant[:-1] + ";" + "\n\n"
 		insert_into_food = insert_into_food[:-1] + ";" + "\n\n"

@@ -63,11 +63,17 @@
 				for($i=0; $i<9; $i++){
 					$row = mysqli_fetch_array($query);
 					$restaurantName = $row['restaurantName'];
+					$restaurantImage = $row['image'];
 			?>
 					<div class="col-lg-3 col-sm-4">
 						<div class="single_product_item">
 							<div class="product_img">
-								<img class="img-fluid" src="img/shop/shop-grid/grid_1.jpg" alt="">
+								<?php 
+									if($restaurantImage == ""){
+										$restaurantImage = "img/restaurants/default_img.jpg";
+									}
+								?>
+								<img class="img-fluid" src=<?php echo $restaurantImage ?> alt="">
 								<div class="hover_content">
 									<a href="#"><i class="ti-heart"></i></a>
 									<a href="#" title="Add to cart"><i class="ti-bag"></i></a>
@@ -105,11 +111,17 @@
 					for($i=0; $i<$count; $i++){
 						$row = mysqli_fetch_array($query);
 						$foodName = $row['foodName'];
+						$foodImage = $row['image']
 				?>
 					<div class="col-lg-3 col-sm-4">
 							<div class="single_product_item">
 								<div class="product_img">
-									<img class="img-fluid" src="img/shop/shop-grid/grid_1.jpg" alt="">
+									<?php 
+										if($foodImage == ""){
+											$foodImage = "img/food/default_img.jpeg";
+										}
+									?>
+									<img class="img-fluid" src=<?php echo $foodImage ?> alt="">
 									<div class="hover_content">
 										<a href="#"><i class="ti-heart"></i></a>
 										<a href="#" title="Add to cart"><i class="ti-bag"></i></a>
