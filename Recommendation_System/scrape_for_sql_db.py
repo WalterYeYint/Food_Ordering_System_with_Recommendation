@@ -33,13 +33,26 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 		f.write(create_food)
 		insert_into_food = """INSERT INTO `food` (`foodID`, `restaurantID`, `foodName`, `price`, `image`) VALUES"""
 
+		create_userRole = """CREATE TABLE `userRole` (
+													`userRoleID` int(11) NOT NULL,
+													`userRoleName` varchar(20) NOT NULL
+												) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\n"""
+		f.write(create_userRole)
+		insert_into_userRole = """INSERT INTO `userRole` (`userRoleID`, `userRoleName`) VALUES"""
+		
 		create_user = """CREATE TABLE `user` (
 													`userID` int(11) NOT NULL,
+													`userRoleID` int(11) NOT NULL,
 													`firstName` varchar(20) NOT NULL,
-													`lastName` varchar(20)
+													`lastName` varchar(20) NOT NULL,
+													`email` varchar(40) NOT NULL,
+													`password` varchar(30) NOT NULL,
+													`address` varchar(250),
+													`latitude` float(20),
+													`longitude` float(20)
 												) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\n"""
 		f.write(create_user)
-		insert_into_user = """INSERT INTO `user` (`userID`, `firstName`, `lastName`) VALUES"""
+		insert_into_user = """INSERT INTO `user` (`userID`, `userRoleID`, `firstName`, `lastName`, `email`, `password`, `address`, `latitude`, `longitude`) VALUES"""
 
 		create_cart = """CREATE TABLE `cart` (
 													`cartID` int(11) NOT NULL,
@@ -108,12 +121,22 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 		f.write(insert_into_food)
 		last_restaurant_id = restaurant_id
 
+
+		userRole_name = ["customer", "admin", "super admin"]
+		for i in range(len(userRole_name)):
+			print("Getting data for userRole, ", i, " th loop")
+			userRole_id = i + 1
+			insert_into_userRole = insert_into_userRole + f"""\n({userRole_id}, "{userRole_name[i]}"),"""
+		insert_into_userRole = insert_into_userRole[:-1] + ";" + "\n\n"
+		f.write(insert_into_userRole)
+
 		for i in range(len(name_data)):
 			print("Getting data for name, ", i, " th loop")
 			user_id = i + 1
 			first_name = name_data.FirstName[i]
 			surname = name_data.Surname[i]
-			insert_into_user = insert_into_user + f"""\n({user_id}, "{first_name}", "{surname}"),"""
+			email = first_name + surname + "@gmail.com"
+			insert_into_user = insert_into_user + f"""\n({user_id}, {1}, "{first_name}", "{surname}", "{email}", "12345", "", {1}, {1}),"""
 		insert_into_user = insert_into_user[:-1] + ";" + "\n\n"
 		f.write(insert_into_user)
 		last_user_id = user_id
