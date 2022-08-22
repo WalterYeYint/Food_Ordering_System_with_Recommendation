@@ -1,10 +1,10 @@
 <?php 
-  include 'headtag.php';
-  include 'header.php';
-  include 'dbconnect.php';
-  
-  $incorrect=False;
-  if(isset($_POST['btnLogin'])){
+	include 'headtag.php';
+	include 'header.php';
+	include 'dbconnect.php';
+	
+	$incorrect=False;
+	if(isset($_POST['btnLogin'])){
 	$email = $_POST['txtemail'];
 	// $password = md5($_POST['txtpassword']);
 	$password = $_POST['txtpassword'];
@@ -24,11 +24,11 @@
 
 	if($count > 0){
 		foreach($query as $data){
-		  $userID = $data['userID'];
-		  $userRoleID = $data['userRoleID'];
-		  $userRoleName = $data['userRoleName'];
-		  $firstName = $data['firstName'];
-		  $email= $data['email'];
+			$userID = $data['userID'];
+			$userRoleID = $data['userRoleID'];
+			$userRoleName = $data['userRoleName'];
+			$firstName = $data['firstName'];
+			$email= $data['email'];
 		}
 		// Authenticating Logged In User
 		$_SESSION['auth'] = true;
@@ -55,30 +55,30 @@
 		}
 		elseif ($_SESSION['auth_rolename'] == 'admin') {
 
-		  echo "<script>window.alert('Welcome Admin!!')</script>";
-		  echo '<script>window.location="index.php"</script>';
-		  exit(0);
+			echo "<script>window.alert('Welcome Admin!!')</script>";
+			echo '<script>window.location="index.php"</script>';
+			exit(0);
 		}
 		elseif ($_SESSION['auth_rolename'] == 'super admin') {
 
-		  echo "<script>window.alert('Welcome Super Admin!!')</script>";
-		  echo '<script>window.location="index.php"</script>';
-		  exit(0);
+			echo "<script>window.alert('Welcome Super Admin!!')</script>";
+			echo '<script>window.location="index.php"</script>';
+			exit(0);
 		}
 		else{
-		  echo "<script>window.alert('Invalid Username or Password!!')</script>";
-		  echo '<script>window.location="login.php"</script>';
-		  exit(0);
+			echo "<script>window.alert('Invalid Username or Password!!')</script>";
+			echo '<script>window.location="login.php"</script>';
+			exit(0);
 		}
 
 	}
 	else{
-	  $incorrect=True;
-	  echo "<script>window.alert('Invalid Username or Password!!')</script>";
-	  echo '<script>window.location="login.php"</script>';
+		$incorrect=True;
+		echo "<script>window.alert('Invalid Username or Password!!')</script>";
+		echo '<script>window.location="login.php"</script>';
 	exit(0);
 	}
-  }
+	}
 ?>
 <section class="breadcrumb_area">
 	<img class="breadcrumb_shap" src="img/breadcrumb/banner_bg.png" alt="">
@@ -139,7 +139,7 @@
 								</div>
 							</div>
 							<div class="extra mb_20">
-							  <div class="lead-text">New User?&emsp;<a href="register.php">Create a New Account</a></div>
+								<div class="lead-text">New User?&emsp;<a href="register.php">Create a New Account</a></div>
 							</div>
 						</form>
 					</div>

@@ -1,5 +1,5 @@
 <?php
-  session_start();
+	session_start();
 ?>
 <body>
 	<!-- <div id="preloader">
@@ -119,8 +119,8 @@
 								echo "<li class='nav-item dropdown submenu active' style='list-style-type: none;'>";
 								echo "<a class=\"btn_get btn_hover hidden-sm hidden-xs nav-link dropdown-toggle\" data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='logout.php'>Hi, $firstName_sess</a>";
 								echo"<ul class=\"dropdown-menu\"> 
-									  <li class='nav-item'><a href='logout.php' class='nav-link' style='color:black; font-size:13px;'>Logout</a></li> 
-									   </ul>
+										<li class='nav-item'><a href='logout.php' class='nav-link' style='color:black; font-size:13px;'>Logout</a></li> 
+										 </ul>
 								</li>                                             
 									</li>
 								</li>                                             
@@ -128,19 +128,19 @@
 							}
 							else{
 								 //echo "<b style='color:black'>Hi, $username_sess</b>";
-							   
+								 
 								echo "<li class='nav-item dropdown submenu active' style='list-style-type: none;'>";
 								echo "<a class=\"btn_get btn_hover hidden-sm hidden-xs nav-link dropdown-toggle\" data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='logout.php'>Hi, $firstName_sess</a>";
 								echo"<ul class=\"dropdown-menu\"> 
-									  <li class='nav-item'><a href='admin/dashboard.php' class='nav-link' style='color:black; font-size:13px;'>Admin Panel </a></li> 
-									  <li class='nav-item'><a href='logout.php' class='nav-link' style='color:black; font-size:13px;'>Logout</a></li> 
-									   </ul>
+										<li class='nav-item'><a href='admin/dashboard.php' class='nav-link' style='color:black; font-size:13px;'>Admin Panel </a></li> 
+										<li class='nav-item'><a href='logout.php' class='nav-link' style='color:black; font-size:13px;'>Logout</a></li> 
+										 </ul>
 								</li>                                             
 									</li>
 								</li>                                             
 								";
 							}
-						   
+							 
 						}
 						else
 						{
