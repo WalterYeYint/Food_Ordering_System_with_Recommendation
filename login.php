@@ -5,9 +5,9 @@
 	
 	$incorrect=False;
 	if(isset($_POST['btnLogin'])){
-	$email = $_POST['txtemail'];
+	$txtemail = $_POST['txtemail'];
 	// $password = md5($_POST['txtpassword']);
-	$password = $_POST['txtpassword'];
+	$txtpassword = $_POST['txtpassword'];
 
 	// $select = "SELECT u.*, ur.userRoleName as rolename
 	// 						FROM user u
@@ -17,8 +17,8 @@
 	$select = "SELECT u.*, ur.userRoleName
 				FROM user u, userRole ur
 				WHERE u.userRoleID = ur.userRoleID
-				AND u.email='$email'
-				AND u.password='$password'";
+				AND u.email='$txtemail'
+				AND u.password='$txtpassword'";
 	$query = mysqli_query($connection, $select);
 	$count = mysqli_num_rows($query);
 
