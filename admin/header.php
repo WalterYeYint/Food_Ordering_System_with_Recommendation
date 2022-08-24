@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <body>
   <div class="container-scroller"> 
     <!-- partial:partials/_navbar.html -->

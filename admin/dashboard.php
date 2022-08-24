@@ -1,7 +1,8 @@
-
-<?php include 'headtag.php'; ?>
-<?php include 'header.php'; ?>
-<?php include 'sidebar.php'; ?>
+<?php
+  include 'headtag.php';
+  include 'header.php';
+  include 'sidebar.php';
+?>
 <div class="row">
   <div class="col-sm-12">
     <div class="home-tab">
