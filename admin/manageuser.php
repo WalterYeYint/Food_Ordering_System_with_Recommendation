@@ -7,16 +7,24 @@
 	include '../autoid.php'
 ?>
 <?php
-	// function insert_user($connection,$txtuserid,$txtname,$FileName,$txtemail,$txtphone,$txtusername,$txtpassword,$txtconfirm,$sltrole,$sltdepartment){
-	// 	$insert="INSERT INTO user 
-	// 					(userid,fullname,image,email,phonenumber,username,password,confirmpassword,userroleid
-	// 					,departmentid) VALUES 
-	// 					('$txtuserid','$txtname','$FileName','$txtemail','$txtphone','$txtusername','$txtpassword','$txtconfirm','$sltrole','$sltdepartment')";
-	// 	$result=mysqli_query($connection,$insert);
-	// 	return $result;
-	// }
 	if(isset($_GET['userID'])){
-		if($_GET['mode'] == 'delete'){
+		if($_GET['mode'] == 'edit'){
+			$userID=$_GET['userID'];
+	
+			$query = "SELECT * FROM user WHERE userid='$userID'";
+			$result = mysqli_query($connection,$query);
+			$arr = mysqli_fetch_array($result);
+
+			$tuserID = $arr['userID'];
+			$tfirstName = $arr['firstName'];
+			$tlastName = $arr['lastName'];
+			$taddress = $arr['address'];
+			$temail = $arr['email'];
+			$tpassword = $arr['password'];
+			$tuserRoleID = $arr['userRoleID'];
+			$tuserRoleName = $arr['userRoleName'];
+		}
+		else if($_GET['mode'] == 'delete'){
 			$userID=$_GET['userID'];
 
 			$delete="DELETE FROM user WHERE userID='$userID'";
@@ -32,18 +40,29 @@
 			}
 		}
 	}
+	else{
+		// echo "<script>window.alert('Renewed!')</script>";
+		$tuserID = AutoID('user','userID');
+		$tfirstName = "";
+		$tlastName = "";
+		$taddress = "";
+		$temail = "";
+		$tpassword = "";
+		$tuserRoleID = "";
+		$tuserRoleName = "";
+	}
 
-	if(isset($_POST['btnsubmit'])) {
-		$txtuserid = $_POST['txtuserid'];
-		$txtfirstname = $_POST['txtfirstname'];
-		$txtlastname = $_POST['txtlastname'];
+	if(isset($_POST['btnsubmit']) OR isset($_POST['btnupdate'])) {
+		$txtuserID = $_POST['txtuserid'];
+		$txtfirstName = $_POST['txtfirstname'];
+		$txtlastName = $_POST['txtlastname'];
 		$txtaddress = $_POST['txtaddress'];
 		$txtlatitude = 1;
 		$txtlongitude = 1;
 		$txtemail = $_POST['txtemail'];
 		$txtpassword = $_POST['txtpassword'];
 		$txtconfirm = $_POST['txtconfirm'];
-		$sltuserrole=$_POST['sltuserrole'];
+		$sltuserRole=$_POST['sltuserrole'];
 
 	// 	$photo=$_FILES['photo']['name'];
 	// 	$FolderName="images/userimage/"; 
@@ -62,32 +81,59 @@
 		}
 		else
 		{
-			//Check Validation
-			$check="SELECT * FROM user WHERE userID='$txtuserid' OR email='$txtemail'";
-			$result=mysqli_query($connection,$check);
-			$count=mysqli_num_rows($result);
+			if(isset($_POST['btnupdate'])){
+				$update = "UPDATE user SET 
+								userID = '$txtuserID',
+								userRoleID = '$sltuserRole',
+								firstName = '$txtfirstName',
+								lastName = '$txtlastName',
+								email = '$txtemail',
+								password = '$txtpassword',
+								address = '$txtaddress',
+								latitude = '$txtlatitude',
+								longitude = '$txtlongitude'      
+								WHERE userID = '$txtuserID'";
+				$result = mysqli_query($connection,$update);
 
-			if ($count>0) {
-				echo "<script>window.alert('User Already Exist!')</script>";
-				echo "<script>window.location='manageuser.php'</script>";
-			}
-
-			else {
-				$insert="INSERT INTO user 
-	 					(`userID`, `userRoleID`, `firstName`, `lastName`, `email`, `password`, `address`, `latitude`, `longitude`) 
-						VALUES 
-	 					('$txtuserid','$sltuserrole','$txtfirstname','$txtlastname','$txtemail','$txtpassword','$txtaddress','$txtlatitude','$txtlongitude')";
-			 	$result=mysqli_query($connection,$insert);
-				if ($result) {
-					echo "<script>window.alert('User Added Successfully!')</script>";
+				if($result) 
+				{
+					echo "<script>window.alert('User Info Updated Successfully!')</script>";
 					echo "<script>window.location='manageuser.php'</script>";
 				}
-		
+				else
+				{
+					echo "<p>Something went wrong in Updating User Information : " . mysqli_error($connection) . "</p>";
+				}
+			}
+			else{
+				//Check Validation
+				$check="SELECT * FROM user WHERE userID='$txtuserID' OR email='$txtemail'";
+				$result=mysqli_query($connection,$check);
+				$count=mysqli_num_rows($result);
+				if ($count>0) {
+					echo "<script>window.alert('User Already Exists!')</script>";
+					echo "<script>window.location='manageuser.php'</script>";
+				}
 				else{
-					echo "<p>Something went wrong in User Entry : " . mysqli_error($connection) . "</p>";
-				}   
+					$insert="INSERT INTO user 
+							(`userID`, `userRoleID`, `firstName`, `lastName`, `email`, `password`, `address`, `latitude`, `longitude`) 
+							VALUES 
+							('$txtuserID','$sltuserRole','$txtfirstName','$txtlastName','$txtemail','$txtpassword','$txtaddress','$txtlatitude','$txtlongitude')";
+					$result=mysqli_query($connection,$insert);
+					if ($result) {
+						echo "<script>window.alert('User Added Successfully!')</script>";
+						echo "<script>window.location='manageuser.php'</script>";
+					}
+			
+					else{
+						echo "<p>Something went wrong in User Entry : " . mysqli_error($connection) . "</p>";
+					}   
+				}
 			}
 		}
+	}
+	else if(isset($_POST['btnreset'])){
+		echo "<script>window.location='manageuser.php'</script>";
 	}
 ?>
 <div class="col-12 grid-margin stretch-card">
@@ -97,15 +143,15 @@
 			<form class="forms-sample" action="manageuser.php" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="id">UserID <span style="color: red;">*</span></label>
-					<input type="text" class="form-control" name="txtuserid" id="id" value="<?php echo AutoID('user','userID') ?>" placeholder="ID" required="" readonly>
+					<input type="text" class="form-control" name="txtuserid" id="id" value="<?php echo $tuserID ?>" placeholder="ID" required="" readonly>
 				</div>
 				<div class="form-group">
 					<label for="name">First Name <span style="color: red;">*</span></label>
-					<input type="text" class="form-control" name="txtfirstname" id="firstname" placeholder="First Name" required="">
+					<input type="text" class="form-control" name="txtfirstname" id="firstname" value="<?php echo $tfirstName ?>" placeholder="First Name" required="">
 				</div>
 				<div class="form-group">
 					<label for="name">Last Name <span style="color: red;">*</span></label>
-					<input type="text" class="form-control" name="txtlastname" id="lastname" placeholder="Last Name" required="">
+					<input type="text" class="form-control" name="txtlastname" id="lastname" value="<?php echo $tlastName ?>" placeholder="Last Name" required="">
 				</div>
 				<!-- <div class="form-group">
 					<label for="photo">Photo <span style="color: red;">*</span></label><br>
@@ -113,11 +159,11 @@
 				</div> -->
 				<div class="form-group">
 					<label for="name">Address <span style="color: red;">*</span></label>
-					<input type="text" class="form-control" name="txtaddress" id="address" placeholder="Address">
+					<input type="text" class="form-control" name="txtaddress" id="address" value="<?php echo $taddress ?>" placeholder="Address">
 				</div>
 				<div class="form-group">
 					<label for="email">Email <span style="color: red;">*</span></label>
-					<input type="email" class="form-control" name="txtemail" id="email" placeholder="Email" required="">
+					<input type="email" class="form-control" name="txtemail" id="email" value="<?php echo $temail ?>" placeholder="Email" required="">
 				</div>
 				<!-- <div class="form-group">
 					<label for="phone">Phone Number <span style="color: red;">*</span></label>
@@ -125,11 +171,11 @@
 				</div> -->
 				<div class="form-group">
 					<label for="password">Password <span style="color: red;">*</span></label>
-					<input type="password" class="form-control" name="txtpassword" id="password" placeholder="Password" required="">
+					<input type="password" class="form-control" name="txtpassword" id="password" value="<?php echo $tpassword ?>" placeholder="Password" required="">
 				</div>
 				<div class="form-group">
 					<label for="confirmpassword">Confirm Password <span style="color: red;">*</span></label>
-					<input type="password" class="form-control" name="txtconfirm" id="confirmpassword" placeholder="Confirm Password" required="">
+					<input type="password" class="form-control" name="txtconfirm" id="confirmpassword" value="<?php echo $tpassword ?>" placeholder="Confirm Password" required="">
 				</div>
 				<div class="form-group">
 					<label for="role">Role <span style="color: red;">*</span></label>
@@ -144,14 +190,30 @@
 							$row=mysqli_fetch_array($result);
 							$userRoleID=$row['userRoleID'];
 							$userRoleName=$row['userRoleName'];
-
-							echo "<option value='$userRoleID'>$userRoleName</option>";
+						?>
+							<option value=<?php echo $userRoleID ?>
+						<?php
+							if ($tuserRoleID == $userRoleID) {
+								echo "selected";
+							}
+							echo ">$userRoleName</option>";
 						}
 						?>    
 					</select>
 				</div>
 
-				<button type="submit" class="btn btn-primary me-2" name="btnsubmit">Submit</button>
+				<?php
+				if(isset($_GET['userID'])){
+				?>
+					<button type="submit" class="btn btn-primary me-2" name="btnupdate">Update</button>	
+				<?php
+				}
+				else{
+				?>
+					<button type="submit" class="btn btn-primary me-2" name="btnsubmit">Submit</button>
+				<?php
+				}
+				?>
 				<button type="reset" class="btn btn-secondary" name="btnreset">Cancel</button>
 			</form>
 		</div>
@@ -212,7 +274,7 @@ else{
 										<td><?php echo $longitude ?></td>
 										<td><?php echo $userRoleName ?></td>
 										<td>
-											<a href="useredit.php?userID=<?=$userID?>&mode=edit"class="btn btn-success">Edit</a>
+											<a href="manageuser.php?userID=<?=$userID?>&mode=edit"class="btn btn-success">Edit</a>
 											<a href="manageuser.php?userID=<?=$userID?>&mode=delete" class="btn btn-danger">Delete</a>
 										</td>
 									</tr>
