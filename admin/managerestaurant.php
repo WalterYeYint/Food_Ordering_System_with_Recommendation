@@ -5,6 +5,7 @@
 	include '../dbconnect.php';
 
 	include '../autoid.php';
+	include '../constants.php';
 ?>
 <?php
 	if(isset($_GET['restaurantID'])){
@@ -41,7 +42,7 @@
 	else{
 		// echo "<script>window.alert('Renewed!')</script>";
 		$trestaurantID = AutoID('restaurant','restaurantID');
-		$tuserID = "";
+		$tuserID = $userID_sess;
 		$trestaurantName = "";
 		$taddress = "";
 		$tlatitude = "";
@@ -143,7 +144,13 @@
 				</div>
 				<div class="form-group">
 					<label for="id">User ID <span style="color: red;">*</span></label>
-					<input type="text" class="form-control" name="txtuserid" id="id" value="<?php echo $tuserID ?>" placeholder="ID" required="">
+					<input type="text" class="form-control" name="txtuserid" id="id" value="<?php echo $tuserID ?>" placeholder="ID" required=""
+					<?php
+					if($userRoleName_sess == ADMIN){
+						echo "readonly";
+					}
+					?>
+					>
 				</div>
 				<div class="form-group">
 					<label for="name">Restaurant Name <span style="color: red;">*</span></label>
@@ -194,8 +201,15 @@
 	</div>
 </div>
 <?php
-$query = "SELECT * FROM restaurant
-					ORDER BY restaurantID DESC";
+if($userRoleName_sess == ADMIN){
+	$query = "SELECT * FROM restaurant
+						WHERE userID = '$userID_sess'
+						ORDER BY restaurantID DESC";
+}
+else{
+	$query = "SELECT * FROM restaurant
+						ORDER BY restaurantID DESC";
+}
 $result = mysqli_query($connection, $query);
 $count = mysqli_num_rows($result);
 

@@ -5,10 +5,9 @@
 	include '../dbconnect.php';
 
 	include '../autoid.php';
+	include '../constants.php';
 ?>
 <?php
-	const ADMIN = "admin";
-
 	// Restaurants Query that are used more than once
 	if($userRoleName_sess == ADMIN){
 		$query = "SELECT * FROM restaurant

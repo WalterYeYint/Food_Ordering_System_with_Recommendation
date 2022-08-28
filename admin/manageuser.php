@@ -5,6 +5,7 @@
 	include '../dbconnect.php';
 
 	include '../autoid.php';
+	include '../constants.php';
 ?>
 <?php
 	if(isset($_GET['userID'])){
