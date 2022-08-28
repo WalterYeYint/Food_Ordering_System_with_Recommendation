@@ -15,13 +15,15 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 	with open("food_ordering_db" + ".sql", "w") as f:
 		create_restaurant = """CREATE TABLE `restaurant` (
 													`restaurantID` int(11) NOT NULL,
+													`userID` int(11) NOT NULL,
 													`restaurantName` varchar(50) NOT NULL,
+													`address` varchar(250),
 													`latitude` float(20),
 													`longitude` float(20),
 													`image` varchar(200)
 												) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\n"""
 		f.write(create_restaurant)
-		insert_into_restaurant = """INSERT INTO `restaurant` (`restaurantID`, `restaurantName`, `latitude`, `longitude`, `image`) VALUES"""
+		insert_into_restaurant = """INSERT INTO `restaurant` (`restaurantID`, `userID`, `restaurantName`, `address`, `latitude`, `longitude`, `image`) VALUES"""
 
 		create_food = """CREATE TABLE `food` (
 													`foodID` int(11) NOT NULL,
@@ -113,7 +115,7 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 					restaurant_food_dict[restaurant_id].append(food_id)
 					insert_into_food = insert_into_food + f"""\n({food_id}, {restaurant_id}, "{product_name}", {price}, ""),"""
 					food_id += 1
-				insert_into_restaurant = insert_into_restaurant + f"""\n({restaurant_id}, "{name}", {latitude}, {longitude}, ""),"""
+				insert_into_restaurant = insert_into_restaurant + f"""\n({restaurant_id}, 2, "{name}", "", {latitude}, {longitude}, ""),"""
 				restaurant_id += 1
 		insert_into_restaurant = insert_into_restaurant[:-1] + ";" + "\n\n"
 		insert_into_food = insert_into_food[:-1] + ";" + "\n\n"

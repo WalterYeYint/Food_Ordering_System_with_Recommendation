@@ -168,15 +168,15 @@ if ($_SESSION['auth_rolename'] == 'customer') {
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="academicyearadd.php">
-        <i class="mdi mdi-brightness-auto menu-icon"></i>
-        <span class="menu-title">Academic Year</span>
+      <a class="nav-link" href="managerestaurant.php">
+        <i class="mdi mdi-silverware-fork-knife menu-icon"></i>
+        <span class="menu-title">Restaurant</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="categoryadd.php">
-        <i class="mdi mdi-cube-outline menu-icon"></i>
-        <span class="menu-title">Category</span>
+        <i class="mdi mdi-food menu-icon"></i>
+        <span class="menu-title">Food</span>
       </a>
     </li>
     <li class="nav-item">
