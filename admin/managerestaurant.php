@@ -4,7 +4,7 @@
 	include 'sidebar.php';
 	include '../dbconnect.php';
 
-	include '../autoid.php'
+	include '../autoid.php';
 ?>
 <?php
 	if(isset($_GET['restaurantID'])){
@@ -22,7 +22,7 @@
 			$tlatitude = $arr['latitude'];
 			$tlongitude = $arr['longitude'];
 		}
-		else if($_GET['mode'] == 'delete'){
+		elseif($_GET['mode'] == 'delete'){
 			$restaurantID=$_GET['restaurantID'];
 
 			$delete="DELETE FROM restaurant WHERE restaurantID='$restaurantID'";
@@ -244,7 +244,7 @@ else{
 								<td><?php echo $image ?></td>
 								<td>
 										<a href="managerestaurant.php?restaurantID=<?=$restaurantID?>&mode=edit"class="btn btn-success">Edit</a>
-										<a href="managerestaurant.php?restaurantID=<?=$restaurantID?>&mode=delete" class="btn btn-danger">Delete</a>
+										<a href="managerestaurant.php?restaurantID=<?=$restaurantID?>&mode=delete" class="btn btn-danger" onclick="return confirm_delete('<?php echo $restaurantName ?>')">Delete</a>
 								</td>
 						</tr>
 					<?php 

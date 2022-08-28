@@ -4,7 +4,7 @@
 	include 'sidebar.php';
 	include '../dbconnect.php';
 
-	include '../autoid.php'
+	include '../autoid.php';
 ?>
 <?php
 	if(isset($_GET['userID'])){
@@ -24,7 +24,7 @@
 			$tuserRoleID = $arr['userRoleID'];
 			$tuserRoleName = $arr['userRoleName'];
 		}
-		else if($_GET['mode'] == 'delete'){
+		elseif($_GET['mode'] == 'delete'){
 			$userID=$_GET['userID'];
 
 			$delete="DELETE FROM user WHERE userID='$userID'";
@@ -132,17 +132,14 @@
 			}
 		}
 	}
-	else if(isset($_POST['btnreset'])){
-		echo "<script>window.location='manageuser.php'</script>";
-	}
 ?>
 <div class="col-12 grid-margin stretch-card">
 	<div class="card">
 		<div class="card-body">
-			<h4 class="card-title">User Register</h4>
+			<h4 class="card-title">Manage User</h4>
 			<form class="forms-sample" action="manageuser.php" method="post" enctype="multipart/form-data">
 				<div class="form-group">
-					<label for="id">UserID <span style="color: red;">*</span></label>
+					<label for="id">User ID <span style="color: red;">*</span></label>
 					<input type="text" class="form-control" name="txtuserid" id="id" value="<?php echo $tuserID ?>" placeholder="ID" required="" readonly>
 				</div>
 				<div class="form-group">
@@ -221,9 +218,9 @@
 </div>
 
 <?php
-$query="SELECT u.*, ur.userRoleName
-FROM user u INNER JOIN userRole ur ON u.userRoleID=ur.userRoleID
-ORDER BY u.userID DESC";
+$query = "SELECT u.*, ur.userRoleName
+					FROM user u INNER JOIN userRole ur ON u.userRoleID=ur.userRoleID
+					ORDER BY u.userID DESC";
 $result=mysqli_query($connection,$query);
 $count=mysqli_num_rows($result);
 
@@ -263,7 +260,7 @@ else{
 									$latitude=$rows['latitude'];
 									$longitude=$rows['longitude'];
 									$userRoleName=$rows['userRoleName'];
-									?>
+								?>
 									<tr>
 										<th><?php echo $userID ?></th>
 										<td><?php echo $firstName ?></td>
@@ -275,11 +272,11 @@ else{
 										<td><?php echo $userRoleName ?></td>
 										<td>
 											<a href="manageuser.php?userID=<?=$userID?>&mode=edit"class="btn btn-success">Edit</a>
-											<a href="manageuser.php?userID=<?=$userID?>&mode=delete" class="btn btn-danger">Delete</a>
+											<a href="manageuser.php?userID=<?=$userID?>&mode=delete" class="btn btn-danger" onclick="return confirm_delete('<?php echo $email ?>')">Delete</a>
 										</td>
 									</tr>
 								<?php 
-								} 
+								}
 								?>
 							</tbody>
 					</table>

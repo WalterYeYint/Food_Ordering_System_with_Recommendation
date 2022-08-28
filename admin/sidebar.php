@@ -151,7 +151,7 @@
 <!-- partial -->
 <!-- partial:partials/_sidebar.html -->
 <?php 
-if ($_SESSION['auth_rolename'] == 'customer') {
+if ($_SESSION['auth_rolename']) {
 ?>
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
@@ -174,7 +174,7 @@ if ($_SESSION['auth_rolename'] == 'customer') {
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="categoryadd.php">
+      <a class="nav-link" href="managefood.php">
         <i class="mdi mdi-food menu-icon"></i>
         <span class="menu-title">Food</span>
       </a>
