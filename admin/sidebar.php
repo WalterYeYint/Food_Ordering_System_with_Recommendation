@@ -162,6 +162,12 @@ if ($_SESSION['auth_rolename']) {
       </a>
     </li>
     <li class="nav-item">
+      <a class="nav-link" href="managerole.php">
+        <i class="mdi mdi-account-star menu-icon"></i>
+        <span class="menu-title">Role</span>
+      </a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" href="manageuser.php">
         <i class="mdi mdi-account-plus menu-icon"></i>
         <span class="menu-title">User</span>
@@ -177,12 +183,6 @@ if ($_SESSION['auth_rolename']) {
       <a class="nav-link" href="managefood.php">
         <i class="mdi mdi-food menu-icon"></i>
         <span class="menu-title">Food</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="roleadd.php">
-        <i class="mdi mdi-account-star menu-icon"></i>
-        <span class="menu-title">Role</span>
       </a>
     </li>
     <li class="nav-item">
