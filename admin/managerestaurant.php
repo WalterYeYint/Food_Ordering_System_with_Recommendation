@@ -6,6 +6,7 @@
 
 	include '../autoid.php';
 	include '../constants.php';
+	include 'pagination.php';
 ?>
 <?php
 	if(isset($_GET['restaurantID'])){
@@ -212,6 +213,14 @@ else{
 }
 $result = mysqli_query($connection, $query);
 $count = mysqli_num_rows($result);
+$restaurant_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
+
+// Defining required variables for pagination
+$paginate_array = paginate($count);
+$entry_count = $paginate_array[0];
+$actual_entry_count = $paginate_array[1];
+$page_count = $paginate_array[2];
+$pgNo = $paginate_array[3];
 
 if($count<1){
 	echo "<p>No Record Found!</p>";
@@ -222,6 +231,23 @@ else{
 	<div class="card">
 		<div class="card-body">
 			<h4 class="card-title">Restaurant List:</h4>
+			<ul class="nav nav-tabs" role="tablist">
+				<?php
+				for($i=1; $i<=$page_count; $i++){
+				?>
+					<li class="nav-item">
+            <a href="managerestaurant.php?pgNo=<?=$i?>" class="nav-link 
+						<?php
+						if($pgNo == $i){
+							echo "active";
+						}
+						?>
+						"><?php echo $i ?></a>
+          </li>
+				<?php
+				}
+				?>
+			</ul>
 			<div class="table-responsive pt-3">
 				<table class="table datatable table-bordered table-striped table-hover">
 					<thead>
@@ -236,10 +262,10 @@ else{
 							<th>Action</th>
 					</thead>
 					<tbody>
-					<?php  
-					for($i=0; $i<15; $i++) 
-					{ 
-						$rows=mysqli_fetch_array($result);
+					<?php
+					$idx = ($pgNo-1)*$entry_count;
+					for($i=$idx; $i<$idx+$actual_entry_count; $i++){
+						$rows=$restaurant_arr[$i];
 						$restaurantID = $rows['restaurantID'];
 						$userID = $rows['userID'];
 						$restaurantName = $rows['restaurantName'];  

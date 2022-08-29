@@ -22,4 +22,5 @@
   <link rel="stylesheet" href="css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
+  <script type="text/javascript" src="custom_functions.js"></script>
 </head>
