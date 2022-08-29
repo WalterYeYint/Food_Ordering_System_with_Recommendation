@@ -236,6 +236,8 @@ $entry_count = $paginate_array[0];
 $actual_entry_count = $paginate_array[1];
 $page_count = $paginate_array[2];
 $pgNo = $paginate_array[3];
+$pg_idx_start = $paginate_array[4];
+$pg_idx_end = $paginate_array[5];
 
 if($count<1){
 	echo "<p>No Record Found!</p>";
@@ -247,8 +249,9 @@ else{
 		<div class="card-body">
 			<h4 class="card-title">Food List:</h4>
 			<ul class="nav nav-tabs" role="tablist">
+				<a href="managefood.php?pgNo=<?=1?>" class="nav-link"><<</a>
 				<?php
-				for($i=1; $i<=$page_count; $i++){
+				for($i=$pg_idx_start; $i<=$pg_idx_end; $i++){
 				?>
 					<li class="nav-item">
             <a href="managefood.php?pgNo=<?=$i?>" class="nav-link 
@@ -262,6 +265,7 @@ else{
 				<?php
 				}
 				?>
+				<a href="managefood.php?pgNo=<?=$page_count?>" class="nav-link">>></a>
 			</ul>
 			<div class="table-responsive pt-3">
 				<table class="table datatable table-bordered table-striped table-hover">
