@@ -28,6 +28,7 @@
 			$userRoleID = $data['userRoleID'];
 			$userRoleName = $data['userRoleName'];
 			$firstName = $data['firstName'];
+			$lastName = $data['lastName'];
 			$email= $data['email'];
 		}
 		// Authenticating Logged In User
@@ -42,6 +43,7 @@
 			'userRoleName'=>$userRoleName,
 			'email'=>$email,
 			'firstName'=>$firstName,
+			'lastName'=>$lastName,
 			// 'userimage'=>$userimage,
 			// 'departmentid'=>$departmentid,
 		];

@@ -114,10 +114,12 @@
 						{
 							$userID_sess=$_SESSION['auth_user']['userID'];
 							$firstName_sess=$_SESSION['auth_user']['firstName'];
+							$lastName_sess=$_SESSION['auth_user']['lastName'];
+							$userRoleID_sess=$_SESSION['auth_user']['userRoleID'];
 							$userRoleName_sess=$_SESSION['auth_user']['userRoleName'];
 							if($_SESSION['auth_rolename'] =="Staff" || $_SESSION['auth_rolename'] =="Teacher"){
 								echo "<li class='nav-item dropdown submenu active' style='list-style-type: none;'>";
-								echo "<a class=\"btn_get btn_hover hidden-sm hidden-xs nav-link dropdown-toggle\" data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='logout.php'>Hi, $firstName_sess</a>";
+								echo "<a class=\"btn_get btn_hover hidden-sm hidden-xs nav-link dropdown-toggle\" data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='logout.php'>$firstName_sess $lastName_sess</a>";
 								echo"<ul class=\"dropdown-menu\"> 
 										<li class='nav-item'><a href='logout.php' class='nav-link' style='color:black; font-size:13px;'>Logout</a></li> 
 										 </ul>
@@ -130,7 +132,7 @@
 								 //echo "<b style='color:black'>Hi, $username_sess</b>";
 								 
 								echo "<li class='nav-item dropdown submenu active' style='list-style-type: none;'>";
-								echo "<a class=\"btn_get btn_hover hidden-sm hidden-xs nav-link dropdown-toggle\" data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='logout.php'>Hi, $firstName_sess</a>";
+								echo "<a class=\"btn_get btn_hover hidden-sm hidden-xs nav-link dropdown-toggle\" data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='logout.php'>$firstName_sess $lastName_sess</a>";
 								echo"<ul class=\"dropdown-menu\"> 
 										<li class='nav-item'><a href='admin/dashboard.php' class='nav-link' style='color:black; font-size:13px;'>Admin Panel </a></li> 
 										<li class='nav-item'><a href='logout.php' class='nav-link' style='color:black; font-size:13px;'>Logout</a></li> 
