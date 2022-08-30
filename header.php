@@ -98,8 +98,8 @@
 							</li>
 
 							<li class="nav-item ">
-								<a class="nav-link " href="category.php" role="button">
-									Category
+								<a class="nav-link " href="restaurantlist.php" role="button">
+									Restaurants
 								</a>
 							</li>
 
