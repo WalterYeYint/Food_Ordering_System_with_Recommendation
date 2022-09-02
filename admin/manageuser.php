@@ -13,7 +13,7 @@
 		if($_GET['mode'] == 'edit'){
 			$userID=$_GET['userID'];
 	
-			$query = "SELECT * FROM user WHERE userid='$userID'";
+			$query = "SELECT * FROM user WHERE userID='$userID'";
 			$result = mysqli_query($connection,$query);
 			$arr = mysqli_fetch_array($result);
 
