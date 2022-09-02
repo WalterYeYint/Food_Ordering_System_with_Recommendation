@@ -59,19 +59,35 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 		create_cart = """CREATE TABLE `cart` (
 													`cartID` int(11) NOT NULL,
 													`userID` int(11) NOT NULL,
-													`restaurantID` int(11) NOT NULL
+													`restaurantID` int(11) NOT NULL,
+													`totalAmount` int(11),
+													`latitude` float(20),
+													`longitude` float(20),
+													`deliveryType` int(2),
+													`cartStatus` int(2),
+													`paymentStatus` int(2)
 												) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\n"""
 		f.write(create_cart)
-		insert_into_cart = """INSERT INTO `cart` (`cartID`, `userID`, `restaurantID`) VALUES"""
+		insert_into_cart = """INSERT INTO `cart` 
+													(`cartID`, 
+													`userID`, 
+													`restaurantID`,
+													`totalAmount`,
+													`latitude`,
+													`longitude`,
+													`deliveryType`,
+													`cartStatus`,
+													`paymentStatus`) VALUES"""
 
 		create_order = """CREATE TABLE `order` (
 													`orderID` int(11) NOT NULL,
 													`foodID` int(11) NOT NULL,
 													`cartID` int(11) NOT NULL,
+  												`quantity` int(8) NOT NULL,
 													`rating` int(3) NOT NULL
 												) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\n"""
 		f.write(create_order)
-		insert_into_order = """INSERT INTO `order` (`orderID`, `foodID`, `cartID`, `rating`) VALUES"""
+		insert_into_order = """INSERT INTO `order` (`orderID`, `foodID`, `cartID`, `quantity`, `rating`) VALUES"""
 
 
 		food_id = 1
@@ -151,7 +167,7 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 			user_id = rand.randint(1, last_user_id)
 			restaurant_id = rand.randint(1, last_restaurant_id)
 			cart_restaurant_dict[cart_id] = restaurant_id
-			insert_into_cart = insert_into_cart + f"""\n({cart_id}, {user_id}, {restaurant_id}),"""
+			insert_into_cart = insert_into_cart + f"""\n({cart_id}, {user_id}, {restaurant_id}, {0}, {1}, {1}, {0}, {0}, {0}),"""
 		insert_into_cart = insert_into_cart[:-1] + ";" + "\n\n"
 		f.write(insert_into_cart)
 		last_cart_id = cart_id
@@ -163,7 +179,7 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 			restaurant_id = cart_restaurant_dict[cart_id]
 			food_id = rand.randint(restaurant_food_dict[restaurant_id][0], restaurant_food_dict[restaurant_id][-1])
 			rating = rand.randint(1, 10)
-			insert_into_order = insert_into_order + f"""\n({order_id}, {food_id}, {cart_id}, {rating}),"""
+			insert_into_order = insert_into_order + f"""\n({order_id}, {food_id}, {cart_id}, {1}, {rating}),"""
 		insert_into_order = insert_into_order[:-1] + ";" + "\n\n"
 		f.write(insert_into_order)
 			
