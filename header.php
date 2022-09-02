@@ -134,6 +134,8 @@
 								echo "<li class='nav-item dropdown submenu active' style='list-style-type: none;'>";
 								echo "<a class=\"btn_get btn_hover hidden-sm hidden-xs nav-link dropdown-toggle\" data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='logout.php'>$firstName_sess $lastName_sess</a>";
 								echo"<ul class=\"dropdown-menu\"> 
+										<li class='nav-item'>$userID_sess </li> 
+										<li class='nav-item'>$userRoleName_sess </li> 
 										<li class='nav-item'><a href='admin/dashboard.php' class='nav-link' style='color:black; font-size:13px;'>Admin Panel </a></li> 
 										<li class='nav-item'><a href='logout.php' class='nav-link' style='color:black; font-size:13px;'>Logout</a></li> 
 										 </ul>
@@ -151,7 +153,7 @@
 						}
 					?>
 					<!-- <a class="btn_get btn_hover hidden-sm hidden-xs" href="#get-app">Sign In</a> -->
-					<a href="#get-app"><i class="fas fa-shopping-cart" style="font-size:40px;color:black"></i></i></a>
+					<a href="cart.php?userID=<?=$userID_sess?>"><i class="fas fa-shopping-cart" style="font-size:40px;color:black"></i></i></a>
 					</div>
 				</div>
 			</nav>

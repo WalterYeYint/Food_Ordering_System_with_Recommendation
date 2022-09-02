@@ -62,38 +62,39 @@
 				$count=mysqli_num_rows($query);
 				for($i=0; $i<9; $i++){
 					$row = mysqli_fetch_array($query);
+					$restaurantID = $row['restaurantID'];
 					$restaurantName = $row['restaurantName'];
 					$restaurantImage = $row['image'];
 			?>
-					<div class="col-lg-3 col-sm-4">
-						<div class="single_product_item">
-							<div class="product_img">
-								<?php 
-									if($restaurantImage == ""){
-										$restaurantImage = "img/restaurants/default_img.jpg";
-									}
-								?>
-								<img class="img-fluid" src=<?php echo $restaurantImage ?> alt="">
-								<div class="hover_content">
-									<a href="#"><i class="ti-heart"></i></a>
-									<a href="#" title="Add to cart"><i class="ti-bag"></i></a>
-									<a href="#"><i class="ti-eye"></i></a>
+					<a href="restaurantdetail.php?restaurantID=<?=$restaurantID?>">
+						<div class="col-lg-3 col-sm-4">
+							<div class="single_product_item">
+								<div class="product_img">
+									<?php 
+										if($restaurantImage == ""){
+											$restaurantImage = "img/restaurants/default_img.jpg";
+										}
+									?>
+									<img class="img-fluid" src=<?php echo $restaurantImage ?> alt="">
+									<!-- <div class="hover_content">
+										<a href="#"><i class="ti-heart"></i></a>
+										<a href="#" title="Add to cart"><i class="ti-bag"></i></a>
+										<a href="#"><i class="ti-eye"></i></a>
+									</div> -->
 								</div>
-							</div>
-							<div class="single_pr_details">
-								<a href="#">
+								<div class="single_pr_details">
 									<h3 class="f_p f_500 f_size_16"><?php echo $restaurantName ?></h3>
-								</a>
-								<div class="price">
-									<del><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>18.00</span></del>
-									<ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>16.00</span></ins>
-								</div>
-								<div class="ratting">
-									<a href="#"></a>
+									<div class="price">
+										<del><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>18.00</span></del>
+										<ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>16.00</span></ins>
+									</div>
+									<div class="ratting">
+										<a href="#"></a>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					</a>
 			<?php
 				}
 			?>

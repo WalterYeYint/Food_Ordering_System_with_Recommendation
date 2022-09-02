@@ -21,4 +21,5 @@
     <link rel="stylesheet" href="css/responsive.css">
     <!-- <link rel="stylesheet" href="/opt/lampp/htdocs/Food_Ordering_System_with_Recommendation/css/fontawesome.min.css"> -->
     <script src="https://kit.fontawesome.com/3903a86fb1.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="frontend_custom_functions.js"></script>
 </head>
