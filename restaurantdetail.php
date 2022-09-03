@@ -38,23 +38,28 @@
 			$count = mysqli_num_rows($result);
 			$food_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
 
-			for($i=0; $i<$count; $i++) { 
-				$rows=$food_arr[$i];
-				$foodID = $rows['foodID'];
-				$restaurantID = $rows['restaurantID'];
-				$foodName = $rows['foodName'];  
-				$price = $rows['price'];
-				$image = $rows['image'];
-
-				if($image == ""){
-					$image = "img/food/default_img.jpeg";
-				}
-
+			$index = 0;
+			for($i=0; $i<ceil($count/2); $i++) {
 				?>
 				<div class="row">
 				<?php
 				for($j=0; $j<2; $j++){
-				?>
+					if($index >= $count){
+						break;
+					}
+					$rows=$food_arr[$index];
+					$foodID = $rows['foodID'];
+					$restaurantID = $rows['restaurantID'];
+					$foodName = $rows['foodName'];  
+					$price = $rows['price'];
+					$image = $rows['image'];
+
+					$index += 1;
+
+					if($image == ""){
+						$image = "img/food/default_img.jpeg";
+					}
+					?>
 					<div class="col-lg-6">
 						<img src=<?php echo $image ?> alt="" width="100" height="100">
 						<div class="pr_details">
