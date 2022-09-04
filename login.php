@@ -51,19 +51,19 @@
 		$_SESSION['cart_item_count'] = 0;
 
 
-		if($_SESSION['auth_rolename'] == 'customer'){
+		if($_SESSION['auth_rolename'] == CUSTOMER){
 
 		echo "<script>window.alert('Welcome Customer!!')</script>";
 		echo '<script>window.location="index.php"</script>';
 		exit(0);
 		}
-		elseif ($_SESSION['auth_rolename'] == 'admin') {
+		elseif ($_SESSION['auth_rolename'] == ADMIN) {
 
 			echo "<script>window.alert('Welcome Admin!!')</script>";
 			echo '<script>window.location="index.php"</script>';
 			exit(0);
 		}
-		elseif ($_SESSION['auth_rolename'] == 'super admin') {
+		elseif ($_SESSION['auth_rolename'] == SUPER_ADMIN) {
 
 			echo "<script>window.alert('Welcome Super Admin!!')</script>";
 			echo '<script>window.location="index.php"</script>';
@@ -97,7 +97,7 @@
 	<div class="container">
 		<div class="sign_info">
 			<div class="row">
-				<div class="col-lg-5">
+				<!-- <div class="col-lg-5">
 					<div class="sign_info_content">
 						<h3 class="f_p f_600 f_size_24 t_color3 mb_40">First time here?</h3>
 						<h2 class="f_p f_400 f_size_30 mb-30">Join now and get<br> <span class="f_700">20% OFF</span> for all <br> products</h2>
@@ -108,7 +108,7 @@
 						</ul>
 						<button type="submit" class="btn_three sign_btn_transparent">Sign Up</button>
 					</div>
-				</div>
+				</div> -->
 				<div class="col-lg-7">
 					<div class="login_info">
 						<h2 class="f_p f_600 f_size_24 t_color3 mb_40">Sign In</h2>

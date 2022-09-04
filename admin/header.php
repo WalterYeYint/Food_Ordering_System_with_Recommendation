@@ -1,5 +1,8 @@
 <?php
   session_start();
+  
+	include '../constants.php';
+  
   $userID_sess=$_SESSION['auth_user']['userID'];
   $firstName_sess=$_SESSION['auth_user']['firstName'];
   $lastName_sess=$_SESSION['auth_user']['lastName'];

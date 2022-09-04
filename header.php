@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	include 'constants.php';
 ?>
 <body>
 	<!-- <div id="preloader">
@@ -105,7 +106,7 @@
 
 							<li class="nav-item ">
 								<a class="nav-link " href="idea.php" role="button">
-									Idea
+									About
 								</a>
 							</li>
 						</ul>
@@ -134,8 +135,6 @@
 								echo "<li class='nav-item dropdown submenu active' style='list-style-type: none;'>";
 								echo "<a class=\"btn_get btn_hover hidden-sm hidden-xs nav-link dropdown-toggle\" data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='logout.php'>$firstName_sess $lastName_sess</a>";
 								echo"<ul class=\"dropdown-menu\"> 
-										<li class='nav-item'>$userID_sess </li> 
-										<li class='nav-item'>$userRoleName_sess </li> 
 										<li class='nav-item'><a href='admin/dashboard.php' class='nav-link' style='color:black; font-size:13px;'>Admin Panel </a></li> 
 										<li class='nav-item'><a href='logout.php' class='nav-link' style='color:black; font-size:13px;'>Logout</a></li> 
 										 </ul>

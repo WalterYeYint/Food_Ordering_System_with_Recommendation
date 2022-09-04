@@ -5,7 +5,6 @@
 	include '../dbconnect.php';
 
 	include '../autoid.php';
-	include '../constants.php';
 	include 'pagination.php';
 ?>
 <?php
