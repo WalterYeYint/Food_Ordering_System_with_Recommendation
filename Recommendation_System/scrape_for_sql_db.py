@@ -82,6 +82,7 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 													`address`,
 													`latitude`,
 													`longitude`,
+													`rating`,
 													`deliveryType`,
 													`cartStatus`,
 													`paymentStatus`) VALUES"""
