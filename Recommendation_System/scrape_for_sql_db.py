@@ -20,20 +20,22 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 													`address` varchar(250),
 													`latitude` float(20),
 													`longitude` float(20),
-													`image` varchar(200)
+													`image` varchar(200),
+													`KPayPhoneNo` varchar(20)
 												) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\n"""
 		f.write(create_restaurant)
-		insert_into_restaurant = """INSERT INTO `restaurant` (`restaurantID`, `userID`, `restaurantName`, `address`, `latitude`, `longitude`, `image`) VALUES"""
+		insert_into_restaurant = """INSERT INTO `restaurant` (`restaurantID`, `userID`, `restaurantName`, `address`, `latitude`, `longitude`, `image`, `KPayPhoneNo`) VALUES"""
 
 		create_food = """CREATE TABLE `food` (
 													`foodID` int(11) NOT NULL,
 													`restaurantID` int(11) NOT NULL,
 													`foodName` varchar(50) NOT NULL,
 													`price` int(20),
+													`stock` int(8),
 													`image` varchar(200)
 												) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\n"""
 		f.write(create_food)
-		insert_into_food = """INSERT INTO `food` (`foodID`, `restaurantID`, `foodName`, `price`, `image`) VALUES"""
+		insert_into_food = """INSERT INTO `food` (`foodID`, `restaurantID`, `foodName`, `price`, `stock`, `image`) VALUES"""
 
 		create_userRole = """CREATE TABLE `userRole` (
 													`userRoleID` int(11) NOT NULL,
@@ -60,9 +62,12 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 													`cartID` int(11) NOT NULL,
 													`userID` int(11) NOT NULL,
 													`restaurantID` int(11) NOT NULL,
+													`paymentTypeID` int(11) NOT NULL,
 													`totalAmount` int(11),
+													`address` varchar(250),
 													`latitude` float(20),
 													`longitude` float(20),
+													`rating` int(3),
 													`deliveryType` int(2),
 													`cartStatus` int(2),
 													`paymentStatus` int(2)
@@ -72,7 +77,9 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 													(`cartID`, 
 													`userID`, 
 													`restaurantID`,
+													`paymentTypeID`,
 													`totalAmount`,
+													`address`,
 													`latitude`,
 													`longitude`,
 													`deliveryType`,
@@ -89,6 +96,13 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 		f.write(create_order)
 		insert_into_order = """INSERT INTO `order` (`orderID`, `foodID`, `cartID`, `quantity`, `rating`) VALUES"""
 
+		create_paymentType = """CREATE TABLE `paymentType` (
+													`paymentTypeID` int(11) NOT NULL,
+													`paymentType` varchar(20) NOT NULL
+												) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\n"""
+		f.write(create_paymentType)
+		insert_into_paymentType = """INSERT INTO `paymentType` (`paymentTypeID`, `paymentType`) VALUES"""
+		
 
 		food_id = 1
 		restaurant_id = 1
@@ -129,9 +143,9 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 					str_price = dish_card.find('span', class_="price p-price").text
 					price = int(str_price.replace(',', '').replace('from ', '').replace('MMK ', ''))
 					restaurant_food_dict[restaurant_id].append(food_id)
-					insert_into_food = insert_into_food + f"""\n({food_id}, {restaurant_id}, "{product_name}", {price}, ""),"""
+					insert_into_food = insert_into_food + f"""\n({food_id}, {restaurant_id}, "{product_name}", {price}, {2}, ""),"""
 					food_id += 1
-				insert_into_restaurant = insert_into_restaurant + f"""\n({restaurant_id}, 2, "{name}", "", {latitude}, {longitude}, ""),"""
+				insert_into_restaurant = insert_into_restaurant + f"""\n({restaurant_id}, 2, "{name}", "", {latitude}, {longitude}, "", "09382956183"),"""
 				restaurant_id += 1
 		insert_into_restaurant = insert_into_restaurant[:-1] + ";" + "\n\n"
 		insert_into_food = insert_into_food[:-1] + ";" + "\n\n"
@@ -140,13 +154,21 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 		last_restaurant_id = restaurant_id
 
 
-		userRole_name = ["customer", "admin", "super admin"]
+		userRole_name = ["Customer", "Admin", "Super Admin"]
 		for i in range(len(userRole_name)):
 			print("Getting data for userRole, ", i, " th loop")
 			userRole_id = i + 1
 			insert_into_userRole = insert_into_userRole + f"""\n({userRole_id}, "{userRole_name[i]}"),"""
 		insert_into_userRole = insert_into_userRole[:-1] + ";" + "\n\n"
 		f.write(insert_into_userRole)
+
+		paymentType = ["Cash on delivery", "KBZPay"]
+		for i in range(len(paymentType)):
+			print("Getting data for paymentType, ", i, " th loop")
+			paymentType_id = i + 1
+			insert_into_paymentType = insert_into_paymentType + f"""\n({paymentType_id}, "{paymentType[i]}"),"""
+		insert_into_paymentType = insert_into_paymentType[:-1] + ";" + "\n\n"
+		f.write(insert_into_paymentType)
 
 		for i in range(len(name_data)):
 			print("Getting data for name, ", i, " th loop")
@@ -167,7 +189,7 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 			user_id = rand.randint(1, last_user_id)
 			restaurant_id = rand.randint(1, last_restaurant_id)
 			cart_restaurant_dict[cart_id] = restaurant_id
-			insert_into_cart = insert_into_cart + f"""\n({cart_id}, {user_id}, {restaurant_id}, {0}, {1}, {1}, {0}, {0}, {0}),"""
+			insert_into_cart = insert_into_cart + f"""\n({cart_id}, {user_id}, {restaurant_id}, {1}, {0}, "", {1}, {1}, {3}, {0}, {0}, {0}),"""
 		insert_into_cart = insert_into_cart[:-1] + ";" + "\n\n"
 		f.write(insert_into_cart)
 		last_cart_id = cart_id
