@@ -189,7 +189,7 @@
 					document.getElementById('lblCartCount').innerText = cart_count;
 				}
 			}
-			xml.open("GET", "test.php?foodID="+id, true);
+			xml.open("GET", "addtocart.php?foodID="+id, true);
 			xml.send();
 		})
 	}
