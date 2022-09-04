@@ -2,6 +2,12 @@
 	include 'headtag.php';
 	include 'header.php';
 	include 'dbconnect.php';
+
+	$restaurantID = $_SESSION['restaurantID'];
+	$select = "SELECT * FROM restaurant
+							WHERE restaurantID = '$restaurantID'";
+	$result = mysqli_query($connection, $select);
+	$restaurantName = mysqli_fetch_all($result, MYSQLI_BOTH)[0]['restaurantName'];
 ?>
 <section class="breadcrumb_area">
 		<img class="breadcrumb_shap" src="img/breadcrumb/banner_bg.png" alt="">
@@ -15,6 +21,7 @@
 <!--============= Shopping Cart ===============-->
 <section class="shopping_cart_area sec_pad bg_color">
 	<div class="container">
+			<h5 class="f_700 t_color3 mb_40 wow">Cart for :<?php echo $restaurantName ?></h5>
 			<div class="cart_title">
 					<div class="row">
 							<div class="col-md-2 col-2">
@@ -41,30 +48,21 @@
 						<table class="row table cart_table mb-0">
 								<tbody>
 									<?php
-									# Get this user's latest cart ID and its contents
-									$select="SELECT o.*, c.*, f.* 
-														FROM `order` o, `cart` c, `food` f
-														WHERE o.cartID = c.cartID
-														AND o.foodID = f.foodID
-														AND c.userID = '$userID_sess'
-														AND c.cartID = (SELECT cartID
-																						FROM cart
-																						WHERE userID = '$userID_sess'
-																						ORDER BY cartID DESC
-																						LIMIT 1)";
-									$result=mysqli_query($connection,$select);
-									$count=mysqli_num_rows($result);
-									$laest_cart_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
-
-									// print_r($food_arr);
+									$foodID_sess_arr = $_SESSION['cart_ID_list'];
+									$query = "SELECT * FROM food
+														WHERE foodID IN (".implode(',', $foodID_sess_arr).")";
+									$result = mysqli_query($connection, $query);
+									$count = mysqli_num_rows($result);
+									$food_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
 									for($i=0; $i<$count; $i++){
-										$row = $laest_cart_arr[$i];
-										$cartID = $row['cartID'];
+										$row = $food_arr[$i];
+										$foodID = $row['foodID'];
 										$foodName = $row['foodName'];
 										$price = $row['price'];
 										$image = $row['image'];
 										$quantity = $row['quantity'];
 										$total = $price * $quantity;
+										$grand_total += $total;
 
 										if($image == ""){
 											$image = "img/food/default_img.jpeg";
@@ -72,7 +70,7 @@
 									?>
 										<tr>
 												<td class="col-lg-2 col-md-2 col-sm-2 col-xs-2" data-title="ID">
-														<div class="total"><?php echo $cartID ?></div>
+														<div class="total"><?php echo $_SESSION['cartID'] ?></div>
 												</td>
 												<td class="product col-lg-6 col-md-5 col-sm-5 col-xs-5" data-title="PRODUCT">
 														<div class="media">
@@ -85,14 +83,14 @@
 														</div>
 												</td>
 												<td class="col-lg-2 col-md-2 col-sm-2 col-xs-2" data-title="PRICE">
-														<div class="total"><?php echo $price ?></div>
+														<div class="total" id=<?php echo "price_$i" ?>><?php echo $price ?></div>
 												</td>
 												<td class="col-lg-2 col-md-2 col-sm-2 col-xs-2" data-title="QUANTITY">
 														<div class="quantity">
 																<div class="product-qty">
-																		<button class="ar_top" type="button" onclick="incrementValue(<?php echo $i ?>, <?php echo $price ?>)"><i class="ti-angle-up"></i></button>
-																		<input type="number" name="qty" id=<?php echo "qty_$i" ?> value=<?php echo $quantity ?> onchange="calculateTotal(<?php echo $i ?>, <?php echo $price ?>)" title="Quantity:" class="manual-adjust">
-																		<button class="ar_down" type="button" onclick="decrementValue(<?php echo $i ?>, <?php echo $price ?>)"><i class="ti-angle-down"></i></button>
+																		<button class="ar_top" type="button" onclick="incrementValue(<?php echo $i ?>)"><i class="ti-angle-up"></i></button>
+																		<input type="number" name="qty" id=<?php echo "qty_$i" ?> value=<?php echo $quantity ?> onchange="calculateTotal(<?php echo $i ?>)" title="Quantity:" class="manual-adjust">
+																		<button class="ar_down" type="button" onclick="decrementValue(<?php echo $i ?>)"><i class="ti-angle-down"></i></button>
 																</div>
 														</div>
 
@@ -114,7 +112,7 @@
 				<div class="row">
 						<div class="col-lg-8 col-md-6 actions">
 								<div class="action_btn">
-								<a href="restaurantdetail.php?restaurantID=<?=$restaurantID?>" class="btn_hover agency_banner_btn cus_mb-10">Back to Shopping</a> <br>
+								<a href="restaurantdetail.php?restaurantID=<?=$_SESSION['restaurantID']?>" class="btn_hover agency_banner_btn cus_mb-10">Back to Shopping</a> <br>
 										<!-- <button type="submit" class="cart_btn" name="update_cart" value="Update cart">Continue Shopping</button> -->
 										<button type="submit" class="cart_btn cart_btn_two" name="update_cart" value="Update cart">Update cart</button>
 								</div>
@@ -128,13 +126,13 @@
 								<div class="cart_box">
 										<table class="shop_table">
 												<tbody>
-														<tr class="cart-subtotal">
+														<!-- <tr class="cart-subtotal">
 																<th>Subtotal</th>
 																<td data-title="Subtotal"><span class="amount">$870</span></td>
-														</tr>
+														</tr> -->
 														<tr class="order-total">
 																<th>Order totals</th>
-																<td data-title="Total" class="total"></td>
+																<td data-title="Total" class="total" id="grand_total"><?php echo $grand_total ?></td>
 														</tr>
 												</tbody>
 										</table>

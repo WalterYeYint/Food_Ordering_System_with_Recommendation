@@ -117,14 +117,14 @@
 							$lastName_sess=$_SESSION['auth_user']['lastName'];
 							$userRoleID_sess=$_SESSION['auth_user']['userRoleID'];
 							$userRoleName_sess=$_SESSION['auth_user']['userRoleName'];
+
+							$cart_item_count = $_SESSION['cart_item_count'];
 							if($_SESSION['auth_rolename'] =="Staff" || $_SESSION['auth_rolename'] =="Teacher"){
 								echo "<li class='nav-item dropdown submenu active' style='list-style-type: none;'>";
 								echo "<a class=\"btn_get btn_hover hidden-sm hidden-xs nav-link dropdown-toggle\" data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='logout.php'>$firstName_sess $lastName_sess</a>";
 								echo"<ul class=\"dropdown-menu\"> 
 										<li class='nav-item'><a href='logout.php' class='nav-link' style='color:black; font-size:13px;'>Logout</a></li> 
 										 </ul>
-								</li>                                             
-									</li>
 								</li>                                             
 								";
 							}
@@ -139,21 +139,23 @@
 										<li class='nav-item'><a href='admin/dashboard.php' class='nav-link' style='color:black; font-size:13px;'>Admin Panel </a></li> 
 										<li class='nav-item'><a href='logout.php' class='nav-link' style='color:black; font-size:13px;'>Logout</a></li> 
 										 </ul>
-								</li>                                             
-									</li>
-								</li>                                             
+								</li>                                                
 								";
-							}
-							 
+								?>
+								<a href="cart.php?userID=<?=$userID_sess?>"><i class="fas fa-shopping-cart" style="font-size:40px;color:black"></i></i></a>
+								<span class='badge badge-warning' id='lblCartCount'><?php echo $cart_item_count ?></span>
+							<?php
+							} 
 						}
 						else
 						{
 							echo "<a class=\"btn_get btn_hover hidden-sm hidden-xs\" href='login.php'>Sign In</a>";
-							// echo "<a href='login.php'>Log In</a>";
+							?>
+							<a href="cart.php?userID=<?=$userID_sess?>"><i class="fas fa-shopping-cart" style="font-size:40px;color:black"></i></i></a>
+							<span class='badge badge-warning' id='lblCartCount'><?php echo $cart_item_count ?></span>
+						<?php
 						}
 					?>
-					<!-- <a class="btn_get btn_hover hidden-sm hidden-xs" href="#get-app">Sign In</a> -->
-					<a href="cart.php?userID=<?=$userID_sess?>"><i class="fas fa-shopping-cart" style="font-size:40px;color:black"></i></i></a>
 					</div>
 				</div>
 			</nav>

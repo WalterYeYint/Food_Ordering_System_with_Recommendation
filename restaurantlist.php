@@ -26,7 +26,7 @@
 		<div class="row align-items-center">
 			<div class="col-lg-6 col-sm-5">
 				<div class="shop_menu_left">
-					<p>Showing 1–14 of 22 results</p>
+					<p>Showing 4–14 of 32 results</p>
 				</div>
 			</div>
 			<div class="col-lg-6 col-sm-7">
@@ -84,10 +84,10 @@
 								</div>
 								<div class="single_pr_details">
 									<h3 class="f_p f_500 f_size_16"><?php echo $restaurantName ?></h3>
-									<div class="price">
+									<!-- <div class="price">
 										<del><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>18.00</span></del>
 										<ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>16.00</span></ins>
-									</div>
+									</div> -->
 									<div class="ratting">
 										<a href="#"></a>
 									</div>
@@ -134,8 +134,8 @@
 										<h3 class="f_p f_500 f_size_16"><?php echo $foodName ?></h3>
 									</a>
 									<div class="price">
-										<del><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>18.00</span></del>
-										<ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>16.00</span></ins>
+										<!-- <del><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>20.00</span></del> -->
+										<ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>4.00</span></ins>
 									</div>
 									<div class="ratting">
 										<a href="#"></a>

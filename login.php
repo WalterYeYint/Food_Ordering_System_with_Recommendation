@@ -48,6 +48,8 @@
 			// 'departmentid'=>$departmentid,
 		];
 
+		$_SESSION['cart_item_count'] = 0;
+
 
 		if($_SESSION['auth_rolename'] == 'customer'){
 

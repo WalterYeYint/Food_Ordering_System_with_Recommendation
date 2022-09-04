@@ -20116,6 +20116,27 @@ a .h_head:hover {
   animation: myfirst 30s linear infinite;
 }
 
+.badge {
+  padding-left: 9px;
+  padding-right: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+
+.label-warning[href],
+.badge-warning[href] {
+  background-color: #c67605;
+}
+#lblCartCount {
+    font-size: 12px;
+    background: #ff0000;
+    color: #fff;
+    padding: 0 5px;
+    vertical-align: top;
+    margin-left: -10px; 
+}
+
 @-moz-keyframes myfirst {
   0% {
     left: -25%;

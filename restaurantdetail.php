@@ -6,6 +6,71 @@
 	if(isset($_GET['restaurantID'])){
 		$restaurantID=$_GET['restaurantID'];
 
+		if(isset($_SESSION['restaurantID']) AND ($_SESSION['restaurantID'] != $restaurantID)){
+			$cartID = $_SESSION["cartID"];
+			$update = "UPDATE cart
+									SET restaurantID = '$restaurantID'
+									WHERE cartID = '$cartID'";
+			$result=mysqli_query($connection,$update);
+			if($result) {
+				$_SESSION['restaurantID'] = $restaurantID;
+				$_SESSION['cartID'] = $cartID;
+				$_SESSION['cart_ID_list'] = array();
+				$_SESSION['quantity_list'] = array();
+				$_SESSION['cart_item_count'] = 0;
+				?>
+				<script>document.getElementById('lblCartCount').innerText = <?php echo $_SESSION['cart_item_count'] ?></script>
+				<?php
+				echo "<script>window.alert('Restaurant in cart Updated Successfully!')</script>";
+			}
+			else{
+				echo "<p>Something went wrong in Cart Update : " . mysqli_error($connection) . "</p>";
+			}
+		}
+		
+		if(isset($_SESSION['cartID'])){
+			$cartID = $_SESSION['cartID'];
+		}
+		else{
+			$select = "SELECT cartID
+									FROM cart
+									ORDER BY cartID DESC
+									LIMIT 1";
+			$result=mysqli_query($connection,$select);
+			$count=mysqli_num_rows($result);
+			$cartID = mysqli_fetch_all($result, MYSQLI_BOTH)[0]['cartID'];
+
+			if($count <= 0){
+				$cartID = 1;
+			}
+			else{
+				$cartID += 1;
+				$insert = "INSERT INTO cart
+										(`cartID`, 
+										`userID`, 
+										`restaurantID`,
+										`totalAmount`,
+										`latitude`,
+										`longitude`,
+										`deliveryType`,
+										`cartStatus`,
+										`paymentStatus`)
+										VALUES
+										('$cartID','$userID_sess', '$restaurantID', 0, 1, 1, 0, 0, 0)";
+				$result=mysqli_query($connection,$insert);
+				if($result) {
+					echo "<script>window.alert('Cart Added Successfully!')</script>";
+				}
+				else{
+					echo "<p>Something went wrong in Cart Entry : " . mysqli_error($connection) . "</p>";
+				}
+				$_SESSION['restaurantID'] = $restaurantID;
+				$_SESSION['cartID'] = $cartID;
+				$_SESSION['cart_ID_list'] = array();
+				$_SESSION['quantity_list'] = array();
+			}
+		}
+
 		$query = "SELECT * FROM restaurant WHERE restaurantID='$restaurantID'";
 		$result = mysqli_query($connection,$query);
 		$arr = mysqli_fetch_array($result);
@@ -17,6 +82,15 @@
 		if($restaurantImage == ""){
 			$restaurantImage = "img/restaurants/default_img.jpg";
 		}
+
+		// $list = $_SESSION['cart_ID_list'];
+		// $li = $_SESSION['quantity_list'];
+		// $x = $_SESSION['restaurantID'];
+		// print_r("cartID is $cartID, $restaurantID, $x");
+		// echo "<br>";
+		// print_r($list);
+		// echo "<br>";
+		// print_r($li);
 	}
 ?>
 <section class="breadcrumb_area">
@@ -74,9 +148,14 @@
 								<p class="f_300 f_size_15">The full monty brilliant young delinquent burke naff 
 									baking cakes the wireless argy-bargy smashing!</p>
 								<div class="product-qty">
-										<button class="ar_top" type="button"><i class="ti-angle-up"></i></button>
-										<input type="number" name="qty" id="qty" value="1" title="Quantity:" class="manual-adjust">
-										<button class="ar_down" type="button"><i class="ti-angle-down"></i></button>
+									<!-- <button class="ar_top" type="button"><i class="ti-angle-up"></i></button> -->
+									<!-- <input type="number" name="qty" id=<?php echo "rd_qty_$index" ?> value=<?php echo $price ?> title="Quantity:" class="manual-adjust"> -->
+									<!-- <button class="ar_down" type="button"><i class="ti-angle-down"></i></button> -->
+								</div>
+								<div class="cart_button">
+										<!-- <a href="#" class="cart_btn">Add to Cart</a> -->
+										<button class="cart_btn" data-id="<?php echo $foodID ?>">Add to Cart</button>
+										<a href="#" class="wish_list" data-toggle="tooltip" data-placement="top" title="ADD WISH LIST"><i class="ti-heart"></i></a>
 								</div>
 						</div>
 					</div>
@@ -84,9 +163,35 @@
 				}
 				?>
 				</div>
+				<br/><br/>
 			<?php
 			}
 			?>
 	</div>
 </section>
+<script>
+	var food_id = document.getElementsByClassName("cart_btn");
+	for(var i=0; i<food_id.length; i++){
+		food_id[i].addEventListener("click", function(event){
+			var target = event.target;
+			var id = target.getAttribute("data-id");
+			// var quantity = parseInt(document.getElementById('rd_qty_'+i).value, 10);
+			// alert(quantity);
+			// alert(i);
+			var xml = new XMLHttpRequest();
+			xml.onreadystatechange = function(){
+				if(this.readyState == 4 && this.status == 200){
+					alert(this.responseText);
+					target.innerText = "Added into cart";
+					target.disabled = true;
+					var cart_count = parseInt(document.getElementById('lblCartCount').innerText, 10);
+					cart_count += 1;
+					document.getElementById('lblCartCount').innerText = cart_count;
+				}
+			}
+			xml.open("GET", "test.php?foodID="+id, true);
+			xml.send();
+		})
+	}
+</script>
 <?php include 'footer.php'; ?>
