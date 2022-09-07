@@ -15,7 +15,7 @@
 			if($result) {
 				$_SESSION['restaurantID'] = $restaurantID;
 				$_SESSION['cartID'] = $cartID;
-				$_SESSION['cart_ID_list'] = array();
+				$_SESSION['food_ID_list'] = array();
 				$_SESSION['quantity_list'] = array();
 				$_SESSION['cart_item_count'] = 0;
 				?>
@@ -69,7 +69,7 @@
 				}
 				$_SESSION['restaurantID'] = $restaurantID;
 				$_SESSION['cartID'] = $cartID;
-				$_SESSION['cart_ID_list'] = array();
+				$_SESSION['food_ID_list'] = array();
 				$_SESSION['quantity_list'] = array();
 			}
 		}
@@ -86,7 +86,7 @@
 			$restaurantImage = "img/restaurants/default_img.jpg";
 		}
 
-		// $list = $_SESSION['cart_ID_list'];
+		// $list = $_SESSION['food_ID_list'];
 		// $li = $_SESSION['quantity_list'];
 		// $x = $_SESSION['restaurantID'];
 		// print_r("cartID is $cartID, $restaurantID, $x");
@@ -157,7 +157,7 @@
 								</div>
 								<div class="cart_button">
 										<?php
-										if(in_array($foodID, $_SESSION['cart_ID_list'])){
+										if(in_array($foodID, $_SESSION['food_ID_list'])){
 											?>
 											<button class="cart_btn" data-id="<?php echo $foodID ?>" disabled>Already in Cart</button>
 										<?php

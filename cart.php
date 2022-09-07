@@ -21,7 +21,7 @@
 <!--============= Shopping Cart ===============-->
 <section class="shopping_cart_area sec_pad bg_color">
 	<div class="container">
-			<h5 class="f_700 t_color3 mb_40 wow">Cart for :<?php echo $restaurantName ?></h5>
+			<h5 class="f_700 t_color3 mb_40 wow">Cart for: <?php echo $restaurantName ?></h5>
 			<div class="cart_title">
 					<div class="row">
 							<div class="col-md-2 col-2">
@@ -48,9 +48,9 @@
 						<table class="row table cart_table mb-0">
 								<tbody>
 									<?php
-									$foodID_sess_arr = $_SESSION['cart_ID_list'];
+									$foodID_list = $_SESSION['food_ID_list'];
 									$query = "SELECT * FROM food
-														WHERE foodID IN (".implode(',', $foodID_sess_arr).")";
+														WHERE foodID IN (".implode(',', $foodID_list).")";
 									$result = mysqli_query($connection, $query);
 									$count = mysqli_num_rows($result);
 									$food_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
@@ -114,22 +114,26 @@
 								<div class="action_btn">
 								<a href="restaurantdetail.php?restaurantID=<?=$_SESSION['restaurantID']?>" class="btn_hover agency_banner_btn cus_mb-10">Back to Shopping</a> <br>
 										<!-- <button type="submit" class="cart_btn" name="update_cart" value="Update cart">Continue Shopping</button> -->
-										<button type="submit" class="cart_btn cart_btn_two" name="update_cart" value="Update cart">Update cart</button>
+										<!-- <button type="submit" class="cart_btn cart_btn_two" name="update_cart" value="Update cart">Update cart</button> -->
 								</div>
-								<h5 class="f_p f_600 f_size_18 mt_60 mb_20">Discount Code</h5>
+								<!-- <h5 class="f_p f_600 f_size_18 mt_60 mb_20">Discount Code</h5>
 								<div class="coupon">
 										<input type="text" name="coupon_code" class="input_text" id="coupon_code" value="" placeholder="Enter your coupon code">
 										<button type="submit" class="button" name="apply_coupon" value="Apply coupon">Apply</button>
-								</div>
+								</div> -->
 						</div>
 						<div class="col-lg-4 col-md-6 actions">
 								<div class="cart_box">
 										<table class="shop_table">
 												<tbody>
-														<!-- <tr class="cart-subtotal">
+														<tr class="cart-subtotal">
 																<th>Subtotal</th>
+																<td data-title="Subtotal"><span class="amount"><?php echo $grand_total ?></span></td>
+														</tr>
+														<tr class="cart-subtotal">
+																<th>Delivery Fee</th>
 																<td data-title="Subtotal"><span class="amount">$870</span></td>
-														</tr> -->
+														</tr>
 														<tr class="order-total">
 																<th>Order totals</th>
 																<td data-title="Total" class="total" id="grand_total"><?php echo $grand_total ?></td>
@@ -137,7 +141,7 @@
 												</tbody>
 										</table>
 								</div>
-								<a href="#" class="checkout_button"> Proceed to checkout</a>
+								<a href="checkout.php" class="checkout_button"> Proceed to checkout</a>
 						</div>
 				</div>
 		</form>
