@@ -49,14 +49,17 @@
 										(`cartID`, 
 										`userID`, 
 										`restaurantID`,
+										`paymentTypeID`,
 										`totalAmount`,
+										`address`,
 										`latitude`,
 										`longitude`,
+										`rating`,
 										`deliveryType`,
 										`cartStatus`,
 										`paymentStatus`)
 										VALUES
-										('$cartID','$userID_sess', '$restaurantID', 0, 1, 1, 0, 0, 0)";
+										('$cartID','$userID_sess', '$restaurantID', 1, 0, '', 1, 1, 3, 0, 0, 0)";
 				$result=mysqli_query($connection,$insert);
 				if($result) {
 					echo "<script>window.alert('Cart Added Successfully!')</script>";
@@ -153,8 +156,18 @@
 									<!-- <button class="ar_down" type="button"><i class="ti-angle-down"></i></button> -->
 								</div>
 								<div class="cart_button">
-										<!-- <a href="#" class="cart_btn">Add to Cart</a> -->
-										<button class="cart_btn" data-id="<?php echo $foodID ?>">Add to Cart</button>
+										<?php
+										if(in_array($foodID, $_SESSION['cart_ID_list'])){
+											?>
+											<button class="cart_btn" data-id="<?php echo $foodID ?>" disabled>Already in Cart</button>
+										<?php
+										}
+										else{
+											?>
+											<button class="cart_btn" data-id="<?php echo $foodID ?>">Add to Cart</button>
+										<?php
+										}
+										?>
 										<a href="#" class="wish_list" data-toggle="tooltip" data-placement="top" title="ADD WISH LIST"><i class="ti-heart"></i></a>
 								</div>
 						</div>
