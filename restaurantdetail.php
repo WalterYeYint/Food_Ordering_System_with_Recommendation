@@ -195,7 +195,7 @@
 			xml.onreadystatechange = function(){
 				if(this.readyState == 4 && this.status == 200){
 					alert(this.responseText);
-					target.innerText = "Added into cart";
+					target.innerText = "Already in cart";
 					target.disabled = true;
 					var cart_count = parseInt(document.getElementById('lblCartCount').innerText, 10);
 					cart_count += 1;
