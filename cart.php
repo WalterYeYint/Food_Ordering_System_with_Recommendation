@@ -48,6 +48,7 @@
 						<table class="row table cart_table mb-0">
 								<tbody>
 									<?php
+									$quantity_list = $_SESSION['quantity_list'];
 									$foodID_list = $_SESSION['food_ID_list'];
 									$query = "SELECT * FROM food
 														WHERE foodID IN (".implode(',', $foodID_list).")";
@@ -60,7 +61,7 @@
 										$foodName = $row['foodName'];
 										$price = $row['price'];
 										$image = $row['image'];
-										$quantity = $row['quantity'];
+										$quantity = $quantity_list[$i];
 										$total = $price * $quantity;
 										$grand_total += $total;
 
@@ -88,9 +89,9 @@
 												<td class="col-lg-2 col-md-2 col-sm-2 col-xs-2" data-title="QUANTITY">
 														<div class="quantity">
 																<div class="product-qty">
-																		<button class="ar_top" type="button" onclick="incrementValue(<?php echo $i ?>)"><i class="ti-angle-up"></i></button>
+																		<!-- <button class="ar_top" type="button" onclick="incrementValue(<?php echo $i ?>)"><i class="ti-angle-up"></i></button> -->
 																		<input type="number" name="qty" id=<?php echo "qty_$i" ?> value=<?php echo $quantity ?> onchange="calculateTotal(<?php echo $i ?>)" title="Quantity:" class="manual-adjust">
-																		<button class="ar_down" type="button" onclick="decrementValue(<?php echo $i ?>)"><i class="ti-angle-down"></i></button>
+																		<!-- <button class="ar_down" type="button" onclick="decrementValue(<?php echo $i ?>)"><i class="ti-angle-down"></i></button> -->
 																</div>
 														</div>
 
@@ -148,4 +149,30 @@
 	</div>
 </section>
 <!--============= Shopping Cart ===============-->
+<script>
+	var lblQty = document.getElementsByClassName("manual-adjust");
+	for(var i=0; i<lblQty.length; i++){
+		lblQty[i].addEventListener("change", function(event){
+			var target = event.target;
+			var id_str = target.getAttribute("id");
+			var index = id_str.substr(4)
+			var value = target.value;
+			// var quantity = parseInt(document.getElementById('rd_qty_'+i).value, 10);
+			// alert(quantity);
+			// alert(value);
+			var xml = new XMLHttpRequest();
+			xml.onreadystatechange = function(){
+				if(this.readyState == 4 && this.status == 200){
+					alert(this.responseText);
+				}
+			}
+			// Note that $_SESSION['food_ID_list'] and $_SESSION['quantity_list'] are separate.
+			// E.g. food_ID_list = [3,6,4] comes out as food_arr = [3,4,6] after SELECT statement;
+			// 			Below, the code adds quantity by taking food_arr's index;
+			// ***Thus, quantity_list arrangement is according to food_arr, not food_ID_list;***
+			xml.open("GET", "changequantity.php?idx="+index+"&quantity="+value, true);
+			xml.send();
+		})
+	}
+</script>
 <?php include 'footer.php'; ?>
