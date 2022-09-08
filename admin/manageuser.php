@@ -21,6 +21,8 @@
 			$tfirstName = $arr['firstName'];
 			$tlastName = $arr['lastName'];
 			$taddress = $arr['address'];
+			$tlatitude = $arr['latitude'];
+			$tlongitude = $arr['longitude'];
 			$temail = $arr['email'];
 			$tpassword = $arr['password'];
 			$tuserRoleID = $arr['userRoleID'];
@@ -48,6 +50,8 @@
 		$tfirstName = "";
 		$tlastName = "";
 		$taddress = "";
+		$tlatitude = "";
+		$tlongitude = "";
 		$temail = "";
 		$tpassword = "";
 		$tuserRoleID = "";
@@ -59,8 +63,8 @@
 		$txtfirstName = $_POST['txtfirstname'];
 		$txtlastName = $_POST['txtlastname'];
 		$txtaddress = $_POST['txtaddress'];
-		$txtlatitude = 1;
-		$txtlongitude = 1;
+		$txtlatitude = $_POST['txtlatitude'];
+		$txtlongitude = $_POST['txtlongitude'];
 		$txtemail = $_POST['txtemail'];
 		$txtpassword = $_POST['txtpassword'];
 		$txtconfirm = $_POST['txtconfirm'];
@@ -160,6 +164,26 @@
 					<label for="name">Address <span style="color: red;">*</span></label>
 					<input type="text" class="form-control" name="txtaddress" id="address" value="<?php echo $taddress ?>" placeholder="Address">
 				</div>
+				<div class="form-group">
+					<label for="name">Latitude <span style="color: red;">*</span></label>
+					<input type="text" class="form-control" name="txtlatitude" id="latitude" value="<?php echo $tlatitude ?>" placeholder="Latitude">
+				</div>
+				<div class="form-group">
+					<label for="name">Longitude <span style="color: red;">*</span></label>
+					<input type="text" class="form-control" name="txtlongitude" id="longitude" value="<?php echo $tlongitude ?>" placeholder="Longitude" onchange="reloadMap()">
+				</div>
+				<iframe
+					id="map"
+					width="400"
+					height="300"
+					style="border:0"
+					loading="lazy"
+					allowfullscreen
+					referrerpolicy="no-referrer-when-downgrade"
+					src=""
+					hidden>
+				</iframe>
+				<br/><br/>
 				<div class="form-group">
 					<label for="email">Email <span style="color: red;">*</span></label>
 					<input type="email" class="form-control" name="txtemail" id="email" value="<?php echo $temail ?>" placeholder="Email" required="">
@@ -319,4 +343,24 @@ else{
 <?php 
 } 
 ?>
+<!-- <script>
+	var lblLong = document.getElementById("longitude");
+	lblLong.addEventListener("change", function(event){
+		var target = event.target;
+		var 
+		// alert(value);
+		var xml = new XMLHttpRequest();
+		xml.onreadystatechange = function(){
+			if(this.readyState == 4 && this.status == 200){
+				alert(this.responseText);
+			}
+		}
+		// Note that $_SESSION['food_ID_list'] and $_SESSION['quantity_list'] are separate.
+		// E.g. food_ID_list = [3,6,4] comes out as food_arr = [3,4,6] after SELECT statement;
+		// 			Below, the code adds quantity by taking food_arr's index;
+		// ***Thus, quantity_list arrangement is according to food_arr, not food_ID_list;***
+		xml.open("GET", "changequantity.php?idx="+index+"&quantity="+value, true);
+		xml.send();
+	})
+</script> -->
 <?php include 'footer.php'; ?>
