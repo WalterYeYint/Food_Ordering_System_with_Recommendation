@@ -3,11 +3,11 @@
 	include 'header.php';
 	include 'dbconnect.php';
 
-	$restaurantID = $_SESSION['restaurantID'];
-	$select = "SELECT * FROM restaurant
-							WHERE restaurantID = '$restaurantID'";
-	$result = mysqli_query($connection, $select);
-	$restaurantName = mysqli_fetch_all($result, MYSQLI_BOTH)[0]['restaurantName'];
+	$restaurantName = $_SESSION['restaurantName'];
+	$restaurant_latitude = $_SESSION['restaurant_latitude'];
+	$restaurant_longitude = $_SESSION['restaurant_longitude'];
+	$user_latitude = $_SESSION['auth_user']['user_latitude'];
+	$user_longitude = $_SESSION['auth_user']['user_longitude'];
 ?>
 <section class="breadcrumb_area">
 		<img class="breadcrumb_shap" src="img/breadcrumb/banner_bg.png" alt="">

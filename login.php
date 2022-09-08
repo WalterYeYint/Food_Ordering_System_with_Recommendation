@@ -30,6 +30,9 @@
 			$firstName = $data['firstName'];
 			$lastName = $data['lastName'];
 			$email= $data['email'];
+			$address = $data['address'];
+			$latitude = $data['latitude'];
+			$longitude = $data['longitude'];
 		}
 		// Authenticating Logged In User
 		$_SESSION['auth'] = true;
@@ -44,6 +47,9 @@
 			'email'=>$email,
 			'firstName'=>$firstName,
 			'lastName'=>$lastName,
+			'address'=>$address,
+			'user_latitude'=>$latitude,
+			'user_longitude'=>$longitude,
 			// 'userimage'=>$userimage,
 			// 'departmentid'=>$departmentid,
 		];

@@ -5,6 +5,19 @@
 
 	if(isset($_GET['restaurantID'])){
 		$restaurantID=$_GET['restaurantID'];
+		$select = "SELECT * FROM restaurant
+							WHERE restaurantID = '$restaurantID'";
+		$result = mysqli_query($connection, $select);
+		$count=mysqli_num_rows($result);
+		$restaurant_data_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
+		$restaurantName = $restaurant_data_arr[0]["restaurantName"];
+		$restaurant_latitude = $restaurant_data_arr[0]["latitude"];
+		$restaurant_longitude = $restaurant_data_arr[0]["longitude"];
+		$restaurantImage = $arr['image'];
+
+		if($restaurantImage == ""){
+			$restaurantImage = "img/restaurants/default_img.jpg";
+		}
 
 		if(isset($_SESSION['restaurantID']) AND ($_SESSION['restaurantID'] != $restaurantID)){
 			$cartID = $_SESSION["cartID"];
@@ -14,10 +27,13 @@
 			$result=mysqli_query($connection,$update);
 			if($result) {
 				$_SESSION['restaurantID'] = $restaurantID;
+				$_SESSION['restaurantName'] = $restaurantName;
 				$_SESSION['cartID'] = $cartID;
 				$_SESSION['food_ID_list'] = array();
 				$_SESSION['quantity_list'] = array();
 				$_SESSION['cart_item_count'] = 0;
+				$_SESSION['restaurant_latitude'] = $restaurant_latitude;
+				$_SESSION['restaurant_longitude'] = $restaurant_longitude;
 				?>
 				<script>document.getElementById('lblCartCount').innerText = <?php echo $_SESSION['cart_item_count'] ?></script>
 				<?php
@@ -45,45 +61,36 @@
 			}
 			else{
 				$cartID += 1;
-				$insert = "INSERT INTO cart
-										(`cartID`, 
-										`userID`, 
-										`restaurantID`,
-										`paymentTypeID`,
-										`totalAmount`,
-										`address`,
-										`latitude`,
-										`longitude`,
-										`rating`,
-										`deliveryType`,
-										`cartStatus`,
-										`paymentStatus`)
-										VALUES
-										('$cartID','$userID_sess', '$restaurantID', 1, 0, '', 1, 1, 3, 0, 0, 0)";
-				$result=mysqli_query($connection,$insert);
-				if($result) {
-					echo "<script>window.alert('Cart Added Successfully!')</script>";
-				}
-				else{
-					echo "<p>Something went wrong in Cart Entry : " . mysqli_error($connection) . "</p>";
-				}
-				$_SESSION['restaurantID'] = $restaurantID;
-				$_SESSION['cartID'] = $cartID;
-				$_SESSION['food_ID_list'] = array();
-				$_SESSION['quantity_list'] = array();
 			}
-		}
-
-		$query = "SELECT * FROM restaurant WHERE restaurantID='$restaurantID'";
-		$result = mysqli_query($connection,$query);
-		$arr = mysqli_fetch_array($result);
-
-		$restaurantID = $arr['restaurantID'];
-		$restaurantName = $arr['restaurantName'];
-		$restaurantImage = $arr['image'];
-
-		if($restaurantImage == ""){
-			$restaurantImage = "img/restaurants/default_img.jpg";
+			$insert = "INSERT INTO cart
+									(`cartID`, 
+									`userID`, 
+									`restaurantID`,
+									`paymentTypeID`,
+									`totalAmount`,
+									`address`,
+									`latitude`,
+									`longitude`,
+									`rating`,
+									`deliveryType`,
+									`cartStatus`,
+									`paymentStatus`)
+									VALUES
+									('$cartID','$userID_sess', '$restaurantID', 1, 0, '', 1, 1, 3, 0, 0, 0)";
+			$result=mysqli_query($connection,$insert);
+			if($result) {
+				echo "<script>window.alert('Cart Added Successfully!')</script>";
+			}
+			else{
+				echo "<p>Something went wrong in Cart Entry : " . mysqli_error($connection) . "</p>";
+			}
+			$_SESSION['restaurantID'] = $restaurantID;
+			$_SESSION['restaurantName'] = $restaurantName;
+			$_SESSION['cartID'] = $cartID;
+			$_SESSION['food_ID_list'] = array();
+			$_SESSION['quantity_list'] = array();
+			$_SESSION['restaurant_latitude'] = $restaurant_latitude;
+			$_SESSION['restaurant_longitude'] = $restaurant_longitude;
 		}
 
 		// $list = $_SESSION['food_ID_list'];
