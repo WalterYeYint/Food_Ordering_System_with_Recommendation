@@ -6,8 +6,8 @@
 	$restaurantName = $_SESSION['restaurantName'];
 	$restaurant_latitude = $_SESSION['restaurant_latitude'];
 	$restaurant_longitude = $_SESSION['restaurant_longitude'];
-	$user_latitude = $_SESSION['auth_user']['user_latitude'];
-	$user_longitude = $_SESSION['auth_user']['user_longitude'];
+	$chosen_latitude = $_SESSION['chosen_latitude'];
+	$chosen_longitude = $_SESSION['chosen_longitude'];
 ?>
 <section class="breadcrumb_area">
 		<img class="breadcrumb_shap" src="img/breadcrumb/banner_bg.png" alt="">
@@ -63,7 +63,7 @@
 										$image = $row['image'];
 										$quantity = $quantity_list[$i];
 										$total = $price * $quantity;
-										$grand_total += $total;
+										$sub_total += $total;
 
 										if($image == ""){
 											$image = "img/food/default_img.jpeg";
@@ -129,11 +129,16 @@
 												<tbody>
 														<tr class="cart-subtotal">
 																<th>Subtotal</th>
-																<td data-title="Subtotal"><span class="amount"><?php echo $grand_total ?></span></td>
+																<td data-title="Subtotal"><span class="amount"><?php echo $sub_total ?></span></td>
 														</tr>
 														<tr class="cart-subtotal">
 																<th>Delivery Fee</th>
-																<td data-title="Subtotal"><span class="amount">$870</span></td>
+																<?php
+																$distance = twopoints_on_earth($restaurant_latitude, $restaurant_longitude, $chosen_latitude, $chosen_longitude);
+																$deliveryFee = calculate_deliveryFee($distance);
+																$grand_total = $sub_total + $deliveryFee;
+																?>
+																<td data-title="Subtotal"><span class="amount"><?php echo $deliveryFee ?></span></td>
 														</tr>
 														<tr class="order-total">
 																<th>Order totals</th>

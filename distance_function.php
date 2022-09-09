@@ -20,14 +20,20 @@
 			
 		return ($res*$radius);
 	}
+
+	function calculate_deliveryFee($distance){
+		//price = (dist in miles)*(price per miles)
+		$price = ($distance)*500/0.260975901;
+		return ceil($price);
+	}
  
-	// latitude and longitude of Two Points
-	$latitudeFrom = 16.8477654;
-	$longitudeFrom = 96.1715564;
-	$latitudeTo = 16.866112456289716;
-	$longitudeTo = 96.16194196826457;
+	// // latitude and longitude of Two Points
+	// $latitudeFrom = 16.8477654;
+	// $longitudeFrom = 96.1715564;
+	// $latitudeTo = 16.866112456289716;
+	// $longitudeTo = 96.16194196826457;
 		
-	// Distance between two points
-	print_r(twopoints_on_earth( $latitudeFrom, $longitudeFrom,
-								$latitudeTo,  $longitudeTo).' '.'miles');
+	// // Distance between two points
+	// print_r(twopoints_on_earth( $latitudeFrom, $longitudeFrom,
+	// 							$latitudeTo,  $longitudeTo).' '.'miles');
 ?>

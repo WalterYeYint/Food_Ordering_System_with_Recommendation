@@ -3,6 +3,32 @@
 	include 'header.php';
 	include 'dbconnect.php'; 
 
+	$user_address = $_SESSION['auth_user']['address'];
+	$user_latitude = $_SESSION['auth_user']['user_latitude'];
+	$user_longitude = $_SESSION['auth_user']['user_longitude'];
+
+	if(isset($_POST['btnsubmit'])){
+		$_SESSION['chosen_address'] = $_POST['txtaddress'];
+		$_SESSION['chosen_latitude'] = $_POST['txtlatitude'];
+		$_SESSION['chosen_longitude'] = $_POST['txtlongitude'];
+	}
+	elseif(isset($_POST['btnownsubmit'])){
+		$_SESSION['chosen_address'] = $user_address;
+		$_SESSION['chosen_latitude'] = $user_latitude;
+		$_SESSION['chosen_longitude'] = $user_longitude;
+	}
+
+	if(isset($_SESSION['chosen_latitude'])){
+		$chosen_address = $_SESSION['chosen_address'];
+		$chosen_latitude = $_SESSION['chosen_latitude'];
+		$chosen_longitude = $_SESSION['chosen_longitude'];
+	}
+	else{
+		$chosen_address = $user_address;
+		$chosen_latitude = $user_latitude;
+		$chosen_longitude = $user_longitude;
+	}
+	
 	$id = 4924;
 	$url = "http://127.0.0.1:5000/get_recommendation/{$id}";
 	$ch = curl_init();
@@ -16,8 +42,34 @@
 	<img class="breadcrumb_shap" src="img/breadcrumb/banner_bg.png" alt="">
 	<div class="container">
 		<div class="breadcrumb_content text-center">
-			<h1 class="f_p f_700 f_size_50 w_color l_height50 mb_20"><?php echo ($recommended_food_dict) ?></h1>
-			<p class="f_400 w_color f_size_16 l_height26">Why I say old chap that is spiffing off his nut arse pear shaped plastered<br> Jeffrey bodge barney some dodgy.!!</p>
+			<!-- <h1 class="f_p f_700 f_size_50 w_color l_height50 mb_20"><?php echo ($recommended_food_dict) ?></h1> -->
+			<form class="row apply_form" action="restaurantlist.php" method="post" enctype="multipart/form-data">
+				<div class="form-group col-lg-6">
+					<input type="text" name="txtaddress" value="<?php echo $chosen_address ?>" placeholder="Enter an address" required>
+					<br/><br/>
+					<input type="text" name="txtlatitude" id="latitude" value="<?php echo $chosen_latitude ?>" placeholder="Enter latitudee" required>
+					<br/><br/>
+					<input type="text" name="txtlongitude" id="longitude" value="<?php echo $chosen_longitude ?>" placeholder="Enter longitude" onchange="reloadMap()" required>
+				</div>
+				<div class="form-group col-lg-6">
+					<iframe
+						id="map"
+						width="400"
+						height="300"
+						style="border:0"
+						loading="lazy"
+						allowfullscreen
+						referrerpolicy="no-referrer-when-downgrade"
+						src="https://www.google.com/maps/embed/v1/view?key=AIzaSyAC7Rj163G5vNrR5_1AEncatw3OHcjTock&center=<?php echo $chosen_latitude.",".$chosen_longitude ?>&zoom=18"
+						>
+					</iframe>
+				</div>
+				<div class="form-group col-lg-6">
+					<button type="submit" name="btnsubmit" class="about_btn cus_mb-10">Search</button>
+					<button type="submit" name="btnownsubmit" class="about_btn cus_mb-10">Search using your Address</button>
+				</div>
+			</form>
+			<!-- <p class="f_400 w_color f_size_16 l_height26">Why I say old chap that is spiffing off his nut arse pear shaped plastered<br> Jeffrey bodge barney some dodgy.!!</p> -->
 		</div>
 	</div>
 </section>
@@ -55,16 +107,27 @@
 		</div>
 		<div class="row">
 			<?php
+				$index = 0;
 				# Get restaurants from database
 				$select="SELECT *
 						FROM restaurant";
 				$query=mysqli_query($connection,$select);
 				$count=mysqli_num_rows($query);
-				for($i=0; $i<9; $i++){
+				for($i=0; $i<$count; $i++){
 					$row = mysqli_fetch_array($query);
 					$restaurantID = $row['restaurantID'];
 					$restaurantName = $row['restaurantName'];
 					$restaurantImage = $row['image'];
+					$restaurant_latitude = $row['latitude'];
+					$restaurant_longitude = $row['longitude'];
+					$distance = twopoints_on_earth($restaurant_latitude, $restaurant_longitude, $chosen_latitude, $chosen_longitude);
+					if($distance >= 1.4){
+						continue;
+					}
+					if($index >= 30){
+						break;
+					}
+					$index += 1;
 			?>
 					<a href="restaurantdetail.php?restaurantID=<?=$restaurantID?>">
 						<div class="col-lg-3 col-sm-4">
@@ -112,7 +175,7 @@
 					for($i=0; $i<$count; $i++){
 						$row = mysqli_fetch_array($query);
 						$foodName = $row['foodName'];
-						$foodImage = $row['image']
+						$foodImage = $row['image'];
 				?>
 					<div class="col-lg-3 col-sm-4">
 							<div class="single_product_item">

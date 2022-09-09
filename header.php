@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	include 'constants.php';
+	include 'distance_function.php';
 ?>
 <body>
 	<!-- <div id="preloader">
