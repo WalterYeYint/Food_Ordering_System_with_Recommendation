@@ -13,6 +13,7 @@
 		$restaurantName = $restaurant_data_arr[0]["restaurantName"];
 		$restaurant_latitude = $restaurant_data_arr[0]["latitude"];
 		$restaurant_longitude = $restaurant_data_arr[0]["longitude"];
+		$KPayPhoneNo = $restaurant_data_arr[0]["KPayPhoneNo"];
 		$restaurantImage = $arr['image'];
 
 		if($restaurantImage == ""){
@@ -34,6 +35,7 @@
 				$_SESSION['cart_item_count'] = 0;
 				$_SESSION['restaurant_latitude'] = $restaurant_latitude;
 				$_SESSION['restaurant_longitude'] = $restaurant_longitude;
+				$_SESSION['KPayPhoneNo'] = $KPayPhoneNo;
 				?>
 				<script>document.getElementById('lblCartCount').innerText = <?php echo $_SESSION['cart_item_count'] ?></script>
 				<?php

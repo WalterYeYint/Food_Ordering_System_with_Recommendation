@@ -117,6 +117,7 @@
 							$userID_sess=$_SESSION['auth_user']['userID'];
 							$firstName_sess=$_SESSION['auth_user']['firstName'];
 							$lastName_sess=$_SESSION['auth_user']['lastName'];
+							$email_sess=$_SESSION['auth_user']['email'];
 							$userRoleID_sess=$_SESSION['auth_user']['userRoleID'];
 							$userRoleName_sess=$_SESSION['auth_user']['userRoleName'];
 
