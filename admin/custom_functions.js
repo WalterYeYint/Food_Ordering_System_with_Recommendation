@@ -28,13 +28,21 @@ function decrementValue(index){
 	document.getElementById('grand_total').innerText = grand_total;
 }
 
-function calculateTotal(index){
+function calculateTotal(index, count){
 	var price = parseInt(document.getElementById('price_'+index).innerText, 10);
 	var quantity = parseInt(document.getElementById('qty_'+index).value, 10);
 	var total = price * quantity;
+	var sub_total = 0;
+	var grand_total = 0;
 	// grand_total -= total;
 	document.getElementById('total_' + index).innerText = total;
-	// document.getElementById('grand_total').innerText = grand_total;
+	for(i=0; i<count; i++){
+		sub_total += parseInt(document.getElementById('total_'+i).innerText, 10);
+	}
+	grand_total = sub_total + parseInt(document.getElementById('delivery_fee').innerText, 10);
+	document.getElementById('sub_total').innerText = sub_total;
+	document.getElementById('grand_total').innerText = grand_total;
+	// alert("Received this: "+index+","+count);
 }
 
 function reloadMap(){

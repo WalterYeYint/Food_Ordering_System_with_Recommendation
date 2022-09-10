@@ -90,7 +90,7 @@
 														<div class="quantity">
 																<div class="product-qty">
 																		<!-- <button class="ar_top" type="button" onclick="incrementValue(<?php echo $i ?>)"><i class="ti-angle-up"></i></button> -->
-																		<input type="number" name="qty" id=<?php echo "qty_$i" ?> value=<?php echo $quantity ?> onchange="calculateTotal(<?php echo $i ?>)" title="Quantity:" class="manual-adjust">
+																		<input type="number" name="qty" id=<?php echo "qty_$i" ?> value=<?php echo $quantity ?> onchange="calculateTotal(<?php echo $i.','.$count ?>)" title="Quantity:" class="manual-adjust">
 																		<!-- <button class="ar_down" type="button" onclick="decrementValue(<?php echo $i ?>)"><i class="ti-angle-down"></i></button> -->
 																</div>
 														</div>
@@ -129,7 +129,7 @@
 												<tbody>
 														<tr class="cart-subtotal">
 																<th>Subtotal</th>
-																<td data-title="Subtotal"><span class="amount"><?php echo $sub_total ?></span></td>
+																<td data-title="Subtotal" id="sub_total"><span class="amount"><?php echo $sub_total ?></span></td>
 														</tr>
 														<tr class="cart-subtotal">
 																<th>Delivery Fee</th>
@@ -138,7 +138,7 @@
 																$deliveryFee = calculate_deliveryFee($distance);
 																$grand_total = $sub_total + $deliveryFee;
 																?>
-																<td data-title="Subtotal"><span class="amount"><?php echo $deliveryFee ?></span></td>
+																<td data-title="Subtotal" id="delivery_fee"><span class="amount"><?php echo $deliveryFee ?></span></td>
 														</tr>
 														<tr class="order-total">
 																<th>Order totals</th>
