@@ -50,8 +50,8 @@ CREATE TABLE `cart` (
 													`paymentStatus` int(2)
 												) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `order` (
-													`orderID` int(11) NOT NULL,
+CREATE TABLE `foodorder` (
+													`foodorderID` int(11) NOT NULL,
 													`foodID` int(11) NOT NULL,
 													`cartID` int(11) NOT NULL,
   												`quantity` int(8) NOT NULL,
@@ -8511,7 +8511,7 @@ INSERT INTO `cart`
 (49, 214, 64, 1, 0, "", 1, 1, 3, 0, 0, 0),
 (50, 84, 70, 1, 0, "", 1, 1, 3, 0, 0, 0);
 
-INSERT INTO `order` (`orderID`, `foodID`, `cartID`, `quantity`, `rating`) VALUES
+INSERT INTO `foodorder` (`foodorderID`, `foodID`, `cartID`, `quantity`, `rating`) VALUES
 (1, 283, 20, 1, 3),
 (2, 6742, 2, 1, 4),
 (3, 3669, 24, 1, 10),

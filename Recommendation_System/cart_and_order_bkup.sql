@@ -62,7 +62,7 @@ INSERT INTO `cart`
 (49, 325, 206, 1, 0, "", 1, 1, 3, 0, 0, 0),
 (50, 182, 24, 1, 0, "", 1, 1, 3, 0, 0, 0);
 
-INSERT INTO `order` (`orderID`, `foodID`, `cartID`, `quantity`, `rating`) VALUES
+INSERT INTO `foodorder` (`foodorderID`, `foodID`, `cartID`, `quantity`, `rating`) VALUES
 (1, 283, 20, 1, 3),
 (2, 6742, 2, 1, 4),
 (3, 3669, 24, 1, 10),

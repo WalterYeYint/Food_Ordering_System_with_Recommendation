@@ -87,15 +87,15 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 													`cartStatus`,
 													`paymentStatus`) VALUES"""
 
-		create_order = """CREATE TABLE `order` (
-													`orderID` int(11) NOT NULL,
+		create_foodorder = """CREATE TABLE `foodorder` (
+													`foodorderID` int(11) NOT NULL,
 													`foodID` int(11) NOT NULL,
 													`cartID` int(11) NOT NULL,
   												`quantity` int(8) NOT NULL,
 													`rating` int(3) NOT NULL
 												) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\n"""
-		f.write(create_order)
-		insert_into_order = """INSERT INTO `order` (`orderID`, `foodID`, `cartID`, `quantity`, `rating`) VALUES"""
+		f.write(create_foodorder)
+		insert_into_foodorder = """INSERT INTO `foodorder` (`foodorderID`, `foodID`, `cartID`, `quantity`, `rating`) VALUES"""
 
 		create_paymentType = """CREATE TABLE `paymentType` (
 													`paymentTypeID` int(11) NOT NULL,
@@ -196,15 +196,15 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 		last_cart_id = cart_id
 
 		for i in range(300):
-			print("Getting data for order, ", i, " th loop with restaurant_id ", restaurant_id)
-			order_id = i + 1
+			print("Getting data for foodorder, ", i, " th loop with restaurant_id ", restaurant_id)
+			foodorder_id = i + 1
 			cart_id = rand.randint(1, last_cart_id)
 			restaurant_id = cart_restaurant_dict[cart_id]
 			food_id = rand.randint(restaurant_food_dict[restaurant_id][0], restaurant_food_dict[restaurant_id][-1])
 			rating = rand.randint(1, 10)
-			insert_into_order = insert_into_order + f"""\n({order_id}, {food_id}, {cart_id}, {1}, {rating}),"""
-		insert_into_order = insert_into_order[:-1] + ";" + "\n\n"
-		f.write(insert_into_order)
+			insert_into_foodorder = insert_into_foodorder + f"""\n({foodorder_id}, {food_id}, {cart_id}, {1}, {rating}),"""
+		insert_into_foodorder = insert_into_foodorder[:-1] + ";" + "\n\n"
+		f.write(insert_into_foodorder)
 			
 				
 				
