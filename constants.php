@@ -11,11 +11,14 @@
 	const DELIVERY = 0;
 	const PICK_UP = 1;
 
+	// Payment Type
+	const CASH_ON_DELIVERY = "Cash on delivery";
+	const KBZPAY = "KBZPay";
+
 	// Cart Status
-	const CART_IN_PROGRESS = 0;
-	const CART_CHECKED_OUT = 1;
-	const CART_BEING_PROCESSED = 2;
-	const CART_COMPLETED = 3;
+	const CART_CHECKED_OUT = 0;
+	const CART_IN_PROGRESS = 1;
+	const CART_COMPLETED = 2;
 
 	// Payment Status
 	const UNPAID = 0;

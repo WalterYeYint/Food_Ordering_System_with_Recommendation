@@ -3,6 +3,7 @@
   include 'header.php';
   include 'dbconnect.php';
 
+	$restaurantID = $_SESSION['restaurantID'];
   $restaurantName = $_SESSION['restaurantName'];
 	$restaurant_latitude = $_SESSION['restaurant_latitude'];
 	$restaurant_longitude = $_SESSION['restaurant_longitude'];
@@ -10,6 +11,67 @@
 	$chosen_address = $_SESSION['chosen_address'];
 	$chosen_latitude = $_SESSION['chosen_latitude'];
 	$chosen_longitude = $_SESSION['chosen_longitude'];
+
+	if(isset($_POST['btnsubmit'])){
+		$rdodelivery = $_POST['rdodelivery'];
+		$rdopayment = $_POST['rdopayment'];
+		$cartID = AutoID('cart', 'cartID');		// Cannot use the id in session since other users' carts might enter the db 
+		$totalAmount = $_POST['txtgrandtotal'];
+		$cart_checked_out = CART_CHECKED_OUT;
+		$foodID_list_sess = $_SESSION['food_ID_list'];
+		$quantity_list_sess = $_SESSION['quantity_list'];
+		$foodID_list_count = count($foodID_list_sess);
+
+		// Insert a new cart
+		$insert = "INSERT INTO cart
+								(`cartID`, 
+								`userID`, 
+								`restaurantID`,
+								`paymentTypeID`,
+								`totalAmount`,
+								`address`,
+								`latitude`,
+								`longitude`,
+								`rating`,
+								`deliveryType`,
+								`cartStatus`,
+								`paymentStatus`)
+								VALUES
+								('$cartID','$userID_sess', '$restaurantID', '$rdopayment', '$totalAmount', '$chosen_address', '$chosen_latitude', '$chosen_longitude', 3, '$rdodelivery', '$cart_checked_out', 0)";
+		$result=mysqli_query($connection,$insert);
+		if($result) {
+			echo "<script>window.alert('Cart Added Successfully!')</script>";
+		}
+		else{
+			echo "<p>Something went wrong in Cart Entry : " . mysqli_error($connection) . "</p>";
+		}
+
+		// Loop and insert all food inside the cart
+		for($i=0; $i<$foodID_list_count; $i++){
+			$foodorderID = AutoID('foodorder', 'foodorderID');
+			$foodID = $foodID_list_sess[$i];
+			$quantity = $quantity_list_sess[$i];
+			$insert = "INSERT INTO foodorder
+								(`foodorderID`, `foodID`, `cartID`, `quantity`, `rating`)
+								VALUES
+								('$foodorderID', '$foodID', '$cartID', '$quantity', 5)";
+			$result=mysqli_query($connection,$insert);
+		}
+		unset($_SESSION['restaurantID']);
+		unset($_SESSION['restaurantName']);
+		unset($_SESSION['cartID']);
+		unset($_SESSION['food_ID_list']);
+		unset($_SESSION['quantity_list']);
+		unset($_SESSION['restaurant_latitude']);
+		unset($_SESSION['restaurant_longitude']);
+		unset($_SESSION['KPayPhoneNo']);
+		$_SESSION['cart_item_count'] = 0;
+		?>
+		<script>document.getElementById('lblCartCount').innerText = <?php echo $_SESSION['cart_item_count'] ?></script>
+		<?php
+		echo "<script>window.alert('Cart checked out Successfully!')</script>";
+		echo "<script>window.location='restaurantlist.php'</script>";
+	}
 ?>
 <section class="breadcrumb_area">
 	<img class="breadcrumb_shap" src="img/breadcrumb/banner_bg.png" alt="">
@@ -24,7 +86,7 @@
 <!--============= Shopping Cart ===============-->
 <section class="checkout_area bg_color sec_pad">
 	<div class="container">
-		<form action="#" method="post">
+		<form action="checkout.php" method="post">
 			<div class="row">
 				<div class="col-md-5">
 					<div class="checkout_content">
@@ -222,34 +284,71 @@
 										<td></td>
 										<td><b>=</b></td>
 										<td><b><?php echo $grand_total ?> Ks</b></td>
+										<input type="hidden" name="txtgrandtotal" value="<?php echo $grand_total; ?>">
 									</tr>
 								</tbody>
 							</table>
+							<br/>
+							<h5>Delivery Type:</h5>
 							<ul class="list-unstyled payment_list">
 								<li class="payment">
 									<div class="radio-btn">
-										<input type="radio" value="None" id="squaredeight" name="check">
-										<label for="squaredeight"></label>
+										<input type="radio" value=<?php echo DELIVERY ?> id="deli" name="rdodelivery" checked>
+										<label for="deli"></label>
 									</div>
-									<h6>Cash on Delivery</h6>
-									<div class="note">
-										Pay cash to the deliveryman.
-									</div>
+									<h6>Delivery</h6>
 								</li>
 								<li class="payment">
 									<div class="radio-btn">
-										<input type="radio" value="None" id="squaredsix" name="check">
-										<label for="squaredsix"></label>
+										<input type="radio" value=<?php echo PICK_UP ?> id="pickup" name="rdodelivery">
+										<label for="pickup"></label>
 									</div>
-									<h6>KBZ Pay Transfer</h6>
-									<div class="note">
-										Pay to this number: <?php echo $KPayPhoneNo ?>
-									</div>
-									<div class="note">
-										Please insert your name in notes. Your order won't be processed until the 
-										payment has arrived.
-									</div>
+									<h6>Pick Up</h6>
 								</li>
+							</ul>
+							<br/>
+							<h5>Payment Type:</h5>
+							<ul class="list-unstyled payment_list">
+								<?php
+								$select="SELECT *
+										FROM paymentType";
+								$result=mysqli_query($connection,$select);
+								$count=mysqli_num_rows($result);
+								$paymentType_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
+								for($i=0; $i<$count; $i++){
+									$row = $paymentType_arr[$i];
+									$paymentTypeID = $row['paymentTypeID'];
+									$paymentType = $row['paymentType'];
+								?>
+									<li class="payment">
+										<div class="radio-btn">
+											<input type="radio" value=<?php echo $paymentTypeID ?> id=<?php echo $paymentTypeID ?> name="rdopayment" 
+															<?php
+															if($paymentType == CASH_ON_DELIVERY){
+																echo "checked";
+															}
+															?>>
+											<label for=<?php echo $paymentTypeID ?>></label>
+										</div>
+										<h6><?php echo $paymentType ?></h6>
+										<?php
+										if($paymentType == KBZPAY){
+											?>
+											<div>
+												<b>Pay to this KBZPay number: <?php echo $KPayPhoneNo ?></b>
+											</div>
+										<?php
+										}
+										?>
+									</li>
+								<?php
+								}
+								?>
+								<br/>
+								<div class="note">
+									Please insert your name in notes. For online payments, your order won't be processed until the 
+									payment has arrived.
+								</div>
 								<!-- <li class="payment">
 									<div class="radio-btn">
 										<input type="radio" value="None" id="squaredseven" name="check">
@@ -260,10 +359,10 @@
 							</ul>
 							<div class="condition">
 								<p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
-								<input type="checkbox" value="None" id="squarednine" name="check">
-								<label class="l_text" for="squarednine">I have read and agree to the website terms and conditions <span>*</span></label>
+								<!-- <input type="checkbox" value="None" id="squarednine" name="check"> -->
+								<!-- <label class="l_text" for="squarednine">I have read and agree to the website terms and conditions <span>*</span></label> -->
 							</div>
-							<button type="submit" class="button">Place Order</button>
+							<button type="submit" class="button" name="btnsubmit">Place Order</button>
 						</div>
 					</div>
 				</div>
