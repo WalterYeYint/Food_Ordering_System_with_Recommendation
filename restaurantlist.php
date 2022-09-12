@@ -27,6 +27,9 @@
 		$chosen_address = $user_address;
 		$chosen_latitude = $user_latitude;
 		$chosen_longitude = $user_longitude;
+		$_SESSION['chosen_address'] = $chosen_address;
+		$_SESSION['chosen_latitude'] = $chosen_latitude;
+		$_SESSION['chosen_longitude'] = $chosen_longitude;
 	}
 	
 	$id = 4924;

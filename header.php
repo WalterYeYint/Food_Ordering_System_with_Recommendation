@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	include 'constants.php';
+	include 'autoid.php';
 	include 'distance_function.php';
 ?>
 <body>

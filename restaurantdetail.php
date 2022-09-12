@@ -20,72 +20,32 @@
 			$restaurantImage = "img/restaurants/default_img.jpg";
 		}
 
+		$chosen_address = $_SESSION['chosen_address'];
+		$chosen_latitude = $_SESSION['chosen_latitude'];
+		$chosen_longitude = $_SESSION['chosen_longitude'];
+
 		if(isset($_SESSION['restaurantID']) AND ($_SESSION['restaurantID'] != $restaurantID)){
 			$cartID = $_SESSION["cartID"];
-			$update = "UPDATE cart
-									SET restaurantID = '$restaurantID'
-									WHERE cartID = '$cartID'";
-			$result=mysqli_query($connection,$update);
-			if($result) {
-				$_SESSION['restaurantID'] = $restaurantID;
-				$_SESSION['restaurantName'] = $restaurantName;
-				$_SESSION['cartID'] = $cartID;
-				$_SESSION['food_ID_list'] = array();
-				$_SESSION['quantity_list'] = array();
-				$_SESSION['cart_item_count'] = 0;
-				$_SESSION['restaurant_latitude'] = $restaurant_latitude;
-				$_SESSION['restaurant_longitude'] = $restaurant_longitude;
-				$_SESSION['KPayPhoneNo'] = $KPayPhoneNo;
-				?>
-				<script>document.getElementById('lblCartCount').innerText = <?php echo $_SESSION['cart_item_count'] ?></script>
-				<?php
-				echo "<script>window.alert('Restaurant in cart Updated Successfully!')</script>";
-			}
-			else{
-				echo "<p>Something went wrong in Cart Update : " . mysqli_error($connection) . "</p>";
-			}
+
+			$_SESSION['restaurantID'] = $restaurantID;
+			$_SESSION['restaurantName'] = $restaurantName;
+			$_SESSION['cartID'] = $cartID;
+			$_SESSION['food_ID_list'] = array();
+			$_SESSION['quantity_list'] = array();
+			$_SESSION['cart_item_count'] = 0;
+			$_SESSION['restaurant_latitude'] = $restaurant_latitude;
+			$_SESSION['restaurant_longitude'] = $restaurant_longitude;
+			$_SESSION['KPayPhoneNo'] = $KPayPhoneNo;
+			?>
+			<script>document.getElementById('lblCartCount').innerText = <?php echo $_SESSION['cart_item_count'] ?></script>
+			<?php
 		}
 		
 		if(isset($_SESSION['cartID'])){
 			$cartID = $_SESSION['cartID'];
 		}
 		else{
-			$select = "SELECT cartID
-									FROM cart
-									ORDER BY cartID DESC
-									LIMIT 1";
-			$result=mysqli_query($connection,$select);
-			$count=mysqli_num_rows($result);
-			$cartID = mysqli_fetch_all($result, MYSQLI_BOTH)[0]['cartID'];
-
-			if($count <= 0){
-				$cartID = 1;
-			}
-			else{
-				$cartID += 1;
-			}
-			$insert = "INSERT INTO cart
-									(`cartID`, 
-									`userID`, 
-									`restaurantID`,
-									`paymentTypeID`,
-									`totalAmount`,
-									`address`,
-									`latitude`,
-									`longitude`,
-									`rating`,
-									`deliveryType`,
-									`cartStatus`,
-									`paymentStatus`)
-									VALUES
-									('$cartID','$userID_sess', '$restaurantID', 1, 0, '', 1, 1, 3, 0, 0, 0)";
-			$result=mysqli_query($connection,$insert);
-			if($result) {
-				echo "<script>window.alert('Cart Added Successfully!')</script>";
-			}
-			else{
-				echo "<p>Something went wrong in Cart Entry : " . mysqli_error($connection) . "</p>";
-			}
+			$cartID = AutoID('cart', 'cartID');
 			$_SESSION['restaurantID'] = $restaurantID;
 			$_SESSION['restaurantName'] = $restaurantName;
 			$_SESSION['cartID'] = $cartID;
