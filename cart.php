@@ -50,13 +50,20 @@
 									<?php
 									$quantity_list = $_SESSION['quantity_list'];
 									$foodID_list = $_SESSION['food_ID_list'];
-									$query = "SELECT * FROM food
-														WHERE foodID IN (".implode(',', $foodID_list).")";
-									$result = mysqli_query($connection, $query);
-									$count = mysqli_num_rows($result);
-									$food_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
-									for($i=0; $i<$count; $i++){
-										$row = $food_arr[$i];
+									$foodID_list_count = count($foodID_list);
+									// $query = "SELECT * FROM food
+									// 					WHERE foodID IN (".implode(',', $foodID_list).")";
+									// $result = mysqli_query($connection, $query);
+									// $count = mysqli_num_rows($result);
+									// $food_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
+									for($i=0; $i<$foodID_list_count; $i++){
+										$foodID = $foodID_list[$i];
+										$query = "SELECT * FROM food
+															WHERE foodID = '$foodID'";
+										$result = mysqli_query($connection, $query);
+										$count = mysqli_num_rows($result);
+										$food_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
+										$row = $food_arr[0];
 										$foodID = $row['foodID'];
 										$foodName = $row['foodName'];
 										$price = $row['price'];
@@ -90,7 +97,7 @@
 														<div class="quantity">
 																<div class="product-qty">
 																		<!-- <button class="ar_top" type="button" onclick="incrementValue(<?php echo $i ?>)"><i class="ti-angle-up"></i></button> -->
-																		<input type="number" name="qty" id=<?php echo "qty_$i" ?> value=<?php echo $quantity ?> onchange="calculateTotal(<?php echo $i.','.$count ?>)" title="Quantity:" class="manual-adjust">
+																		<input type="number" name="qty" id=<?php echo "qty_$i" ?> value=<?php echo $quantity ?> onchange="calculateTotal(<?php echo $i.','.$foodID_list_count ?>)" title="Quantity:" class="manual-adjust">
 																		<!-- <button class="ar_down" type="button" onclick="decrementValue(<?php echo $i ?>)"><i class="ti-angle-down"></i></button> -->
 																</div>
 														</div>
@@ -171,10 +178,6 @@
 					alert(this.responseText);
 				}
 			}
-			// Note that $_SESSION['food_ID_list'] and $_SESSION['quantity_list'] are separate.
-			// E.g. food_ID_list = [3,6,4] comes out as food_arr = [3,4,6] after SELECT statement;
-			// 			Below, the code adds quantity by taking food_arr's index;
-			// ***Thus, quantity_list arrangement is according to food_arr, not food_ID_list;***
 			xml.open("GET", "changequantity.php?idx="+index+"&quantity="+value, true);
 			xml.send();
 		})
