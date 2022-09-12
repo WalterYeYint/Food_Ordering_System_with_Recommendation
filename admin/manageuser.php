@@ -162,15 +162,15 @@
 				</div> -->
 				<div class="form-group">
 					<label for="name">Address <span style="color: red;">*</span></label>
-					<input type="text" class="form-control" name="txtaddress" id="address" value="<?php echo $taddress ?>" placeholder="Address">
+					<input type="text" class="form-control" name="txtaddress" id="address" value="<?php echo $taddress ?>" placeholder="Address" required="">
 				</div>
 				<div class="form-group">
 					<label for="name">Latitude <span style="color: red;">*</span></label>
-					<input type="text" class="form-control" name="txtlatitude" id="latitude" value="<?php echo $tlatitude ?>" placeholder="Latitude">
+					<input type="number" class="form-control" name="txtlatitude" id="latitude" value="<?php echo $tlatitude ?>" placeholder="Latitude" required="">
 				</div>
 				<div class="form-group">
 					<label for="name">Longitude <span style="color: red;">*</span></label>
-					<input type="text" class="form-control" name="txtlongitude" id="longitude" value="<?php echo $tlongitude ?>" placeholder="Longitude" onchange="reloadMap()">
+					<input type="number" class="form-control" name="txtlongitude" id="longitude" value="<?php echo $tlongitude ?>" placeholder="Longitude" onchange="reloadMap()" required="">
 				</div>
 				<iframe
 					id="map"
