@@ -1,7 +1,9 @@
 <?php
   session_start();
   
+	include '../autoid.php';
 	include '../constants.php';
+	include 'pagination.php';
   
   $userID_sess=$_SESSION['auth_user']['userID'];
   $firstName_sess=$_SESSION['auth_user']['firstName'];

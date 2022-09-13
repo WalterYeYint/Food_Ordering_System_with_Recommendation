@@ -3,9 +3,6 @@
 	include 'header.php';
 	include 'sidebar.php';
 	include '../dbconnect.php';
-
-	include '../autoid.php';
-	include 'pagination.php';
 ?>
 <?php
 	if(isset($_GET['restaurantID'])){

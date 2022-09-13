@@ -3,10 +3,6 @@
 	include 'header.php';
 	include 'sidebar.php';
 	include '../dbconnect.php';
-
-	include '../autoid.php';
-	include '../constants.php';
-	include 'pagination.php';
 ?>
 <?php
 	// Restaurants Query that are used more than once
