@@ -186,9 +186,9 @@ if ($_SESSION['auth_rolename']) {
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="ideaview.php">
-        <i class="mdi mdi-assistant menu-icon"></i>
-        <span class="menu-title">Idea</span>
+      <a class="nav-link" href="managecart.php">
+        <i class="mdi mdi-cart menu-icon"></i>
+        <span class="menu-title">Cart</span>
       </a>
     </li>
     <li class="nav-item">
