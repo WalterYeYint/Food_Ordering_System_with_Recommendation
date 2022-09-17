@@ -45,6 +45,18 @@ function calculateTotal(index, count){
 	// alert("Received this: "+index+","+count);
 }
 
+function removefromcart(index){
+	var xml = new XMLHttpRequest();
+	xml.onreadystatechange = function(){
+		if(this.readyState == 4 && this.status == 200){
+			alert(this.responseText);
+		}
+	}
+	xml.open("GET", "removefromcart.php?idx="+index, true);
+	xml.send();
+}
+
+
 function reloadMap(){
 	var latitude = document.getElementById('latitude').value;
 	var longitude = document.getElementById('longitude').value;
