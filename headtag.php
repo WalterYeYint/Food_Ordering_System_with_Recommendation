@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="vendors/themify-icon/themify-icons.css">
     <link rel="stylesheet" href="vendors/flaticon/flaticon.css">
     <link rel="stylesheet" href="vendors/animation/animate.css">
+    <link rel="stylesheet" href="vendors/elagent/style.css">
     <link rel="stylesheet" href="vendors/owl-carousel/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="vendors/magnify-pop/magnific-popup.css">
     <link rel="stylesheet" href="vendors/nice-select/nice-select.css">

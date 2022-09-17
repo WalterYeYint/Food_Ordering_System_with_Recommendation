@@ -39,6 +39,9 @@
 							<div class="col-md-2 col-2">
 									<h6 class="f_p">TOTAL</h6>
 							</div>
+							<!-- <div class="col-md-2 col-2">
+									<h6 class="f_p">_____</h6>
+							</div> -->
 					</div>
 			</div>
 	</div>
@@ -51,6 +54,9 @@
 									$quantity_list = $_SESSION['quantity_list'];
 									$foodID_list = $_SESSION['food_ID_list'];
 									$foodID_list_count = count($foodID_list);
+									if($foodID_list_count <=0){
+										echo "<h4>No order in cart</h4>";
+									}
 									// $query = "SELECT * FROM food
 									// 					WHERE foodID IN (".implode(',', $foodID_list).")";
 									// $result = mysqli_query($connection, $query);
@@ -105,8 +111,12 @@
 												</td>
 												<td class="col-lg-2 col-md-3 col-sm-3 col-xs-3" data-title="TOTAL">
 														<div class="del-item">
-																<a href="#" class="total" id=<?php echo "total_$i" ?>><?php echo $total ?></a>
-																<a href="#"><i class="icon_close"></i></a>
+															<i class="total" id=<?php echo "total_$i" ?>><?php echo $total ?></i>
+															<!-- <button id=<?php echo "del_$i" ?> onclick="removefromcart(<?php echo $i ?>)"><i class="icon_close"></i></button> -->
+															<a href="" id=<?php echo "del_$i" ?> onclick="removefromcart(<?php echo $i ?>)"><i class="icon_close"></i></a>
+															<!-- <a href="" class="del_btn" id=<?php echo "del_$i" ?>><i class="icon_close"></i></a> -->
+															<!-- <i class="icon_close" id=<?php echo "del_$i" ?> onclick="removefromcart(<?php echo $i ?>)"></i> -->
+															<!-- <a href="#" class="del_btn" id=<?php echo "del_$i" ?>><i class="icon_close"></i></a> -->
 														</div>
 												</td>
 										</tr>
@@ -162,6 +172,7 @@
 </section>
 <!--============= Shopping Cart ===============-->
 <script>
+	// Ajax script for changing quantity values
 	var lblQty = document.getElementsByClassName("manual-adjust");
 	for(var i=0; i<lblQty.length; i++){
 		lblQty[i].addEventListener("change", function(event){
@@ -182,5 +193,25 @@
 			xml.send();
 		})
 	}
+
+	// // Ajax script for removing order from cart
+	// var del_btn = document.getElementsByClassName("del_btn");
+	// for(var i=0; i<del_btn.length; i++){
+	// 	del_btn[i].addEventListener("click", function(event){
+	// 		var target = event.target;
+	// 		event.preventDefault();
+	// 		var id_str = target.getAttribute("id");
+	// 		var index = id_str.substr(4)
+	// 		var xml = new XMLHttpRequest();
+	// 		xml.onreadystatechange = function(){
+	// 			if(this.readyState == 4 && this.status == 200){
+	// 				alert(this.responseText);
+	// 			}
+	// 		}
+	// 		xml.open("GET", "removefromcart.php?idx="+index, true);
+	// 		xml.send();
+	// 	})
+	// }
+
 </script>
 <?php include 'footer.php'; ?>

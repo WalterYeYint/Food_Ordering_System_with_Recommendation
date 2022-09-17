@@ -144,7 +144,7 @@
 								</li>                                                
 								";
 								?>
-								<a href="cart.php?userID=<?=$userID_sess?>"><i class="fas fa-shopping-cart" style="font-size:40px;color:black"></i></i></a>
+								<a href="cart.php"><i class="fas fa-shopping-cart" style="font-size:40px;color:black"></i></i></a>
 								<span class='badge badge-warning' id='lblCartCount'><?php echo $cart_item_count ?></span>
 							<?php
 							} 
@@ -153,7 +153,7 @@
 						{
 							echo "<a class=\"btn_get btn_hover hidden-sm hidden-xs\" href='login.php'>Sign In</a>";
 							?>
-							<a href="cart.php?userID=<?=$userID_sess?>"><i class="fas fa-shopping-cart" style="font-size:40px;color:black"></i></i></a>
+							<a href="cart.php"><i class="fas fa-shopping-cart" style="font-size:40px;color:black"></i></i></a>
 							<span class='badge badge-warning' id='lblCartCount'><?php echo $cart_item_count ?></span>
 						<?php
 						}
