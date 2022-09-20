@@ -19,8 +19,15 @@
 	const CART_CHECKED_OUT = 0;
 	const CART_IN_PROGRESS = 1;
 	const CART_COMPLETED = 2;
+	const CART_CANCELLED= 3;
 
 	// Payment Status
 	const UNPAID = 0;
 	const PAID = 1;
+
+	// Search Types
+	const SEARCH_TYPE_ALL = "1";
+	const SEARCH_TYPE_RESTAURANT_ID = "2";
+	const SEARCH_TYPE_FOOD_ORDER_ID = "3";
+	const SEARCH_TYPE_CART_ID = "4";
 ?>

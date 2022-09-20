@@ -192,15 +192,15 @@ if ($_SESSION['auth_rolename']) {
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="commentview.php">
-        <i class="mdi mdi-comment menu-icon"></i>
-        <span class="menu-title">Comment</span>
+      <a class="nav-link" href="managefoodorder.php">
+        <i class="mdi mdi-view-list menu-icon"></i>
+        <span class="menu-title">Orders in Cart</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="departmentadd.php">
         <i class="mdi mdi-view-list menu-icon"></i>
-        <span class="menu-title">Department</span>
+        <span class="menu-title">View Orders</span>
       </a>
     </li>
 

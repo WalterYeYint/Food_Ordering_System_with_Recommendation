@@ -45,6 +45,22 @@ function calculateTotal(index, count){
 	// alert("Received this: "+index+","+count);
 }
 
+// Textbox checking for managefoodorder.php
+function EnableDisableTextBox() {sltcartid
+	var chkYes_2 = document.getElementById(SEARCH_TYPE_RESTAURANT_ID);
+	var chkYes_3 = document.getElementById(SEARCH_TYPE_FOOD_ORDER_ID);
+	var chkYes_4 = document.getElementById(SEARCH_TYPE_CART_ID);
+	var sltrestaurantid = document.getElementById("sltrestaurantid");
+	var sltfoodorderid = document.getElementById("sltfoodorderid");
+	var sltcartid = document.getElementById("sltcartid");
+	sltrestaurantid.disabled = chkYes_2.checked ? false : true;
+	sltfoodorderid.disabled = chkYes_3.checked ? false : true;
+	sltcartid.disabled = chkYes_4.checked ? false : true;
+	// if (!sltfoodorderid.disabled) {
+	// 	sltfoodorderid.focus();
+	// }
+}
+
 function removefromcart(index){
 	var xml = new XMLHttpRequest();
 	xml.onreadystatechange = function(){

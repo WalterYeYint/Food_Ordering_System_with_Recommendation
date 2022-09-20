@@ -8443,7 +8443,7 @@ INSERT INTO `user` (`userID`, `userRoleID`, `firstName`, `lastName`, `email`, `p
 (395, 1, "Maria", "Lee", "MariaLee@gmail.com", "12345", "", 1, 1),
 (396, 1, "Maria", "Thompson", "MariaThompson@gmail.com", "12345", "", 1, 1),
 (397, 1, "Maria", "Moore", "MariaMoore@gmail.com", "12345", "", 1, 1),
-(398, 1, "Maria", "White", "MariaWhite@gmail.com", "12345", "", 1, 1),
+(398, 3, "Maria", "White", "MariaWhite@gmail.com", "12345", "", 1, 1),
 (399, 2, "Maria", "Taylor", "MariaTaylor@gmail.com", "12345", "", 1, 1),
 (400, 1, "Maria", "Jackson", "MariaJackson@gmail.com", "12345", "", 1, 1);
 
