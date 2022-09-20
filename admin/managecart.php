@@ -106,30 +106,25 @@
 	</div>
 </div>
 <?php
-if($userRoleName_sess == ADMIN OR $userRoleName_sess == CUSTOMER){
-	$restaurantName_list = array();
-	foreach($restaurant_arr as $row){
-		array_push($restaurantName_list, $row['restaurantID']);
-	}
+$restaurantID_list = array();
+foreach($restaurant_arr as $row){
+	array_push($restaurantID_list, $row['restaurantID']);
+}
 
-	// user and restaurant tables are not called with * cause same-column-name addresses overlap
-	// and only the last column address is showed;
-	$query = "SELECT 
-						c.*, 
-						u.userID, u.firstName, u.lastName, u.email, 
-						r.restaurantID, r.restaurantName, 
-						p.* 
-						FROM cart c, user u, restaurant r, paymentType p
-						WHERE c.userID = u.userID
-						AND c.restaurantID = r.restaurantID
-						AND c.paymentTypeID = p.paymentTypeID
-						AND c.restaurantID IN (".implode(',', $restaurantName_list).")
-						ORDER BY c.cartID DESC";
-}
-else{
-	$query = "SELECT * FROM cart
-						ORDER BY cartID DESC";
-}
+// user and restaurant tables are not called with * cause same-column-name addresses overlap
+// and only the last column address is showed;
+$query = "SELECT 
+					c.*, 
+					u.userID, u.firstName, u.lastName, u.email, 
+					r.restaurantID, r.restaurantName, 
+					p.* 
+					FROM cart c, user u, restaurant r, paymentType p
+					WHERE c.userID = u.userID
+					AND c.restaurantID = r.restaurantID
+					AND c.paymentTypeID = p.paymentTypeID
+					AND c.restaurantID IN (".implode(',', $restaurantID_list).")
+					ORDER BY c.cartID DESC";
+
 $result = mysqli_query($connection, $query);
 $count = mysqli_num_rows($result);
 $cart_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
@@ -153,7 +148,7 @@ else{
 		<div class="card-body">
 			<h4 class="card-title">Cart List:</h4>
 			<ul class="nav nav-tabs" role="tablist">
-				<a href="managefood.php?pgNo=<?=1?>" class="nav-link"><<</a>
+				<a href="managecart.php?pgNo=<?=1?>" class="nav-link"><<</a>
 				<?php
 				for($i=$pg_idx_start; $i<=$pg_idx_end; $i++){
 				?>
