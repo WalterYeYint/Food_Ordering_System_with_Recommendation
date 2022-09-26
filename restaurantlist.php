@@ -32,8 +32,20 @@
 		$_SESSION['chosen_longitude'] = $chosen_longitude;
 	}
 	
+	$select = "SELECT fo.*, c.*, f.*
+							FROM foodorder fo, cart c, food f
+							WHERE fo.cartID = c.cartID
+							AND fo.foodID = f.foodID
+							AND c.userID = $userID_sess
+							ORDER BY fo.foodorderID DESC LIMIT 1";
+	$result=mysqli_query($connection,$select);
+	$count=mysqli_num_rows($result);
+	$prev_foodorder_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
+	$prev_foodID = $prev_foodorder_arr[0]["foodID"];
+	$prev_foodName = $prev_foodorder_arr[0]["foodName"];
+	
 	$id = 4924;
-	$url = "http://127.0.0.1:5000/get_recommendation/{$id}";
+	$url = "http://127.0.0.1:5000/get_recommendation/{$prev_foodID}";
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_URL, $url);
@@ -165,7 +177,7 @@
 				}
 			?>
 			<div class="hr"></div>
-			<h3>You might also like:</h3>
+			<h3>You might also like (Recommendations for <?php echo $prev_foodName ?>):</h3>
 			<br/>
 			<div class="row">
 				<?php
