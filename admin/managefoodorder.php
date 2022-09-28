@@ -4,10 +4,30 @@ include 'header.php';
 include 'sidebar.php';
 include '../dbconnect.php';
 
-function get_foodorder_arr($connection, $query){
+function generate_restaurant_query($userID_sess, $userRoleName_sess){
+	if($userRoleName_sess == ADMIN OR $userRoleName_sess == CUSTOMER){
+		$query = "SELECT * FROM restaurant
+							WHERE userID = '$userID_sess'";
+	}
+	else{
+		$query = "SELECT * FROM restaurant
+							ORDER BY restaurantID DESC";
+	}
+	return $query;
+}
+
+function get_restaurant_arr_info($connection, $query){
 	$restaurant_result = mysqli_query($connection, $query);
 	$restaurant_count = mysqli_num_rows($restaurant_result);
 	$restaurant_arr = mysqli_fetch_all($restaurant_result, MYSQLI_BOTH);
+	
+	$return_arr = array();
+	array_push($return_arr, $restaurant_arr);
+	array_push($return_arr, $restaurant_count);
+	return $return_arr;
+}
+
+function get_foodorder_arr_query($restaurant_arr, $connection){
 	
 	$restaurantID_list = array();
 	foreach($restaurant_arr as $row){
@@ -49,21 +69,16 @@ function get_foodorder_arr($connection, $query){
 if(isset($_POST['btnsubmit'])){
 	if($_POST['rdosearchtype'] == SEARCH_TYPE_ALL){
 		// Restaurants Query that are used more than once
-		if($userRoleName_sess == ADMIN OR $userRoleName_sess == CUSTOMER){
-			$query = "SELECT * FROM restaurant
-								WHERE userID = '$userID_sess'";
-		}
-		else{
-			$query = "SELECT * FROM restaurant
-								ORDER BY restaurantID DESC";
-		}
-		$foodorder_arr_query = get_foodorder_arr($connection, $query);
+		$query = generate_restaurant_query($userID_sess, $userRoleName_sess);
+		$restaurant_arr = get_restaurant_arr_info($connection, $query)[0];
+		$foodorder_arr_query = get_foodorder_arr_query($restaurant_arr, $connection);
 	}
 	elseif($_POST['rdosearchtype'] == SEARCH_TYPE_RESTAURANT_ID){
 		$sltrestaurantid = $_POST['sltrestaurantid'];
 		$query = "SELECT * FROM restaurant
 							WHERE restaurantID = '$sltrestaurantid'";
-		$foodorder_arr_query = get_foodorder_arr($connection, $query);
+		$restaurant_arr = get_restaurant_arr_info($connection, $query)[0];
+		$foodorder_arr_query = get_foodorder_arr_query($restaurant_arr, $connection);
 	}
 	elseif($_POST['rdosearchtype'] == SEARCH_TYPE_FOOD_ORDER_ID){
 		$sltfoodorderid = $_POST['sltfoodorderid'];
@@ -83,16 +98,9 @@ if(isset($_POST['btnsubmit'])){
 	}
 }
 else{
-	// Restaurants Query that are used more than once
-	if($userRoleName_sess == ADMIN OR $userRoleName_sess == CUSTOMER){
-		$query = "SELECT * FROM restaurant
-							WHERE userID = '$userID_sess'";
-	}
-	else{
-		$query = "SELECT * FROM restaurant
-							ORDER BY restaurantID DESC";
-	}
-	$foodorder_arr_query = get_foodorder_arr($connection, $query);
+	$query = generate_restaurant_query($userID_sess, $userRoleName_sess);
+	$restaurant_arr = get_restaurant_arr_info($connection, $query)[0];
+	$foodorder_arr_query = get_foodorder_arr_query($restaurant_arr, $connection);
 }
 $result = mysqli_query($connection, $foodorder_arr_query);
 $foodorder_arr_count = mysqli_num_rows($result);
@@ -107,7 +115,7 @@ $foodorder_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
 			<form class="forms-sample" action="managefoodorder.php" method="post" enctype="multipart/form-data">
 				<div class="col-4 form-group">
 					<input type="radio" name="rdosearchtype" value=<?php echo SEARCH_TYPE_ALL ?> id=<?php echo SEARCH_TYPE_ALL ?> checked="" onclick="EnableDisableTextBox()">
-						<label for=<?php echo SEARCH_TYPE_ALL ?> class="form-label">All comments</label>
+						<label for=<?php echo SEARCH_TYPE_ALL ?> class="form-label">All entries</label>
 				</div>
 				<div class="col-4 form-group">
 					<input type="radio" name="rdosearchtype" value=<?php echo SEARCH_TYPE_RESTAURANT_ID ?> id=<?php echo SEARCH_TYPE_RESTAURANT_ID ?> onclick="EnableDisableTextBox()">
@@ -115,17 +123,9 @@ $foodorder_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
 						<select class="form-select" id="sltrestaurantid" name="sltrestaurantid" disabled="disabled">
 							<option>-- Select Restaurant --</option>
 							<?php
-							if($userRoleName_sess == ADMIN OR $userRoleName_sess == CUSTOMER){
-								$query = "SELECT * FROM restaurant
-													WHERE userID = '$userID_sess'";
-							}
-							else{
-								$query = "SELECT * FROM restaurant
-													ORDER BY restaurantID DESC";
-							}
-							$restaurant_result = mysqli_query($connection, $query);
-							$restaurant_count = mysqli_num_rows($restaurant_result);
-							$restaurant_arr = mysqli_fetch_all($restaurant_result, MYSQLI_BOTH);
+							$query = generate_restaurant_query($userID_sess, $userRoleName_sess);
+							$restaurant_arr = get_restaurant_arr_info($connection, $query)[0];
+							$restaurant_count = get_restaurant_arr_info($connection, $query)[1];
 							
 							for ($i=0; $i<$restaurant_count; $i++) { 
 								$row=$restaurant_arr[$i];
