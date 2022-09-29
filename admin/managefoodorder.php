@@ -66,7 +66,7 @@ function get_foodorder_arr_query($restaurant_arr, $connection){
 	return $foodorder_arr_query;
 }
 
-if(isset($_POST['btnsubmit'])){
+if(isset($_POST['btnsearch'])){
 	if($_POST['rdosearchtype'] == SEARCH_TYPE_ALL){
 		// Restaurants Query that are used more than once
 		$query = generate_restaurant_query($userID_sess, $userRoleName_sess);
@@ -97,6 +97,86 @@ if(isset($_POST['btnsubmit'])){
 														ORDER BY fo.foodorderID DESC";
 	}
 }
+elseif(isset($_POST['btncartsearch'])){
+	$tcartID = $_POST['sltcartid'];
+	$tfoodorderID = AutoID('foodorder', 'foodorderID');
+	$tquantity = 1;
+	$trating = 5;
+	$query = generate_restaurant_query($userID_sess, $userRoleName_sess);
+	$restaurant_arr = get_restaurant_arr_info($connection, $query)[0];
+	$foodorder_arr_query = get_foodorder_arr_query($restaurant_arr, $connection);
+}
+elseif(isset($_POST['btnsubmit'])){
+	$txtfoodorderid = $_POST['txtfoodorderid'];
+	$sltfoodid = $_POST['sltfoodid'];
+	$txtcartid = $_POST['txtcartid'];
+	$txtquantity = $_POST['txtquantity'];
+	$txtrating = $_POST['txtrating'];
+
+	if(isset($_POST['btnupdate'])){
+		$update = "UPDATE user SET 
+						userID = '$txtuserID',
+						userRoleID = '$sltuserRole',
+						firstName = '$txtfirstName',
+						lastName = '$txtlastName',
+						email = '$txtemail',
+						password = '$txtpassword',
+						address = '$txtaddress',
+						latitude = '$txtlatitude',
+						longitude = '$txtlongitude'      
+						WHERE userID = '$txtuserID'";
+		$result = mysqli_query($connection,$update);
+
+		if($result) 
+		{
+			echo "<script>window.alert('User Info Updated Successfully!')</script>";
+			echo "<script>window.location='manageuser.php'</script>";
+		}
+		else
+		{
+			echo "<p>Something went wrong in Updating User Information : " . mysqli_error($connection) . "</p>";
+		}
+	}
+	else{
+		$insert = "INSERT INTO foodorder 
+							(`foodorderID`, `foodID`, `cartID`, `quantity`, `rating`)
+							VALUES 
+							('$txtfoodorderid','$sltfoodid','$txtcartid','$txtquantity','$txtrating')";
+		echo $txtfoodorderid." ".$sltfoodid." ".$txtcartid." ".$txtquantity." ".$txtrating;
+		$result=mysqli_query($connection,$insert);
+		echo "right here";
+		if ($result) {
+			echo "<script>window.alert('Order Added Successfully!')</script>";
+		}
+		else{
+			echo "<p>Something went wrong in Order Entry : " . mysqli_error($connection) . "</p>";
+		}
+
+		$select = "SELECT * FROM food WHERE foodID='$sltfoodid'";
+		$result = mysqli_query($connection,$select);
+		$arr = mysqli_fetch_array($result);
+		$price = $arr['price'];
+
+		$select = "SELECT * FROM cart WHERE cartID='$txtcartid'";
+		$result = mysqli_query($connection,$select);
+		$arr = mysqli_fetch_array($result);
+		$old_total_amount = $arr['totalAmount'];
+
+		$new_total_amount = $old_total_amount + ($txtquantity * $price);
+
+		$update = "UPDATE cart
+							SET totalAmount = '$new_total_amount'
+							WHERE cartID = '$txtcartid'";
+		$result=mysqli_query($connection,$update);
+		if ($result) {
+			echo "<script>window.alert('Cart Updated Successfully!')</script>";
+			echo "<script>window.location='managefoodorder.php?mode=form'</script>";
+		}
+		else{
+			echo "<p>Something went wrong in Cart Update : " . mysqli_error($connection) . "</p>";
+		}
+	}
+}
 else{
 	$query = generate_restaurant_query($userID_sess, $userRoleName_sess);
 	$restaurant_arr = get_restaurant_arr_info($connection, $query)[0];
@@ -112,6 +192,141 @@ $foodorder_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
 			<h4 class="card-title">Manage Order in Cart</h4>
 			<!-- In the following form tag, -->
 			<!-- Without enctype="multipart/form-data", image file name doesn't get through POST -->
+			<?php
+			if(isset($_GET['mode']) or isset($_POST['btncartsearch'])){
+				?>
+				<form class="forms-sample" action="managefoodorder.php" method="post" enctype="multipart/form-data">
+					<div class="col-4 form-group">
+						<label for="id">Cart ID <span style="color: red;">*</span></label>
+						<select class="form-select" aria-label="Default select example" id="sltcartid" name="sltcartid"
+						<?php
+						if(isset($_POST['btncartsearch'])){
+							echo "disabled='disabled'";
+						}
+						?>
+						>
+							<option >-- Choose CartID --</option>
+								<?php
+								$query = generate_restaurant_query($userID_sess, $userRoleName_sess);
+								$restaurant_arr = get_restaurant_arr_info($connection, $query)[0];
+								$restaurant_count = get_restaurant_arr_info($connection, $query)[1];
+
+								$restaurantID_list = array();
+								foreach($restaurant_arr as $row){
+									array_push($restaurantID_list, $row['restaurantID']);
+								}
+								if(count($restaurantID_list) <= 0){
+									$restaurantID_list_implode = "(0)";
+								}
+								else{
+									$restaurantID_list_implode = "(".implode(',', $restaurantID_list).")";
+								}
+								
+								$select="SELECT * FROM cart
+												WHERE restaurantID IN $restaurantID_list_implode
+												ORDER BY cartID DESC";
+								$result=mysqli_query($connection,$select);
+								$count=mysqli_num_rows($result);
+								$select_cart_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
+
+								for ($i=0; $i <$count ; $i++) { 
+									$row=$select_cart_arr[$i];
+									$cartID=$row['cartID'];
+									echo "<option value='$cartID' ";
+									if ($tcartID == $cartID) {
+										echo "selected";
+									}
+									echo ">$cartID</option>";
+								}
+								?>
+						</select>
+						<input type="hidden" class="form-control" name="txtcartid" id="txtcartid" value="<?php echo $tcartID ?>" placeholder="ID" required="" readonly>
+						<br/>
+						<?php
+						if(isset($_POST['btncartsearch'])){
+							?>
+							<a href="managefoodorder.php?mode=form" class="btn btn-dark"><i class="ti-lock"></i>Unlock Cart ID</a>
+							<?php
+						}
+						else{
+							?>
+							<button type="submit" class="btn btn-primary me-2" name="btncartsearch">Search</button>
+						<?php
+						}
+						?>
+					</div>
+					<div
+					<?php
+					if(!isset($_POST['btncartsearch'])){
+						echo "hidden";
+					}
+					?>
+					>
+						<div class="form-group">
+							<label for="id">FoodOrder ID <span style="color: red;">*</span></label>
+							<input type="text" class="form-control" name="txtfoodorderid" id="txtfoodorderid" value="<?php echo $tfoodorderID ?>" placeholder="ID" required="" readonly>
+						</div>
+						<div class="col-4 form-group">
+							<label for="food" class="form-label">Food Name </label>
+							<select class="form-select" id="foodid" name="sltfoodid" required="">
+								<option >-- FoodName (FoodID) --</option>
+								<?php
+									$select="SELECT * FROM cart
+													WHERE cartID = '$tcartID'
+													ORDER BY cartID DESC";
+									$result=mysqli_query($connection,$select);
+									$count=mysqli_num_rows($result);
+									$select_cart_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
+									$restaurantID = $select_cart_arr[0]['restaurantID'];
+
+									$select = "SELECT * FROM food
+														WHERE restaurantID = '$restaurantID'
+														ORDER BY foodID DESC";
+									$result=mysqli_query($connection,$select);
+									$count=mysqli_num_rows($result);
+									$select_food_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
+
+									for ($i=0; $i<$count ; $i++) { 
+										$row = $select_food_arr[$i];
+										$foodID = $row['foodID'];
+										$foodName = $row['foodName'];
+										$price = $row['price'];
+
+										echo "<option value='$foodID'>$foodName ($foodID) $price</option>";
+									}
+									?>                      
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="id">Quantity <span style="color: red;">*</span></label>
+							<input type="number" class="form-control" name="txtquantity" id="txtquantity" value="<?php echo $tquantity ?>" placeholder="Quantity" required=""
+							<?php
+							if(!isset($_POST['btncartsearch'])){
+								echo "readonly";
+							}
+							?>
+							>
+						</div>
+						<div class="form-group">
+							<label for="id">Rating <span style="color: red;">*</span></label>
+							<input type="number" class="form-control" name="txtrating" id="txtrating" value="<?php echo $trating ?>" placeholder="Rating" required=""
+							<?php
+							if(!isset($_POST['btncartsearch'])){
+								echo "readonly";
+							}
+							?>
+							>
+						</div>
+						<button type="submit" class="btn btn-primary me-2" name="btnsubmit">Submit</button>
+						<button type="reset" class="btn btn-secondary" id="reset" name="btnreset">Cancel</button>
+					</div>
+					<br/><br/>
+					<a href="managefoodorder.php" class="btn btn-success">Search View</a>
+				</form>
+			<?php
+			}
+			else{
+			?>
 			<form class="forms-sample" action="managefoodorder.php" method="post" enctype="multipart/form-data">
 				<div class="col-4 form-group">
 					<input type="radio" name="rdosearchtype" value=<?php echo SEARCH_TYPE_ALL ?> id=<?php echo SEARCH_TYPE_ALL ?> checked="" onclick="EnableDisableTextBox()">
@@ -207,9 +422,14 @@ $foodorder_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
 									?>                      
 							</select>
 				</div>   
-				<button type="submit" class="btn btn-primary me-2" name="btnsubmit">Search</button>
+				<button type="submit" class="btn btn-primary me-2" name="btnsearch">Search</button>
 				<button type="reset" class="btn btn-secondary" id="reset" name="btnreset">Cancel</button>
+				<br/><br/>
+				<a href="managefoodorder.php?mode=form" class="btn btn-success">Form View</a>
 			</form>
+			<?php
+			}
+			?>
 		</div>
 	</div>
 </div>
@@ -282,7 +502,7 @@ else{
 								<td><?php echo $quantity ?></td>
 								<td><?php echo $rating ?></td>
 								<td>
-									<a href="managefoodorder.php?foodorderID=<?=$foodorderID?>&mode=edit" class="btn btn-success">Edit</a>
+									<a href="managefoodorder.php?foodorderID=<?=$foodorderID?>&cartID=<?=$cartID?>&mode=edit" class="btn btn-success">Edit</a>
 									<a href="managefoodorder.php?foodorderID=<?=$foodorderID?>&mode=delete" class="btn btn-danger" onclick="return confirm_delete('<?php echo $foodorderID ?>')">Delete</a>
 								</td>
 						</tr>
