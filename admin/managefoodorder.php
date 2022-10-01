@@ -66,6 +66,64 @@ function get_foodorder_arr_query($restaurant_arr, $connection){
 	return $foodorder_arr_query;
 }
 
+if(isset($_GET['mode'])){
+	if($_GET['mode'] == 'edit'){
+		$foodorderID = $_GET['foodorderID'];
+
+		$select = "SELECT * FROM foodorder WHERE foodorderID='$foodorderID'";
+		$result = mysqli_query($connection,$select);
+		$arr = mysqli_fetch_array($result);
+
+		$tcartID = $arr['cartID'];
+		$tfoodorderID = $foodorderID;
+		$tfoodID = $arr['foodID'];
+		$tquantity = $arr['quantity'];
+		$toldQuantity = $tquantity;
+		$trating = $arr['rating'];
+	}
+	elseif($_GET['mode'] == 'delete'){
+		$foodorderID = $_GET['foodorderID'];
+		$foodID = $_GET['foodID'];
+		$cartID = $_GET['cartID'];
+		$quantity = $_GET['quantity'];
+
+		$delete="DELETE FROM foodorder WHERE foodorderID='$foodorderID'";
+		$result=mysqli_query($connection,$delete);
+		if ($result)
+		{
+			echo "<script>window.alert('Order Deleted Successfully!')</script>";
+		}
+		else
+		{
+			echo "<p>Something went wrong in Order Deletion : " . mysqli_error($connection) . "</p>";
+		}
+
+		$select = "SELECT * FROM food WHERE foodID='$foodID'";
+		$result = mysqli_query($connection,$select);
+		$arr = mysqli_fetch_array($result);
+		$price = $arr['price'];
+
+		$select = "SELECT * FROM cart WHERE cartID='$cartID'";
+		$result = mysqli_query($connection,$select);
+		$arr = mysqli_fetch_array($result);
+		$old_total_amount = $arr['totalAmount'];
+
+		$new_total_amount = $old_total_amount - ($quantity * $price);
+
+		$update = "UPDATE cart
+							SET totalAmount = '$new_total_amount'
+							WHERE cartID = '$cartID'";
+		$result=mysqli_query($connection,$update);
+		if ($result) {
+			echo "<script>window.alert('Cart Updated Successfully!')</script>";
+			echo "<script>window.location='managefoodorder.php?mode=form'</script>";
+		}
+		else{
+			echo "<p>Something went wrong in Cart Update : " . mysqli_error($connection) . "</p>";
+		}
+	}
+}
+
 if(isset($_POST['btnsearch'])){
 	if($_POST['rdosearchtype'] == SEARCH_TYPE_ALL){
 		// Restaurants Query that are used more than once
@@ -101,40 +159,61 @@ elseif(isset($_POST['btncartsearch'])){
 	$tcartID = $_POST['sltcartid'];
 	$tfoodorderID = AutoID('foodorder', 'foodorderID');
 	$tquantity = 1;
+	$toldQuantity = 1;
 	$trating = 5;
 	$query = generate_restaurant_query($userID_sess, $userRoleName_sess);
 	$restaurant_arr = get_restaurant_arr_info($connection, $query)[0];
 	$foodorder_arr_query = get_foodorder_arr_query($restaurant_arr, $connection);
 }
-elseif(isset($_POST['btnsubmit'])){
+elseif(isset($_POST['btnsubmit']) or isset($_POST['btnupdate'])){
 	$txtfoodorderid = $_POST['txtfoodorderid'];
 	$sltfoodid = $_POST['sltfoodid'];
 	$txtcartid = $_POST['txtcartid'];
 	$txtquantity = $_POST['txtquantity'];
+	$txtoldquantity = $_POST['txtoldquantity'];
 	$txtrating = $_POST['txtrating'];
 
 	if(isset($_POST['btnupdate'])){
-		$update = "UPDATE user SET 
-						userID = '$txtuserID',
-						userRoleID = '$sltuserRole',
-						firstName = '$txtfirstName',
-						lastName = '$txtlastName',
-						email = '$txtemail',
-						password = '$txtpassword',
-						address = '$txtaddress',
-						latitude = '$txtlatitude',
-						longitude = '$txtlongitude'      
-						WHERE userID = '$txtuserID'";
+		$update = "UPDATE foodorder SET
+						foodID = '$sltfoodid',
+						cartID = '$txtcartid',
+						quantity = '$txtquantity',
+						rating = '$txtrating'    
+						WHERE foodorderID = '$txtfoodorderid'";
 		$result = mysqli_query($connection,$update);
 
 		if($result) 
 		{
-			echo "<script>window.alert('User Info Updated Successfully!')</script>";
-			echo "<script>window.location='manageuser.php'</script>";
+			echo "<script>window.alert('Order Info Updated Successfully!')</script>";
 		}
 		else
 		{
-			echo "<p>Something went wrong in Updating User Information : " . mysqli_error($connection) . "</p>";
+			echo "<p>Something went wrong in Updating Order Info : " . mysqli_error($connection) . "</p>";
+		}
+
+		$select = "SELECT * FROM food WHERE foodID='$sltfoodid'";
+		$result = mysqli_query($connection,$select);
+		$arr = mysqli_fetch_array($result);
+		$price = $arr['price'];
+
+		$select = "SELECT * FROM cart WHERE cartID='$txtcartid'";
+		$result = mysqli_query($connection,$select);
+		$arr = mysqli_fetch_array($result);
+		$old_total_amount = $arr['totalAmount'];
+
+		$quantity_difference = $txtquantity - $txtoldquantity;
+		$new_total_amount = $old_total_amount + ($quantity_difference * $price);
+
+		$update = "UPDATE cart
+							SET totalAmount = '$new_total_amount'
+							WHERE cartID = '$txtcartid'";
+		$result=mysqli_query($connection,$update);
+		if ($result) {
+			echo "<script>window.alert('Cart Updated Successfully!')</script>";
+			echo "<script>window.location='managefoodorder.php?mode=form'</script>";
+		}
+		else{
+			echo "<p>Something went wrong in Cart Update : " . mysqli_error($connection) . "</p>";
 		}
 	}
 	else{
@@ -200,7 +279,7 @@ $foodorder_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
 						<label for="id">Cart ID <span style="color: red;">*</span></label>
 						<select class="form-select" aria-label="Default select example" id="sltcartid" name="sltcartid"
 						<?php
-						if(isset($_POST['btncartsearch'])){
+						if($_GET['mode'] == 'edit' or isset($_POST['btncartsearch'])){
 							echo "disabled='disabled'";
 						}
 						?>
@@ -243,7 +322,7 @@ $foodorder_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
 						<input type="hidden" class="form-control" name="txtcartid" id="txtcartid" value="<?php echo $tcartID ?>" placeholder="ID" required="" readonly>
 						<br/>
 						<?php
-						if(isset($_POST['btncartsearch'])){
+						if($_GET['mode'] == 'edit' or isset($_POST['btncartsearch'])){
 							?>
 							<a href="managefoodorder.php?mode=form" class="btn btn-dark"><i class="ti-lock"></i>Unlock Cart ID</a>
 							<?php
@@ -257,7 +336,10 @@ $foodorder_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
 					</div>
 					<div
 					<?php
-					if(!isset($_POST['btncartsearch'])){
+					if($_GET['mode'] == 'edit'){
+						//do nothing
+					}
+					elseif(!isset($_POST['btncartsearch'])){
 						echo "hidden";
 					}
 					?>
@@ -292,7 +374,11 @@ $foodorder_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
 										$foodName = $row['foodName'];
 										$price = $row['price'];
 
-										echo "<option value='$foodID'>$foodName ($foodID) $price</option>";
+										echo "<option value='$foodID' ";
+										if ($tfoodID == $foodID) {
+											echo "selected";
+										}
+										echo ">$foodName ($foodID) $price</option>";
 									}
 									?>                      
 							</select>
@@ -301,23 +387,41 @@ $foodorder_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
 							<label for="id">Quantity <span style="color: red;">*</span></label>
 							<input type="number" class="form-control" name="txtquantity" id="txtquantity" value="<?php echo $tquantity ?>" placeholder="Quantity" required=""
 							<?php
-							if(!isset($_POST['btncartsearch'])){
+							if($_GET['mode'] == 'edit'){
+								//do nothing
+							}
+							elseif(!isset($_POST['btncartsearch'])){
 								echo "readonly";
 							}
 							?>
 							>
+							<input type="hidden" class="form-control" name="txtoldquantity" id="txtoldquantity" value="<?php echo $toldQuantity ?>" placeholder="Old Quantity" readonly>
 						</div>
 						<div class="form-group">
 							<label for="id">Rating <span style="color: red;">*</span></label>
 							<input type="number" class="form-control" name="txtrating" id="txtrating" value="<?php echo $trating ?>" placeholder="Rating" required=""
 							<?php
-							if(!isset($_POST['btncartsearch'])){
+							if($_GET['mode'] == 'edit'){
+								//do nothing
+							}
+							elseif(!isset($_POST['btncartsearch'])){
 								echo "readonly";
 							}
 							?>
 							>
 						</div>
-						<button type="submit" class="btn btn-primary me-2" name="btnsubmit">Submit</button>
+						<?php
+						if(isset($_GET['foodorderID'])){
+							?>
+							<button type="submit" class="btn btn-primary me-2" name="btnupdate">Update</button>	
+						<?php
+						}
+						else{
+							?>
+							<button type="submit" class="btn btn-primary me-2" name="btnsubmit">Submit</button>
+						<?php
+						}
+						?>
 						<button type="reset" class="btn btn-secondary" id="reset" name="btnreset">Cancel</button>
 					</div>
 					<br/><br/>
@@ -488,7 +592,7 @@ else{
 					for($i=$idx; $i<$idx+$actual_entry_count; $i++){
 						$rows=$foodorder_arr[$i];
 						$foodorderID = $rows['foodorderID'];
-						// $foodID = $rows['foodID'];
+						$foodID = $rows['foodID'];
 						$foodName = $rows['foodName'];
 						$cartID = $rows['cartID'];
 						$quantity = $rows['quantity'];
@@ -502,8 +606,8 @@ else{
 								<td><?php echo $quantity ?></td>
 								<td><?php echo $rating ?></td>
 								<td>
-									<a href="managefoodorder.php?foodorderID=<?=$foodorderID?>&cartID=<?=$cartID?>&mode=edit" class="btn btn-success">Edit</a>
-									<a href="managefoodorder.php?foodorderID=<?=$foodorderID?>&mode=delete" class="btn btn-danger" onclick="return confirm_delete('<?php echo $foodorderID ?>')">Delete</a>
+									<a href="managefoodorder.php?foodorderID=<?=$foodorderID?>&mode=edit" class="btn btn-success">Edit</a>
+									<a href="managefoodorder.php?foodorderID=<?=$foodorderID?>&foodID=<?=$foodID?>&cartID=<?=$cartID?>&quantity=<?=$quantity?>&mode=delete" class="btn btn-danger" onclick="return confirm_delete('<?php echo $foodorderID ?>')">Delete</a>
 								</td>
 						</tr>
 					<?php 
