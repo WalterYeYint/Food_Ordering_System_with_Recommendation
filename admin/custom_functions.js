@@ -72,6 +72,17 @@ function removefromcart(index){
 	xml.send();
 }
 
+function updateStatus(cartID, mode){
+	// console.log(cartID, mode);
+	var xml = new XMLHttpRequest();
+	xml.onreadystatechange = function(){
+		if(this.readyState == 4 && this.status == 200){
+			alert(this.responseText);
+		}
+	}
+	xml.open("GET", "updatestatus.php?cartID="+cartID+"&mode="+mode, true);
+	xml.send();
+}
 
 function reloadMap(){
 	var latitude = document.getElementById('latitude').value;
