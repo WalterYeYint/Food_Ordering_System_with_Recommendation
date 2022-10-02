@@ -136,7 +136,7 @@
 					$restaurant_latitude = $row['latitude'];
 					$restaurant_longitude = $row['longitude'];
 					$distance = twopoints_on_earth($restaurant_latitude, $restaurant_longitude, $chosen_latitude, $chosen_longitude);
-					if($distance >= 1.4){
+					if($distance >= 2.5){
 						continue;
 					}
 					if($index >= 30){
