@@ -10,6 +10,8 @@
 	// Delivery Type
 	const DELIVERY = 0;
 	const PICK_UP = 1;
+	$delivery_type_arr = array(DELIVERY, PICK_UP);
+	$delivery_type_str_arr = array("Delivery", "Pick Up");
 
 	// Payment Type
 	const CASH_ON_DELIVERY = "Cash on delivery";
@@ -20,10 +22,14 @@
 	const CART_IN_PROGRESS = 1;
 	const CART_COMPLETED = 2;
 	const CART_CANCELLED= 3;
+	$cart_status_arr = array(CART_CHECKED_OUT, CART_IN_PROGRESS, CART_COMPLETED, CART_CANCELLED);
+	$cart_status_str_arr = array("Checked out", "In Progress", "Completed", "Cancelled");
 
 	// Payment Status
 	const UNPAID = 0;
 	const PAID = 1;
+	$payment_status_arr = array(UNPAID, PAID);
+	$payment_status_str_arr = array("Unpaid", "Paid");
 
 	// Search Types
 	const SEARCH_TYPE_ALL = "1";

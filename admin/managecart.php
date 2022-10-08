@@ -19,16 +19,24 @@
 
 	if(isset($_GET['cartID'])){
 		if($_GET['mode'] == 'edit'){
-			$foodID=$_GET['foodID'];
+			$cartID=$_GET['cartID'];
 
-			$query = "SELECT * FROM food WHERE foodID='$foodID'";
+			$query = "SELECT * FROM cart WHERE cartID='$cartID'";
 			$result = mysqli_query($connection,$query);
 			$arr = mysqli_fetch_array($result);
 
-			$tfoodID = $arr['foodID'];
+			$tcartID = $arr['cartID'];
+			$tuserID = $arr['userID'];
 			$trestaurantID = $arr['restaurantID'];
-			$tfoodName = $arr['foodName'];
-			$tprice = $arr['price'];
+			$tpaymentTypeID = $arr['paymentTypeID'];
+			$ttotalAmount = $arr['totalAmount'];
+			$taddress = $arr['address'];
+			$tlatitude = $arr['latitude'];
+			$tlongitude = $arr['longitude'];
+			$trating = $arr['rating'];
+			$tdeliveryType = $arr['deliveryType'];
+			$tcartStatus = $arr['cartStatus'];
+			$tpaymentStatus = $arr['paymentStatus'];
 		}
 		elseif($_GET['mode'] == 'delete'){
 			$cartID = $_GET['cartID'];
@@ -63,6 +71,40 @@
 		$tuserID = "";
 		$trestaurantID = "";
 		$tpaymentTypeID = "";
+		$tdeliveryType = "";
+		$tcartStatus = "";
+		$tpaymentStatus = "";
+	}
+
+	if (isset($_POST['btnsubmit']) OR isset($_POST['btnupdate'])) {
+		$txtcartID = $_POST['txtcartid'];
+		$sltrestaurantid = $_POST['sltrestaurantid'];
+		$sltpaymenttype = $_POST['sltpaymenttype'];
+		$sltdeliverytype = $_POST['sltdeliverytype'];
+		$sltcartstatus = $_POST['sltcartstatus'];
+		$sltpaymentstatus = $_POST['sltpaymentstatus'];
+
+		if(isset($_POST['btnupdate'])){
+			$update = "UPDATE cart SET
+								paymentTypeID = '$sltpaymenttype',
+								deliveryType = '$sltdeliverytype',
+								cartStatus = '$sltcartstatus',
+								paymentStatus = '$sltpaymentstatus'
+								WHERE cartID = '$txtcartID'";
+			$result = mysqli_query($connection,$update);
+
+			if($result) 
+			{
+				echo "<script>window.alert('Cart Info Updated Successfully!')</script>";
+				echo "<script>window.location='managecart.php'</script>";
+			}
+			else
+			{
+				echo "<p>Something went wrong in Updating Cart Information : " . mysqli_error($connection) . "</p>";
+			}
+		}
+		else{
+		}
 	}
 ?>
 <div class="col-12 grid-margin stretch-card">
@@ -71,7 +113,7 @@
 			<h4 class="card-title">Manage Cart</h4>
 			<!-- In the following form tag, -->
 			<!-- Without enctype="multipart/form-data", image file name doesn't get through POST -->
-			<form class="forms-sample" action="managefood.php" method="post" enctype="multipart/form-data">
+			<form class="forms-sample" action="managecart.php" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="id">Cart ID <span style="color: red;">*</span></label>
 					<input type="text" class="form-control" name="txtcartid" id="id" value="<?php echo $tcartID ?>" placeholder="ID" required="" readonly>
@@ -80,16 +122,131 @@
 					<label for="id">User ID <span style="color: red;">*</span></label>
 					<input type="text" class="form-control" name="txtuserid" id="id" value="<?php echo $tuserID ?>" placeholder="ID" required="" readonly>
 				</div>
-				<div class="form-group">
-					<label for="id">Restaurant ID <span style="color: red;">*</span></label>
-					<input type="text" class="form-control" name="txtrestaurantid" id="id" value="<?php echo $trestaurantID ?>" placeholder="ID" required="" readonly>
+				<div class="col-4 form-group">
+					<label for="id">Restaurant Name <span style="color: red;">*</span></label>
+					<select class="form-select" id="sltrestaurantid" name="sltrestaurantid" disabled="disabled">
+						<option>-- Select Restaurant --</option>
+						<?php
+						$query = generate_restaurant_query($userID_sess, $userRoleName_sess);
+						$restaurant_arr = get_restaurant_arr_info($connection, $query)[0];
+						$restaurant_count = get_restaurant_arr_info($connection, $query)[1];
+						
+						for ($i=0; $i<$restaurant_count; $i++) { 
+							$row=$restaurant_arr[$i];
+							$restaurantID=$row['restaurantID'];
+							$restaurantName=$row['restaurantName'];
+							?>
+							<option value=<?php echo $restaurantID ?>
+							<?php
+							if ($trestaurantID == $restaurantID) {
+								echo "selected";
+							}
+							echo ">$restaurantName</option>";
+						}
+						?>
+					</select>
+				</div> 
+				<div class="col-4 form-group">
+					<label for="id">Payment Type <span style="color: red;">*</span></label>
+					<select class="form-select" id="sltpaymenttype" name="sltpaymenttype">
+						<option>-- Select Payment Type --</option>
+						<?php
+						$select = "SELECT * FROM paymentType";
+						$result=mysqli_query($connection,$select);
+						$count = mysqli_num_rows($result);
+						$paymentType_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
+						for ($i=0; $i<$count; $i++) { 
+							$row=$paymentType_arr[$i];
+							$paymentTypeID = $row['paymentTypeID'];
+							$paymentType = $row['paymentType'];
+							?>
+							<option value=<?php echo $paymentTypeID ?>
+							<?php
+							if ($tpaymentTypeID == $paymentTypeID) {
+								echo "selected";
+							}
+							echo ">$paymentType</option>";
+						}
+						?>
+					</select>
 				</div>
 				<div class="form-group">
-					<label for="id">PaymentType ID <span style="color: red;">*</span></label>
-					<input type="text" class="form-control" name="txtpaymenttypeid" id="id" value="<?php echo $tpaymentTypeID ?>" placeholder="ID" required="" readonly>
+					<label for="id">Total Amount <span style="color: red;">*</span></label>
+					<input type="number" class="form-control" name="txttotalamount" id="id" value="<?php echo $ttotalAmount ?>" placeholder="ID" required="" readonly>
 				</div>
+				<div class="form-group">
+					<label for="name">Address <span style="color: red;">*</span></label>
+					<input type="text" class="form-control" name="txtaddress" id="address" value="<?php echo $taddress ?>" placeholder="Address" required="" readonly>
+				</div>
+				<div class="form-group">
+					<label for="name">Latitude <span style="color: red;">*</span></label>
+					<input type="number" class="form-control" name="txtlatitude" id="latitude" value="<?php echo $tlatitude ?>" placeholder="Latitude" required="" readonly>
+				</div>
+				<div class="form-group">
+					<label for="name">Longitude <span style="color: red;">*</span></label>
+					<input type="number" class="form-control" name="txtlongitude" id="longitude" value="<?php echo $tlongitude ?>" placeholder="Longitude" onchange="reloadMap()" required="" readonly>
+				</div>
+				<div class="form-group">
+					<label for="name">Rating <span style="color: red;">*</span></label>
+					<input type="number" class="form-control" name="txtrating" id="rating" value="<?php echo $trating ?>" placeholder="Rating" required="">
+				</div>
+				<div class="col-4 form-group">
+					<label for="id">Delivery Type <span style="color: red;">*</span></label>
+					<select class="form-select" id="sltdeliverytype" name="sltdeliverytype">
+						<option>-- Select Delivery Type --</option>
+						<?php
+						for ($i=0; $i<count($delivery_type_arr); $i++) { 
+							$deliveryType=$delivery_type_arr[$i];
+							?>
+							<option value=<?php echo $deliveryType ?>
+							<?php
+							if ($tdeliveryType == $deliveryType) {
+								echo "selected";
+							}
+							echo ">$delivery_type_str_arr[$i]</option>";
+						}
+						?>
+					</select>
+				</div> 
+				<div class="col-4 form-group">
+					<label for="id">Cart Status <span style="color: red;">*</span></label>
+					<select class="form-select" id="sltcartstatus" name="sltcartstatus">
+						<option>-- Select Cart Status --</option>
+						<?php
+						for ($i=0; $i<count($cart_status_arr); $i++) { 
+							$cartStatus=$cart_status_arr[$i];
+							?>
+							<option value=<?php echo $cartStatus ?>
+							<?php
+							if ($tcartStatus == $cartStatus) {
+								echo "selected";
+							}
+							echo ">$cart_status_str_arr[$i]</option>";
+						}
+						?>
+					</select>
+				</div> 
+				<div class="col-4 form-group">
+					<label for="id">Payment Status <span style="color: red;">*</span></label>
+					<select class="form-select" id="sltpaymentstatus" name="sltpaymentstatus">
+						<option>-- Select Payment Status --</option>
+						<?php
+						for ($i=0; $i<count($payment_status_arr); $i++) { 
+							$paymentStatus=$payment_status_arr[$i];
+							?>
+							<option value=<?php echo $paymentStatus ?>
+							<?php
+							if ($tpaymentStatus == $paymentStatus) {
+								echo "selected";
+							}
+							echo ">$payment_status_str_arr[$i]</option>";
+						}
+						?>
+					</select>
+				</div> 
+				
 				<?php
-				if(isset($_GET['foodID'])){
+				if(isset($_GET['cartID'])){
 				?>
 					<button type="submit" class="btn btn-primary me-2" name="btnupdate">Update</button>	
 				<?php
@@ -173,7 +330,6 @@ else{
 							<th>Cart ID</th>
 							<th>User ID</th>
 							<th>User Name</th>
-							<th>Email</th>
 							<th>Restaurant ID</th>
 							<th>Restaurant Name</th>
 							<th>Payment Type</th>
@@ -181,6 +337,10 @@ else{
 							<th>Address</th>
 							<th>Latitude</th>
 							<th>Longitude</th>
+							<th>Rating</th>
+							<th>Delivery Type</th>
+							<th>Cart Status</th>
+							<th>Payment Status</th>
 					</thead>
 					<tbody>
 					<?php
@@ -192,7 +352,7 @@ else{
 						$firstName = $rows['firstName'];
 						$lastName = $rows['lastName'];
 						$fullName = $firstName . " " . $lastName;
-						$email = $rows['email'];
+						// $email = $rows['email'];
 						$restaurantID = $rows['restaurantID'];
 						$restaurantName = $rows['restaurantName'];
 						$paymentType = $rows['paymentType'];
@@ -200,12 +360,15 @@ else{
 						$address = $rows['address'];
 						$latitude = $rows['latitude'];
 						$longitude = $rows['longitude'];
+						$rating = $rows['rating'];
+						$deliveryType = $rows['deliveryType'];
+						$cartStatus = $rows['cartStatus'];
+						$paymentStatus = $rows['paymentStatus'];
 					?>
 						<tr>
 								<th><?php echo $cartID ?></th>
 								<th><?php echo $userID ?></th>
 								<th><?php echo $fullName ?></th>
-								<th><?php echo $email ?></th>
 								<td><?php echo $restaurantID ?></td>
 								<td><?php echo $restaurantName ?></td>
 								<td><?php echo $paymentType ?></td>
@@ -213,6 +376,10 @@ else{
 								<td><?php echo $address ?></td>
 								<td><?php echo $latitude ?></td>
 								<td><?php echo $longitude ?></td>
+								<td><?php echo $rating ?></td>
+								<td><?php echo $delivery_type_str_arr[$deliveryType] ?></td>
+								<td><?php echo $cart_status_str_arr[$cartStatus] ?></td>
+								<td><?php echo $payment_status_str_arr[$paymentStatus] ?></td>
 								<td>
 									<a href="managecart.php?cartID=<?=$cartID?>&mode=edit" class="btn btn-success">Edit</a>
 									<a href="managecart.php?cartID=<?=$cartID?>&mode=delete" class="btn btn-danger" onclick="return confirm_delete('<?php echo $cartID ?>')">Delete</a>
