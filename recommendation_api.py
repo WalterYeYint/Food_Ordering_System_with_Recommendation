@@ -4,8 +4,10 @@ import pickle
 
 data = pd.read_csv("Recommendation_System/Recommendation_Model/query_index_to_foodID.csv")
 
-order_with_total_count = pd.read_csv("Recommendation_System/Recommendation_Model/order_with_total_count.csv")
-order_with_total_count_foodID_pivot = order_with_total_count.pivot(index = 'foodID', columns = 'userID', values = 'rating').fillna(0)
+# order_with_total_count = pd.read_csv("Recommendation_System/Recommendation_Model/order_with_total_count.csv")
+# order_with_total_count = order_with_total_count.drop_duplicates(['userID', 'foodName'])
+# order_with_total_count_foodID_pivot = order_with_total_count.pivot(index = 'foodID', columns = 'userID', values = 'has_ordered').fillna(0)
+order_with_total_count_foodID_pivot = pd.read_csv("Recommendation_System/Recommendation_Model/order_with_total_count_pivot_id.csv", index_col='foodID')
 
 # load the model from disk
 model_knn = pickle.load(open('Recommendation_System/Recommendation_Model/knnpickle_file', 'rb'))
