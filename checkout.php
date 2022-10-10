@@ -2,6 +2,35 @@
   include 'headtag.php';
   include 'header.php';
   include 'dbconnect.php';
+	include 'send_email.php';
+
+	function get_foodID_list_info($connection, $foodID_list){
+		if(count($foodID_list) <= 0){
+			$foodID_list_implode = "(0)";
+		}
+		else{
+			$foodID_list_implode = "(".implode(',', $foodID_list).")";
+		}
+		$query = "SELECT * FROM food
+					WHERE foodID IN $foodID_list_implode";
+		$result = mysqli_query($connection, $query);
+		$count = mysqli_num_rows($result);
+		$food_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
+		$foodName_list = array();
+		$price_list = array();
+		for($i=0; $i<$count; $i++){
+			$row = $food_arr[$i];
+			array_push($foodName_list, $row['foodName']);
+			array_push($price_list, $row['price']);
+		}
+		
+		$return_arr = array();
+		array_push($return_arr, $food_arr);
+		array_push($return_arr, $count);
+		array_push($return_arr, $foodName_list);
+		array_push($return_arr, $price_list);
+		return $return_arr;
+	}
 
 	$restaurantID = $_SESSION['restaurantID'];
   $restaurantName = $_SESSION['restaurantName'];
@@ -11,6 +40,9 @@
 	$chosen_address = $_SESSION['chosen_address'];
 	$chosen_latitude = $_SESSION['chosen_latitude'];
 	$chosen_longitude = $_SESSION['chosen_longitude'];
+
+	$distance = twopoints_on_earth($restaurant_latitude, $restaurant_longitude, $chosen_latitude, $chosen_longitude);
+	$deliveryFee = calculate_deliveryFee($distance);
 
 	if(isset($_POST['btnsubmit'])){
 		$rdodelivery = $_POST['rdodelivery'];
@@ -45,6 +77,16 @@
 		else{
 			echo "<p>Something went wrong in Cart Entry : " . mysqli_error($connection) . "</p>";
 		}
+		
+		$foodID_list_info_arr = get_foodID_list_info($connection, $foodID_list_sess);
+		$count = $foodID_list_info_arr[1];
+		$foodName_list = $foodID_list_info_arr[2];
+		$price_list = $foodID_list_info_arr[3];
+
+		send_email('sam.wilson42@yahoo.com', $firstName_sess, $lastName_sess, $restaurantName, $cartID, $count, $foodName_list, $price_list, 
+								$quantity_list_sess, $deliveryFee, $payment_type_str_arr[$rdopayment], $foodID_list_sess, $totalAmount, $chosen_address, $chosen_latitude, 
+								$chosen_longitude, $delivery_type_str_arr[$rdodelivery]);
+		echo "<script>window.alert('Email Successfully Sent!')</script>";
 
 		// Loop and insert all food inside the cart
 		for($i=0; $i<$foodID_list_count; $i++){
@@ -226,19 +268,19 @@
 							<table class="shop_table woocommerce-checkout-review-order-table">
 								<tbody>
 								  <?php
-								  $foodID_list = $_SESSION['food_ID_list'];
-								  $quantity_list = $_SESSION['quantity_list'];
+								  $foodID_list_sess = $_SESSION['food_ID_list'];
+								  $quantity_list_sess = $_SESSION['quantity_list'];
 
-								  $query = "SELECT * FROM food
-											  WHERE foodID IN (".implode(',', $foodID_list).")";
-								  $result = mysqli_query($connection, $query);
-								  $count = mysqli_num_rows($result);
-								  $food_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
+									$foodID_list_info_arr = get_foodID_list_info($connection, $foodID_list_sess);
+									$food_arr = $foodID_list_info_arr[0];
+									$count = $foodID_list_info_arr[1];
+									$foodName_list = $foodID_list_info_arr[2];
+									$price_list = $foodID_list_info_arr[3];
+
 								  for($i=0; $i<$count; $i++){
-									$row = $food_arr[$i];
-									$foodName = $row['foodName'];
-									$price = $row['price'];
-									$quantity = $quantity_list[$i];
+									$foodName = $foodName_list[$i];
+									$price = $price_list[$i];
+									$quantity = $quantity_list_sess[$i];
 									$total = $price * $quantity;
 									$sub_total += $total;
 									?>
@@ -265,8 +307,6 @@
 										<td><?php echo $sub_total ?> Ks</td>
 									</tr>
 									<?php
-									$distance = twopoints_on_earth($restaurant_latitude, $restaurant_longitude, $chosen_latitude, $chosen_longitude);
-									$deliveryFee = calculate_deliveryFee($distance);
 									$grand_total = $sub_total + $deliveryFee;
 									?>
 									<tr class="order_item">

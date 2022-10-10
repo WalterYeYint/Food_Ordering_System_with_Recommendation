@@ -16,6 +16,7 @@
 	// Payment Type
 	const CASH_ON_DELIVERY = "Cash on delivery";
 	const KBZPAY = "KBZPay";
+	$payment_type_str_arr = array("Cash on delivery", "KBZPay");
 
 	// Cart Status
 	const CART_CHECKED_OUT = 0;
