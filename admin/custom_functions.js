@@ -90,7 +90,7 @@ function reloadMap(){
 	var iframe = document.getElementById('map');
 	iframe.removeAttribute("hidden");
 	// iframe.src = iframe.src;
-	iframe.src = "https://www.google.com/maps/embed/v1/view?key=AIzaSyAC7Rj163G5vNrR5_1AEncatw3OHcjTock&center="+latitude+","+longitude+"&zoom=18"
+	iframe.src = "https://maps.google.com/maps?q="+latitude+","+longitude+"&z=18&output=embed"
 	// alert("latitude is "+latitude+", longitude is "+longitude);
 	alert("Map reloaded!!!")
 }

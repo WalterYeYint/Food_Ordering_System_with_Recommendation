@@ -75,7 +75,7 @@
 						loading="lazy"
 						allowfullscreen
 						referrerpolicy="no-referrer-when-downgrade"
-						src="https://www.google.com/maps/embed/v1/view?key=AIzaSyAC7Rj163G5vNrR5_1AEncatw3OHcjTock&center=<?php echo $chosen_latitude.",".$chosen_longitude ?>&zoom=18"
+						src="https://maps.google.com/maps?q=<?php echo $chosen_latitude.",".$chosen_longitude ?>&z=18&output=embed"
 						>
 					</iframe>
 				</div>
