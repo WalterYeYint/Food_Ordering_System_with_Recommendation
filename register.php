@@ -104,20 +104,21 @@ if(isset($_POST['btnsubmit'])){
 								<input type="password" name="txtconfirm" placeholder="******" required="">
 							</div>
 							<div class="d-flex justify-content-between align-items-center">
-								<button type="submit" name="btnsubmit" class="app_btn btn_hover">&emsp;&emsp; Sign Up for Website &emsp;&emsp;</button>
+								<button type="submit" name="btnsubmit" class="app_btn btn_hover">&emsp;&emsp; Sign Up for StrEats &emsp;&emsp;</button>
 							</div>
 						</form>
 					</div>
 				</div>
 				<div class="col-lg-5">
 					<div class="sign_info_content">
-						<h3 class="f_p f_600 f_size_24 t_color3 mb_40">Allready have an account?</h3>
-						<h2 class="f_p f_400 f_size_30 mb-30">Login now and<br> starting using our <br><span class="f_700">amazing</span> products</h2>
+						<h3 class="f_p f_600 f_size_24 t_color3 mb_40">Already have an account?</h3>
+						<h2 class="f_p f_400 f_size_30 mb-30"><a href="login.php"><u>Login Now</u></a> and<br> <span class="f_700">Start Ordering</span></h2>
 						<ul class="list-unstyled mb-0">
-							<li><i class="ti-check"></i> Premium Access to all Products</li>
-							<li><i class="ti-check"></i> Free Testing Tools</li>
-							<li><i class="ti-check"></i> Unlimited User Accounts</li>
+							<li><i class="ti-check"></i> Order from more than 40 different restaurants across Yangon</li>
+							<li><i class="ti-check"></i> Order from Anywhere</li>
+							<li><i class="ti-check"></i> Choose your Preferred payment method</li>
 						</ul>
+						<!-- <img src="img/stock_food.jpeg" srcset="img/stock_food.jpeg" alt="food_photo"> -->
 					</div>
 				</div>
 			</div>

@@ -94,7 +94,7 @@
 	<img class="breadcrumb_shap" src="img/breadcrumb/banner_bg.png" alt="">
 	<div class="container">
 		<div class="breadcrumb_content text-center">
-			<h1 class="f_p f_700 f_size_50 w_color l_height50 mb_20">Sign in to Website</h1>
+			<h1 class="f_p f_700 f_size_50 w_color l_height50 mb_20">Sign in to StrEats</h1>
 		</div>
 	</div>
 </section>
@@ -143,13 +143,15 @@
 				</div>
 				<div class="col-lg-5">
 					<div class="sign_info_content">
-						<h3 class="f_p f_600 f_size_24 t_color3 mb_40">First time here?</h3>
-						<h2 class="f_p f_400 f_size_30 mb-30">Join now and get<br> <span class="f_700">20% OFF</span> for all <br> products</h2>
-						<ul class="list-unstyled mb-0">
+						<h3 class="f_p f_600 f_size_24 t_color3 mb_40">Welcome to StrEats !<br/> What can we get you?</h3>
+						<h2 class="f_p f_400 f_size_30 mb-30">- Order from more than<br> 40 different restaurants across Yangon<br/><br/> 
+																									- Order from Anywhere<br/><br/>
+																									- Choose your Preferred payment method</h2>
+						<!-- <ul class="list-unstyled mb-0">
 							<li><i class="ti-check"></i> Gonna Put Logo Here</li>
 							<li><i class="ti-check"></i> Free Testing Tools</li>
 							<li><i class="ti-check"></i> Unlimited User Accounts</li>
-						</ul>
+						</ul> -->
 						<!-- <button type="submit" class="btn_three sign_btn_transparent">Sign Up</button> -->
 					</div>
 				</div>
