@@ -3766,9 +3766,9 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 /*====================================================*/
 /*================= Start breadcrumb_area css =================*/
 .breadcrumb_area {
-  background-image: -moz-linear-gradient(180deg, #5e2ced 0%, #a485fd 100%);
-  background-image: -webkit-linear-gradient(180deg, #5e2ced 0%, #a485fd 100%);
-  background-image: -ms-linear-gradient(180deg, #5e2ced 0%, #a485fd 100%);
+  background-image: -moz-linear-gradient(180deg, #ed732c 0%, #e1c987 100%);
+  background-image: -webkit-linear-gradient(180deg, #ed732c 0%, #e1c987 100%);
+  background-image: -ms-linear-gradient(180deg, #ed732c 0%, #e1c987 100%);
   position: relative;
   z-index: 1;
   padding: 235px 0px 125px;

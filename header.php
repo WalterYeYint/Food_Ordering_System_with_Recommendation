@@ -77,7 +77,7 @@
 		<header class="header_area">
 			<nav class="navbar navbar-expand-lg menu_one menu_four">
 				<div class="container">
-					<a class="navbar-brand sticky_logo" href="index.php"><img src="img/logo2.png" srcset="img/logo2x-2.png 2x" alt="logo"><img src="img/logo.png" srcset="img/logo2x.png 2x" alt=""></a>
+					<a class="navbar-brand sticky_logo" href="index.php"><img src="img/streats_logo.png" srcset="img/streats_logo.png" alt="logo"><img src="img/streats_logo.png" srcset="img/streats_logo.png" alt=""></a>
 					<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="menu_toggle">
 							<span class="hamburger">

@@ -4,7 +4,7 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-6">
                             <div class="f_widget company_widget">
-                                <a href="index.html" class="f-logo"><img src="img/logo.png" srcset="img/logo2x.png 2x" alt=""></a>
+                                <a href="index.html" class="f-logo"><img src="img/streats_logo.png" srcset="img/streats_logo.png" alt=""></a>
                                 <div class="widget-wrap">
                                     <p class="f_400 f_p f_size_15 mb-0 l_height34"><span>Email:</span> <a href="mailto:saasland@gmail.com" class="f_400">saasland@gmail.com</a></p>
                                     <p class="f_400 f_p f_size_15 mb-0 l_height34"><span>Phone:</span> <a href="tel:948256347968" class="f_400">+948 256 347 968</a></p>

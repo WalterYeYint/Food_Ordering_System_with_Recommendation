@@ -1,8 +1,8 @@
 /*================= Start breadcrumb_area css =================*/
 .breadcrumb_area{
-    background-image: -moz-linear-gradient( 180deg, rgb(94,44,237) 0%, rgb(164,133,253) 100%);
-    background-image: -webkit-linear-gradient( 180deg, rgb(94,44,237) 0%, rgb(164,133,253) 100%);
-    background-image: -ms-linear-gradient( 180deg, rgb(94,44,237) 0%, rgb(164,133,253) 100%);
+    background-image: -moz-linear-gradient( 180deg, #ed732c 0%, #e1c987 100%);
+    background-image: -webkit-linear-gradient( 180deg, #ed732c 0%, #e1c987 100%);
+    background-image: -ms-linear-gradient( 180deg, #ed732c 0%, #e1c987 100%);
     position: relative;
     z-index: 1;
     padding: 235px 0px 125px;
@@ -175,9 +175,9 @@
         position: absolute;
         height: 100%;
         width: 100%;
-        background-image: -moz-linear-gradient( -140deg, rgb(94,44,237) 0%, rgb(128,55,218) 100%);
-        background-image: -webkit-linear-gradient( -140deg, rgb(94,44,237) 0%, rgb(128,55,218) 100%);
-        background-image: -ms-linear-gradient( -140deg, rgb(94,44,237) 0%, rgb(128,55,218) 100%);
+        background-image: -moz-linear-gradient( -140deg, #ed732c 0%, #e1c987 100%);
+        background-image: -webkit-linear-gradient( -140deg, #ed732c 0%, #e1c987 100%);
+        background-image: -ms-linear-gradient( -140deg, #ed732c 0%, #e1c987 100%);
         opacity: 0.90;
         z-index: -1;
         top: 0;
