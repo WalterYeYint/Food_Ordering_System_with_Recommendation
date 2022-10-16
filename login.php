@@ -56,35 +56,14 @@
 
 		$_SESSION['cart_item_count'] = 0;
 
-
-		if($_SESSION['auth_rolename'] == CUSTOMER){
-
-		echo "<script>window.alert('Welcome Customer!!')</script>";
+		$temp_rolename = $_SESSION['auth_rolename'];
+		echo "<script>window.alert('Welcome, $temp_rolename $firstName $lastName!!')</script>";
 		echo '<script>window.location="index.php"</script>';
 		exit(0);
-		}
-		elseif ($_SESSION['auth_rolename'] == ADMIN) {
-
-			echo "<script>window.alert('Welcome Admin!!')</script>";
-			echo '<script>window.location="index.php"</script>';
-			exit(0);
-		}
-		elseif ($_SESSION['auth_rolename'] == SUPER_ADMIN) {
-
-			echo "<script>window.alert('Welcome Super Admin!!')</script>";
-			echo '<script>window.location="index.php"</script>';
-			exit(0);
-		}
-		else{
-			echo "<script>window.alert('Invalid Username or Password!!')</script>";
-			echo '<script>window.location="login.php"</script>';
-			exit(0);
-		}
-
 	}
 	else{
 		$incorrect=True;
-		echo "<script>window.alert('Invalid Username or Password!!')</script>";
+		echo "<script>window.alert('Invalid Email or Password!!')</script>";
 		echo '<script>window.location="login.php"</script>';
 	exit(0);
 	}
@@ -109,7 +88,7 @@
 						<form action="login.php" class="login-form sign-in-form" method="post" name="loginform" enctype="multipart/form-data">
 							<div class="form-group text_box">
 								<label class="f_p text_c f_400">Email</label>
-								<input type="text" name="txtemail" placeholder="JakeSully@gmail.com" required>
+								<input type="email" name="txtemail" placeholder="JakeSully@gmail.com" required>
 							</div>
 							<div class="form-group text_box">
 								<label class="f_p text_c f_400">Password</label>
