@@ -1,6 +1,9 @@
 from flask import Flask, jsonify
 import pandas as pd
 import pickle
+import time
+import threading
+from multiprocessing import Process
 
 data = pd.read_csv("Recommendation_System/Recommendation_Model/query_index_to_foodID.csv")
 
@@ -11,8 +14,28 @@ order_with_total_count_foodID_pivot = pd.read_csv("Recommendation_System/Recomme
 
 # load the model from disk
 model_knn = pickle.load(open('Recommendation_System/Recommendation_Model/knnpickle_file', 'rb'))
+temp = "Ey yo"
 
 app = Flask(__name__)
+
+def update_temp(x):
+	global temp
+	temp = "Here we go " + str(x)
+
+def thread_two_func(n, name):
+	x = 0
+	global server
+	global restarted
+	while True:
+		print("printing ", x)
+		x += 1
+		time.sleep(3)
+		if x%7 == 0:
+			server.terminate()
+			print("Server terminated !!!")
+			update_temp(x)
+			time.sleep(3)
+			restarted = False
 
 @app.route('/')
 def index():
@@ -31,4 +54,15 @@ def get(foodID):
 	# return "Hello There!!!"
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	thread_two = threading.Thread(target=thread_two_func, args=(1,'thread_two'))
+	thread_two.start()
+	restarted = False
+	x = 0
+	while True:
+		if restarted == False:
+			print("Temp value is ", temp)
+			server = Process(target=app.run)		# debug=False by default
+			server.start()
+			restarted = True
+
+	# app.run(debug=False)
