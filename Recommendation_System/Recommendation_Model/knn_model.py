@@ -42,7 +42,7 @@ print(f'Amount of unique foodIDs - {len(pd.unique(combine_food_order["foodID"]))
 print(f'Amount of unique userIDs - {len(pd.unique(combine_food_order["userID"]))}')
 
 # %%
-with open("combined_food_order" + ".csv", "w") as f:
+with open("Recommendation_System/Recommendation_Model/combined_food_order" + ".csv", "w") as f:
 	f.write(combine_food_order.to_csv())
 
 # %% [markdown]
@@ -72,7 +72,7 @@ print(order_with_total_count.loc[order_with_total_count["foodName"] == "Noodle S
 print("No. of order_with_total_count - ", len(order_with_total_count))
 
 # %%
-with open("order_with_total_count" + ".csv", "w") as f:
+with open("Recommendation_System/Recommendation_Model/order_with_total_count" + ".csv", "w") as f:
 	f.write(order_with_total_count.to_csv())
 
 # %%
@@ -91,18 +91,18 @@ model_knn.fit(order_with_total_count_matrix)
 
 # %%
 # Its important to use binary mode 
-knnPickle = open('knnpickle_file', 'wb') 
+knnPickle = open('Recommendation_System/Recommendation_Model/knnpickle_file', 'wb') 
 # source, destination 
 pickle.dump(model_knn, knnPickle)  
 # close the file
 knnPickle.close()
 
 # %%
-with open("order_with_total_count_pivot" + ".csv", "w") as f:
+with open("Recommendation_System/Recommendation_Model/order_with_total_count_pivot" + ".csv", "w") as f:
 	f.write(order_with_total_count_pivot.to_csv())
-with open("order_with_total_count_pivot_id" + ".csv", "w") as f:
+with open("Recommendation_System/Recommendation_Model/order_with_total_count_pivot_id" + ".csv", "w") as f:
 	f.write(order_with_total_count_foodID_pivot.to_csv())
-with open("query_index_to_foodID" + ".csv", "w") as f:
+with open("Recommendation_System/Recommendation_Model/query_index_to_foodID" + ".csv", "w") as f:
 	f.write("query_index,foodID\n")
 	pivot_foodID_list = list(order_with_total_count_foodID_pivot.index)
 	for i in range(len(pivot_foodID_list)):
