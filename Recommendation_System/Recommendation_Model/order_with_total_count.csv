@@ -1,316 +1,311 @@
 ,foodorderID,foodID,rating,userID,restaurantID,foodName,price,stock,image,totalCount,has_ordered
-0,1,283,3,216,7,Sour and Spicy Crab Meat Soup,4500,2,,1,5
-1,2,6742,4,41,219,Yakhine Salad,800,2,,1,5
-2,3,3669,10,354,121,Plain Water Spinach,1200,2,,2,5
-3,33,3669,2,354,121,Plain Water Spinach,1200,2,,2,5
-4,4,3910,2,310,129,Kiwi Yogurt,1800,2,,1,5
-5,5,291,3,216,7,Fried Mushroom,3000,2,,1,5
-6,6,7458,4,80,238,Grill Pork Neck Salad,7300,2,,1,5
-7,7,4917,8,193,162,Mandalay Shan Noodle with Sticky Shan Noodle,2200,2,,4,5
-8,68,4917,1,51,162,Mandalay Shan Noodle with Sticky Shan Noodle,2200,2,,4,5
-9,93,4917,1,193,162,Mandalay Shan Noodle with Sticky Shan Noodle,2200,2,,4,5
-10,186,4917,10,51,162,Mandalay Shan Noodle with Sticky Shan Noodle,2200,2,,4,5
-11,8,1528,1,350,55,30 Yurinchi Bento ,9500,2,,1,5
-12,9,6029,4,247,199,Kway Teow Salad,1300,2,,1,5
-13,10,2694,4,234,90,Pineapple Fruit Juice,2500,2,,1,5
-14,11,6508,9,361,215,Potatoes with Cumin Seed,4600,2,,1,5
-15,12,2980,9,355,96,CP Chicken Sausage Mala,3000,2,,1,5
-16,13,666,4,84,24,Thai Style Pounded Cuttlefish Salad,3500,2,,1,5
-17,14,2664,10,234,90,Mala Chicken Feet,3800,2,,1,5
-18,15,2296,10,268,81,Nine Treasure Style Fried Rice,67509000,2,,1,5
-19,16,3924,10,310,129,Mango Smoothies,2900,2,,1,5
-20,17,5807,1,120,191,Beef Stew,6000,2,,1,5
-21,18,4962,2,21,168,Garlic Oil Noodle,1200,2,,4,5
-22,45,4962,7,21,168,Garlic Oil Noodle,1200,2,,4,5
-23,76,4962,4,21,168,Garlic Oil Noodle,1200,2,,4,5
-24,81,4962,10,21,168,Garlic Oil Noodle,1200,2,,4,5
-25,19,61,8,214,3,Pickled Mustard with Pork Rib,3500,2,,1,5
-26,20,1521,10,350,55,14 Oyako Soboro Nigiri ,3500,2,,1,5
-27,21,1517,7,350,55,10 Salmon Misoyaki Bento,12000,2,,1,5
-28,22,5449,5,280,182,Mutton with Chickpea Curry,3000,2,,2,5
-29,221,5449,4,280,182,Mutton with Chickpea Curry,3000,2,,2,5
-30,23,3907,10,310,129,Bubble Taro,2200,2,,1,5
-31,24,6918,6,342,230,Black Tea,1700,2,,1,5
-32,25,1713,2,108,63,Thai Style Pounded Chicken Feet,2000,2,,1,5
-33,26,4026,6,146,131,Newyork Cheese Cake,4000,2,,4,5
-34,172,4026,4,146,131,Newyork Cheese Cake,4000,2,,4,5
-35,183,4026,10,146,131,Newyork Cheese Cake,4000,2,,4,5
-36,272,4026,9,146,131,Newyork Cheese Cake,4000,2,,4,5
-37,27,4121,8,141,136,Anchovies Salad,1500,2,,1,5
-38,28,4923,10,51,162,Ceylon Tea,1500,2,,2,5
-39,115,4923,1,51,162,Ceylon Tea,1500,2,,2,5
-40,29,4960,6,21,168,Shan Noodle,1200,2,,1,5
-41,30,4124,6,141,136,Hot Dog,2000,2,,1,5
-42,31,6917,4,342,230,Kiwi Green Tea,1700,2,,1,5
-43,32,6908,6,268,229,Samosa,1200,2,,6,5
-44,125,6908,3,268,229,Samosa,1200,2,,6,5
-45,150,6908,5,268,229,Samosa,1200,2,,6,5
-46,245,6908,8,268,229,Samosa,1200,2,,6,5
-47,276,6908,2,268,229,Samosa,1200,2,,6,5
-48,286,6908,4,268,229,Samosa,1200,2,,6,5
-49,34,4274,2,327,140,Tea Leaf Rice,1800,2,,1,5
-50,35,1182,7,254,46,ဗယာကြော်,5000,2,,1,5
-51,36,6304,7,214,206,Milo,1500,2,,2,5
-52,62,6304,2,214,206,Milo,1500,2,,2,5
-53,37,1520,6,350,55,"13.	Maguro Duke Don + Miso Shiru , Ko Mono",14000,2,,1,5
-54,38,4279,7,28,140,Mohinga,1000,2,,1,5
-55,39,3916,7,310,129,Coconut Milk Tea,1900,2,,1,5
-56,40,3912,6,310,129,Lemon Honey,1900,2,,1,5
-57,41,1515,2,350,55,8 Okazu Gozen Sakura ,13000,2,,1,5
-58,42,6769,7,185,220,Fresh Spring Rolls with Crab,4300,2,,1,5
-59,43,2679,7,234,90,Fried Chicken,900,2,,1,5
-60,44,1501,1,350,55,25.	Chawan Mushi ,4000,2,,1,5
-61,46,7124,1,255,233,Kyay Oh,4500,2,,2,5
-62,287,7124,7,255,233,Kyay Oh,4500,2,,2,5
-63,47,5822,9,120,191,Kachin Style Spicy Chicken Rice Set,6000,2,,1,5
-64,48,6773,3,185,220,Ku Ku Special Sticky Rice with Pork,3800,2,,2,5
-65,173,6773,6,185,220,Ku Ku Special Sticky Rice with Pork,3800,2,,2,5
-66,49,1771,7,100,64,Milk Orchids Juice,1500,2,,1,5
-67,50,5189,10,103,175,Seabass Fish Soup,5000,2,,1,5
-68,51,6024,4,247,199,Mala Chicken Feet,2000,2,,1,5
-69,52,2313,3,268,81,Steamed Rice with Vegetable,37505000,2,,1,5
-70,53,2681,8,234,90,ကြက်ဥကင်,600,2,,1,5
-71,54,4725,9,178,153,Green Bubble Tea,2200,2,,1,5
-72,55,4324,7,327,140,Coconut Milk,1000,2,,1,5
-73,56,4242,4,28,140,Celone Tea,2200,2,,1,5
-74,57,4924,6,193,162,Real Milk,1500,2,,2,5
-75,144,4924,6,51,162,Real Milk,1500,2,,2,5
-76,58,4191,9,141,136,Papaya Juice,1500,2,,1,5
-77,59,5180,10,175,174,Chicken Feet Salad,1500,2,,2,5
-78,161,5180,6,175,174,Chicken Feet Salad,1500,2,,2,5
-79,60,1892,10,130,67,Pounded Carrot Salad,2000,2,,1,5
-80,61,2283,9,82,79,Pork Skewers,13000,2,,3,5
-81,64,2283,4,82,79,Pork Skewers,13000,2,,3,5
-82,147,2283,7,82,79,Pork Skewers,13000,2,,3,5
-83,63,1266,4,244,47,Steamed Ilish Fish,3000,2,,1,5
-84,65,1257,1,244,47,Stuffed Fish Cake,2000,2,,1,5
-85,66,446,1,63,13,Thai Style Pounded Papaya,2000,2,,2,5
-86,252,446,10,63,13,Thai Style Pounded Papaya,2000,2,,2,5
-87,67,215,10,376,5,Rice with Oiled Fish Curry,1700,2,,1,5
-88,69,221,10,376,5,Rice with Fried Chicken,2000,2,,1,5
-89,70,2282,9,82,79,Mohinga,3250,2,,2,5
-90,75,2282,5,82,79,Mohinga,3250,2,,2,5
-91,71,6910,9,342,230,Milk Green Tea,1700,2,,1,5
-92,72,4913,4,193,162,Mandalay Shan Noodle with Sticky Shan Noodle,2200,2,,2,5
-93,177,4913,7,51,162,Mandalay Shan Noodle with Sticky Shan Noodle,2200,2,,2,5
-94,73,2975,8,355,96,Mala Xiang Guo,2800,2,,1,5
-95,74,4919,4,51,162,French Toast,1500,2,,2,5
-96,78,4919,4,51,162,French Toast,1500,2,,2,5
-97,77,674,6,84,24,Pounded Chicken Feet Salad,2000,2,,1,5
-98,79,7668,9,226,241,ကြက်သားရှမ်းခေါက်ဆွဲ,1000,2,,2,5
-99,145,7668,3,226,241,ကြက်သားရှမ်းခေါက်ဆွဲ,1000,2,,2,5
-100,80,286,7,216,7,Sour & Spicy Fried Water Spinach with Mushroom,2500,2,,1,5
-101,82,6916,3,342,230,Raspberry Green Tea,1700,2,,1,5
-102,83,1722,3,108,63,Hot and Spicy Fried Noodle,2500,2,,2,5
-103,101,1722,7,108,63,Hot and Spicy Fried Noodle,2500,2,,2,5
-104,84,6914,9,342,230,Taro Milk,1700,2,,1,5
-105,85,6782,8,187,221,Kani Salad Roll,2500,2,,1,5
-106,86,4954,6,97,167,Fritters with Pot Duck Egg and Mohinga,1500,2,,1,5
-107,87,5190,7,103,175,Prawn Soup,5000,2,,1,5
-108,88,7126,5,255,233,Normal Garlic Oil,1800,2,,1,5
-109,89,3653,9,354,121,Shan Noodle,1500,2,,1,5
-110,90,3119,1,356,104,Steamed Wheat Intestine Roll,3500,2,,1,5
-111,91,2970,4,355,96,Mala Chicken Hot Dog,3000,2,,1,5
-112,92,5464,7,280,182,Spicy Fried Beef Floss,5000,2,,1,5
-113,94,5191,4,103,175,Catfish With Chilli Curry,3500,2,,3,5
-114,197,5191,6,103,175,Catfish With Chilli Curry,3500,2,,3,5
-115,268,5191,3,103,175,Catfish With Chilli Curry,3500,2,,3,5
-116,95,6041,9,247,199,Steamed Rice with Vegetable,2000,2,,1,5
-117,96,5468,5,280,182,Loach Curry,4000,2,,1,5
-118,97,2305,3,66,81,Mushroom with Water Spinach,22503000,2,,1,5
-119,98,213,8,376,5,Rice with Pork Curry,2000,2,,2,5
-120,205,213,2,376,5,Rice with Pork Curry,2000,2,,2,5
-121,99,5813,6,120,191,Nan Gyi Salad,3000,2,,1,5
-122,100,1743,6,100,64,Jelly Pudding,2000,2,,1,5
-123,102,1220,1,254,46,Grilled Fish Belly,6500,2,,1,5
-124,103,6775,3,187,221,Spicy Kani Roll,2500,2,,1,5
-125,104,2356,10,268,81,Shrimp with Pepper,60008000,2,,1,5
-126,105,1750,10,100,64,Jelly Ice Cream,2000,2,,1,5
-127,106,4150,1,141,136,Deep Fried Chicken,4000,2,,1,5
-128,107,1417,6,73,52,Lychee Soda,2500,2,,1,5
-129,108,1502,1,350,55,26 Shirmp Tempura Maki Sushi ,3000,2,,1,5
-130,109,7616,1,80,238,Pork Hand Red Curry,9500,2,,1,5
-131,110,447,5,63,13,Garlic Oiled Dumpling,2500,2,,3,5
-132,185,447,9,63,13,Garlic Oiled Dumpling,2500,2,,3,5
-133,230,447,10,63,13,Garlic Oiled Dumpling,2500,2,,3,5
-134,111,6280,2,214,206,Celyon Tea,2000,2,,1,5
-135,112,7667,6,226,241,ကြက်သားနန်းကြီးသုပ်,1000,2,,2,5
-136,140,7667,3,226,241,ကြက်သားနန်းကြီးသုပ်,1000,2,,2,5
-137,113,4741,10,178,153,Burger with  Chicken and Cheese,3600,2,,1,5
-138,114,2609,1,234,90,ပန်းပွင့်စိမ်း,700,2,,1,5
-139,116,4956,10,97,167,Coconut Milk Noodle with Fritters,1200,2,,1,5
-140,117,677,10,84,24,Pounded Corn Salad,2000,2,,1,5
-141,118,2977,3,355,96,Mala Chicken Meatball,3000,2,,1,5
-142,119,5173,3,257,173,Chicken Lormee,2500,2,,4,5
-143,123,5173,8,257,173,Chicken Lormee,2500,2,,4,5
-144,212,5173,9,257,173,Chicken Lormee,2500,2,,4,5
-145,228,5173,6,257,173,Chicken Lormee,2500,2,,4,5
-146,120,471,5,56,17,Seafood Mala Xiang Guo,12000,2,,1,5
-147,121,6303,10,214,206,Ovaltine,1500,2,,1,5
-148,122,1777,3,100,64,Tamarind Juice,1000,2,,1,5
-149,124,2621,8,234,90,ပုစွန်ကြာဇံခဲပတ်ကင်,6800,2,,1,5
-150,126,2966,9,355,96,Mala Xiang Guo,2800,2,,1,5
-151,127,1203,5,254,46,ငါးခေါင်းဟင်းချို,6000,2,,1,5
-152,128,2686,1,234,90,နှမ်းမုန့်,1800,2,,1,5
-153,129,2346,3,66,81,Chicken Sartay,9001200,2,,1,5
-154,130,5817,3,120,191,Dumplings Salad,3500,2,,1,5
-155,131,4113,9,141,136,ရန်ကုန်ထမင်းသုပ်,1500,2,,1,5
-156,132,470,7,56,17,Mala Xiang Guo,6500,2,,2,5
-157,159,470,2,56,17,Mala Xiang Guo,6500,2,,2,5
-158,133,5815,9,120,191,Pan Fried Dumplings,6000,2,,1,5
-159,134,4027,9,146,131,Chocolate Cake,3500,2,,1,5
-160,135,3927,7,310,129,Kiwi Smoothies,2900,2,,1,5
-161,136,74,10,214,3,Rice,500,2,,1,5
-162,137,3663,3,354,121,Garlic Oiled Dumpling,1500,2,,1,5
-163,138,5188,9,103,175,Spicy Burmese Chicken Soup,5000,2,,1,5
-164,139,4747,7,178,153,Assorted Sushi,3800,2,,1,5
-165,141,1505,7,350,55,29.	Crab Stick Roll,3000,2,,1,5
-166,142,3915,2,310,129,Mango Yogurt,1800,2,,1,5
-167,143,5466,6,280,182,Sour Duck Egg Curry,2000,2,,1,5
-168,146,4278,1,327,140,Lor Mee,2200,2,,1,5
-169,148,4959,4,97,167,Bottle Gourd with Pot Duck Egg and Coconut Milk No,1500,2,,1,5
-170,149,2155,2,96,76,Rice Salad,1500,2,,2,5
-171,155,2155,5,96,76,Rice Salad,1500,2,,2,5
-172,151,5183,7,175,174,Tea Leaf Rice with Egg,1300,2,,1,5
-173,152,3638,1,354,121,Tomyum Soup,2500,2,,1,5
-174,153,3138,2,13,106,Pon Yay Gyi Salad,1300,2,,1,5
-175,154,6749,10,41,219,Yakhine Salad,800,2,,1,5
-176,156,7357,7,80,238,Fish Head Soup,5500,2,,1,5
-177,157,1251,1,244,47,Clam Salad,5000,2,,1,5
-178,158,2968,7,355,96,Spicy Mala Tikka Salad,3000,2,,1,5
-179,160,7595,3,80,238,Steamed Prawn with Glass Noodle Vermicelli,9000,2,,1,5
-180,162,2281,9,82,79,Butter Rice,4680,2,,4,5
-181,171,2281,3,82,79,Butter Rice,4680,2,,4,5
-182,237,2281,9,82,79,Butter Rice,4680,2,,4,5
-183,267,2281,3,82,79,Butter Rice,4680,2,,4,5
-184,163,3678,6,186,122,Vermicelli Salad,1000,2,,1,5
-185,164,4740,6,178,153,Prawn Tempura,3800,2,,1,5
-186,165,4726,7,178,153,Vegetarian Sushi,2200,2,,1,5
-187,166,7560,9,80,238,Dry and Spicy Chicken Floss,5500,2,,1,5
-188,167,1506,8,350,55,32 Hiyashi Tomoto ,3500,2,,1,5
-189,168,4171,6,141,136,Potato Rice Salad,1700,2,,1,5
-190,169,6754,2,185,220,Fresh Spring Rolls with Crab,4300,2,,2,5
-191,281,6754,3,185,220,Fresh Spring Rolls with Crab,4300,2,,2,5
-192,170,4961,1,21,168,Sticky Rice Noodle,1200,2,,1,5
-193,174,1775,8,100,64,Strawberry Juice,1000,2,,1,5
-194,175,676,3,84,24,Pounded Papaya Salad,2000,2,,1,5
-195,176,847,1,31,37,Set Meal B Person,50000,2,,3,5
-196,243,847,6,31,37,Set Meal B Person,50000,2,,3,5
-197,266,847,2,31,37,Set Meal B Person,50000,2,,3,5
-198,178,2616,6,234,90,ပေါက်စီကင်,600,2,,1,5
-199,179,71,10,214,3,Chicken Salad,3000,2,,1,5
-200,180,2660,8,234,90,ကြွက်နားရွက်သုပ်,2800,2,,1,5
-201,181,1232,2,244,47,Fish Cake Curry,2500,2,,1,5
-202,182,5821,5,120,191,Spicy Egg Noodle with Roast Pork,4000,2,,1,5
-203,184,7670,4,226,241,ကြက်သားမြှီးရှည်,1000,2,,2,5
-204,284,7670,10,226,241,ကြက်သားမြှီးရှည်,1000,2,,2,5
-205,187,3677,4,186,122,Nan Gyi Noodle Salad,1500,2,,2,5
-206,294,3677,9,186,122,Nan Gyi Noodle Salad,1500,2,,2,5
-207,188,4751,1,178,153,Tom Yum Noodle,2000,2,,1,5
-208,189,4944,6,97,167,Mixed Salad,1200,2,,1,5
-209,190,6305,10,214,206,Celyon Tea,2000,2,,1,5
-210,191,1409,1,73,52,Pounded Enokitake Salad,3000,2,,1,5
-211,192,3118,6,356,104,Sweet & Sour Fried Wheat Intestine Roll,3500,2,,1,5
-212,193,1498,10,350,55,22 Jyako Mentaiko,4000,2,,1,5
-213,194,6750,8,41,219,Burmese Salad,800,2,,1,5
-214,195,284,1,216,7,Fillet Meat Pickled Mustard,5500,2,,1,5
-215,196,4720,1,178,153,Pounded Cuttlefish,3500,2,,1,5
-216,198,670,5,84,24,Chicken Salad,2800,2,,1,5
-217,199,313,1,216,7,Garlic Spicy & Sour Crispy Chicken,5500,2,,1,5
-218,200,5810,1,120,191,တိုဖူးသုတ်,3500,2,,1,5
-219,201,7125,9,255,233,Garlic Oiled Kyay Oh,4500,2,,2,5
-220,277,7125,7,255,233,Garlic Oiled Kyay Oh,4500,2,,2,5
-221,202,6745,9,41,219,Green Papaya Salad,700,2,,1,5
-222,203,6781,6,187,221,Special Dragon Roll,4000,2,,1,5
-223,204,1496,10,350,55,35.	 Saba Shio Yaki,6000,2,,1,5
-224,206,1519,1,350,55,12.	Buta Kaluni Onigiri Set ,9500,2,,1,5
-225,207,469,3,56,17,Spicy Mala Grilled Duck,27000,2,,2,5
-226,292,469,2,56,17,Spicy Mala Grilled Duck,27000,2,,2,5
-227,208,3128,2,356,104,Lunch Box Set 2,4000,2,,1,5
-228,209,6765,3,185,220,Fried Pork Roll,3300,2,,1,5
-229,210,6039,1,247,199,လက်ဖက်ထမင်းသုပ်,1000,2,,1,5
-230,211,69,3,214,3,Fried Crispy Chicken,3000,2,,1,5
-231,213,1278,10,244,47,Fried Fish,2000,2,,1,5
-232,214,242,9,216,7,Grilled Cuttlefish Salad,5000,2,,1,5
-233,215,2612,1,234,90,နှစ်တရာသီး,550,2,,1,5
-234,216,3139,7,13,106,Lemon Salad,1500,2,,1,5
-235,217,1885,6,130,67,Mala Curry,3500,2,,1,5
-236,218,5176,7,175,174,Tomato Salad,1000,2,,2,5
-237,304,5176,5,25,174,Tomato Salad,1000,2,,2,5
-238,219,312,4,216,7,Pork Stick with Seasame Fried,5500,2,,1,5
-239,220,2967,7,355,96,Grilled Mala Salad,3300,2,,1,5
-240,222,4176,1,141,136,နတ်သုဒ္ဓါ,2500,2,,1,5
-241,223,6912,8,342,230,Coco Chocolate,1700,2,,1,5
-242,224,7365,7,80,238,Cuttlefish Salad,7500,2,,1,5
-243,225,3913,9,310,129,Passion Juice,1800,2,,1,5
-244,226,467,2,56,17,Honey Grilled Chicken,16000,2,,1,5
-245,227,3675,9,186,122,Cream Milk with Noodle,1500,2,,4,5
-246,279,3675,7,186,122,Cream Milk with Noodle,1500,2,,4,5
-247,298,3675,9,186,122,Cream Milk with Noodle,1500,2,,4,5
-248,299,3675,2,186,122,Cream Milk with Noodle,1500,2,,4,5
-249,229,2672,3,234,90,Chicken Wing,1000,2,,1,5
-250,231,1748,5,100,64,Pudding Ice Cream,2500,2,,1,5
-251,232,4964,9,21,168,Mee Shay,1200,2,,1,5
-252,233,4921,2,193,162,Mandalay Mixed Fruits Yogurt,3000,2,,2,5
-253,241,4921,6,51,162,Mandalay Mixed Fruits Yogurt,3000,2,,2,5
-254,234,72,2,214,3,Chicken Legs Salad,4000,2,,1,5
-255,235,4965,10,21,168,Warm Tofu,1200,2,,1,5
-256,236,468,10,56,17,Grilled Duck,12000,2,,1,5
-257,238,1893,6,130,67,Pounded Corn Salad,2000,2,,1,5
-258,239,1209,8,254,46,ကြာဇံကြော်ပွဲကြီး,5000,2,,1,5
-259,240,1725,5,108,63,Stir Fried Vegetables,2000,2,,1,5
-260,242,6031,10,247,199,Shan Noodle,1300,2,,1,5
-261,244,6776,9,187,221,Big Sushi Combo,4500,2,,1,5
-262,246,2324,4,268,81,Pounded Papaya,26253500,2,,1,5
-263,247,7510,5,80,238,Fried Catfish Ring,8000,2,,1,5
-264,248,2627,9,234,90,ပြည်ကြီးငါးရှည်,1100,2,,1,5
-265,249,846,8,31,37,Set Meal A Person,30000,2,,1,5
-266,250,1894,10,130,67,Pounded Chicken Feet Salad,2500,2,,1,5
-267,251,217,8,376,5,Rice with Small Fish Curry,1700,2,,1,5
-268,253,3153,1,13,106,Rice,500,2,,1,5
-269,254,1881,5,130,67,Mala Fried Rice,2500,2,,1,5
-270,255,1411,10,73,52,Steamed Pork with Kway Teow,3700,2,,1,5
-271,256,4922,9,193,162,Bread with Malai,2000,2,,1,5
-272,257,3905,5,310,129,Bubble Strawberry,2200,2,,1,5
-273,258,1420,9,73,52,Grape Soda,2500,2,,1,5
-274,259,1732,4,100,64,Falooda,3000,2,,1,5
-275,260,4916,5,193,162,Mandalay Rice Noodle,2200,2,,1,5
-276,261,1192,3,254,46,ယိုးဒယားချက်,5500,2,,1,5
-277,262,1507,9,350,55,34 Dashimaki Tamago,3500,2,,1,5
-278,263,2974,6,355,96,2x Spicy Grills Salad,3300,2,,1,5
-279,264,6547,9,361,215,Ginger Tea Masala,1800,2,,1,5
-280,265,2337,10,268,81,Steamed Chicken Sichet,33754500,2,,1,5
-281,269,3122,2,356,104,Japan Tofu Lormee,3500,2,,1,5
-282,270,7669,2,226,241,Chicken Sichet,1000,2,,1,5
-283,271,4948,6,97,167,Noodle Salad,1200,2,,1,5
-284,273,6298,1,214,206,Chicken Baozi,1000,2,,1,5
-285,274,4735,8,178,153,Sandwich,2500,2,,1,5
-286,275,1877,2,130,67,Fried Mala Sticks,2500,2,,1,5
-287,278,848,10,31,37,Set Meal C Person,80000,2,,1,5
-288,280,4269,10,28,140,Nan Gyi Salad,1800,2,,1,5
-289,282,3144,4,13,106,Noodle Salad,700,2,,1,5
-290,283,6770,3,185,220,Fresh Spring Rolls With Chicken,3300,2,,1,5
-291,285,6523,2,361,215,Aroma Special  ChicKen  Masala Curry,9500,2,,1,5
-292,288,2348,10,268,81,Grilled Chicken Wing,12001600,2,,1,5
-293,289,1530,6,350,55,1.Irodori Bento Asari Misoshiru Tsuki,16000,2,,1,5
-294,290,3923,1,310,129,Cheese Milk Tea,2900,2,,1,5
-295,291,220,8,376,5,Rice with Prawn Curry,2000,2,,1,5
-296,293,3140,9,13,106,Mohinga,900,2,,1,5
-297,295,1888,9,130,67,Fried Mala Sticks,2500,2,,1,5
-298,296,3920,5,310,129,Cheese Strawberry,2900,2,,1,5
-299,297,2156,10,96,76,Natural Sugarcane Juice,1000,2,,1,5
-300,300,6913,5,342,230,Honey Lemon Green Tea,1700,2,,1,5
-301,303,5174,5,25,174,Tea Leaf Salad,1200,2,,1,5
-302,305,859,5,25,39,Red Velvet Cake,1900,2,,5,5
-303,308,859,5,399,39,Red Velvet Cake,1900,2,,5,5
-304,311,859,5,25,39,Red Velvet Cake,1900,2,,5,5
-305,314,859,5,4,39,Red Velvet Cake,1900,2,,5,5
-306,317,859,5,376,39,Red Velvet Cake,1900,2,,5,5
-307,307,874,5,25,39,Hot Americano,2000,2,,1,5
-308,309,860,5,399,39,Powdered Blueberry Filled,1900,2,,3,5
-309,312,860,5,25,39,Powdered Blueberry Filled,1900,2,,3,5
-310,315,860,5,4,39,Powdered Blueberry Filled,1900,2,,3,5
-311,310,861,5,399,39,White Chocolate Iced,1900,2,,3,5
-312,313,861,5,25,39,White Chocolate Iced,1900,2,,3,5
-313,316,861,5,4,39,White Chocolate Iced,1900,2,,3,5
-314,318,78,5,4,4,Pork Slice Teppanyaki,6250,2,,1,5
+0,1,1301,9,160,49,Fish Head Soup,5500,2,,1,5
+1,2,1302,7,160,49,ဝက်လက်ထမင်းပေါင်း,4500,2,,1,5
+2,3,5201,5,225,177,Pounded Boneless Chicken Feets,2500,2,,3,5
+3,59,5201,6,147,177,Pounded Boneless Chicken Feets,2500,2,,3,5
+4,257,5201,6,320,177,Pounded Boneless Chicken Feets,2500,2,,3,5
+5,4,5202,8,225,177,Thai Style Pounded Papaya,1500,2,,3,5
+6,60,5202,9,147,177,Thai Style Pounded Papaya,1500,2,,3,5
+7,258,5202,4,320,177,Thai Style Pounded Papaya,1500,2,,3,5
+8,5,10,5,116,2,Gyoza,8000,2,,1,5
+9,6,2814,5,132,94,Grilled Pork Neck,5800,2,,1,5
+10,7,2815,6,132,94,Crispy Pork Belly,6800,2,,1,5
+11,8,2816,7,132,94,Sundried Marinated Pork,6800,2,,1,5
+12,9,2817,1,132,94,Sundried Marinated Beef,7800,2,,1,5
+13,10,2818,3,132,94,Prawn Cake,5800,2,,1,5
+14,11,7684,3,228,244,Papaya Salad,2000,2,,2,5
+15,178,7684,10,319,244,Papaya Salad,2000,2,,2,5
+16,12,322,9,335,8,Shan Noodle,1800,2,,2,5
+17,214,322,2,199,8,Shan Noodle,1800,2,,2,5
+18,13,323,2,335,8,Thick Noodle Salad,1800,2,,2,5
+19,215,323,10,199,8,Thick Noodle Salad,1800,2,,2,5
+20,14,324,10,335,8,Flat Rice Noodle Salad,1800,2,,2,5
+21,216,324,9,199,8,Flat Rice Noodle Salad,1800,2,,2,5
+22,15,47,2,321,3,Fried Fish Finger,5000,2,,1,5
+23,16,48,6,321,3,Spicy Dried Eel,4000,2,,1,5
+24,17,49,2,321,3,Crispy Eel,4000,2,,1,5
+25,18,50,8,321,3,Crispy Seabass Fish with Mayonnaise,10000,2,,1,5
+26,19,4960,7,173,168,Shan Noodle,1200,2,,1,5
+27,20,4961,4,173,168,Sticky Rice Noodle,1200,2,,1,5
+28,21,4962,7,173,168,Garlic Oil Noodle,1200,2,,1,5
+29,22,1628,10,360,59,ကင်းပုစွန်,5000,2,,1,5
+30,23,1629,5,360,59,ရေဘဝဲလက်ချောင်း,2000,2,,1,5
+31,24,1630,3,360,59,ရေချိုပုစွန်,800,2,,1,5
+32,25,1631,8,360,59,Baby Octopus,1500,2,,1,5
+33,26,4877,5,179,158,Mohinga,1500,2,,1,5
+34,27,890,3,83,40,Falooda,3000,2,,1,5
+35,28,891,3,83,40,Ice Cream Sandwich,2500,2,,1,5
+36,29,892,3,83,40,Domino,3800,2,,1,5
+37,30,628,1,28,22,Tea Leaf Salad,1300,2,,1,5
+38,31,629,2,28,22,Ginger Salad,1300,2,,1,5
+39,32,630,9,28,22,Pennywort Salad,1300,2,,1,5
+40,33,631,3,28,22,Century Egg Salad,1500,2,,1,5
+41,34,5831,5,128,192,Octopus Takoyaki,2500,2,,1,5
+42,35,5832,2,128,192,Crab Takoyaki,2000,2,,1,5
+43,36,3088,4,210,100,Shwe Kaneri Chicken Sausage | 1 Pack,3500,2,,1,5
+44,37,3089,10,210,100,Shwe Kaneri Pork Sausage | 1 Pack,4000,2,,1,5
+45,38,6919,5,106,231,001  Kaung Kaung Malar Shan Kaw,14900,2,,1,5
+46,39,6920,2,106,231,003  Kaung Kaung Malar Hinn,12900,2,,1,5
+47,40,6921,5,106,231,029  Soup Melon Shoots,12900,2,,1,5
+48,41,6922,6,106,231,030  Fennel with Meatballs Soup,12900,2,,1,5
+49,42,6923,3,106,231,031  Tomato Egg Soup,8900,2,,1,5
+50,43,1705,2,239,63,Hot and Spicy Fried Rice,2500,2,,1,5
+51,44,1706,9,239,63,Mala Curry,2500,2,,1,5
+52,45,1707,8,239,63,Steamed Rice with Meat and Vegetables,2500,2,,1,5
+53,46,2576,5,122,87,Choco Lava,2000,2,,1,5
+54,47,4031,6,344,134,Bubble Milk Tea,1800,2,,2,5
+55,99,4031,10,152,134,Bubble Milk Tea,1800,2,,2,5
+56,48,4032,3,344,134,Bubble Thai Tea,1800,2,,2,5
+57,100,4032,6,152,134,Bubble Thai Tea,1800,2,,2,5
+58,49,4033,5,344,134,Bubble Milk Tea,1800,2,,2,5
+59,101,4033,7,152,134,Bubble Milk Tea,1800,2,,2,5
+60,50,4034,5,344,134,Bubble Thai Tea,1800,2,,2,5
+61,102,4034,7,152,134,Bubble Thai Tea,1800,2,,2,5
+62,51,4035,4,344,134,Strawberry Milkshake,1800,2,,2,5
+63,103,4035,4,152,134,Strawberry Milkshake,1800,2,,2,5
+64,52,1005,10,214,43,Chicken,1200,2,,1,5
+65,53,1006,3,214,43,Fish,1200,2,,1,5
+66,54,4241,4,249,140,Fried Rice with Egg Oil San,2000,2,,1,5
+67,55,4242,10,249,140,Celone Tea,2200,2,,1,5
+68,56,4243,3,249,140,ပဲလိတ်ခုတ်,1300,2,,1,5
+69,57,4244,6,249,140,Nan Gyi Salad,1800,2,,1,5
+70,58,4245,3,249,140,နံပြားအုပ်သုပ်,1500,2,,1,5
+71,61,6250,9,76,205,Pounded Chicken Feet,2100,2,,2,5
+72,175,6250,2,259,205,Pounded Chicken Feet,2100,2,,2,5
+73,62,6251,8,76,205,Pounded Papaya,1800,2,,2,5
+74,176,6251,8,259,205,Pounded Papaya,1800,2,,2,5
+75,63,6252,1,76,205,Pounded Enoki Mushroom,1800,2,,2,5
+76,177,6252,8,259,205,Pounded Enoki Mushroom,1800,2,,2,5
+77,64,4805,8,173,155,Kway Teow Salad,1500,2,,2,5
+78,272,4805,8,198,155,Kway Teow Salad,1500,2,,2,5
+79,65,4806,7,173,155,Kway Teow Soup,1500,2,,2,5
+80,273,4806,1,198,155,Kway Teow Soup,1500,2,,2,5
+81,66,4807,7,173,155,Chicken Meatball Salad,1500,2,,2,5
+82,274,4807,7,198,155,Chicken Meatball Salad,1500,2,,2,5
+83,67,4808,4,173,155,Water Spinach Salad,1500,2,,1,5
+84,68,964,7,148,42,Pad Thai,4200,2,,1,5
+85,69,965,5,148,42,မားမားပင်စိမ်းကြော်,4200,2,,1,5
+86,70,966,4,148,42,Shrimp with Hot & Spicy,6600,2,,1,5
+87,71,4942,7,152,166,Kyauk Padaung Fried Potato,13501500,2,,1,5
+88,72,6306,3,366,207,Regular Takoyaki,2000,2,,1,5
+89,73,6909,2,302,230,Milk Tea,1700,2,,2,5
+90,218,6909,2,73,230,Milk Tea,1700,2,,2,5
+91,74,6910,8,302,230,Milk Green Tea,1700,2,,2,5
+92,219,6910,6,73,230,Milk Green Tea,1700,2,,2,5
+93,75,6911,3,302,230,Macha Green Tea,1700,2,,2,5
+94,220,6911,4,73,230,Macha Green Tea,1700,2,,2,5
+95,76,6912,1,302,230,Coco Chocolate,1700,2,,1,5
+96,77,6913,4,302,230,Honey Lemon Green Tea,1700,2,,1,5
+97,78,934,3,279,41,ဝက်သားလျှာ,300,2,,1,5
+98,79,935,9,279,41,ဝက်သားအူပိတ်,300,2,,1,5
+99,80,936,4,279,41,ဝက်သားအချင်း,300,2,,1,5
+100,81,937,3,279,41,ဝက်သားအချင်းတိုင်,300,2,,1,5
+101,82,938,5,279,41,ဝက်သားအူချို,300,2,,1,5
+102,83,1649,2,330,60,Ayam Goreng,3000,2,,1,5
+103,84,1650,3,330,60,Ayam,11,2,,1,5
+104,85,1651,1,330,60,Test ,4000,2,,1,5
+105,86,1652,9,330,60,Test ,3500,2,,1,5
+106,87,5609,9,302,187,Chicken Salad,3000,2,,1,5
+107,88,4400,4,246,144,Sausage Cheese Bun,700,2,,1,5
+108,89,4401,4,246,144,Cheese Bun,700,2,,1,5
+109,90,4402,7,246,144,Red Bean Bun,700,2,,1,5
+110,91,4403,6,246,144,Sausage Bun,700,2,,1,5
+111,92,4404,10,246,144,Chicken Floss,700,2,,1,5
+112,93,5446,1,105,182,Chicken Gizzard and Liver with Masala Curry,2000,2,,3,5
+113,151,5446,5,387,182,Chicken Gizzard and Liver with Masala Curry,2000,2,,3,5
+114,238,5446,9,274,182,Chicken Gizzard and Liver with Masala Curry,2000,2,,3,5
+115,94,6872,3,297,226,Burmese Tea,1000,2,,1,5
+116,95,6873,1,297,226,Fried Rice,1200,2,,1,5
+117,96,6874,2,297,226,Mohinga,800,2,,1,5
+118,97,4752,7,391,154,Falooda,2500,2,,1,5
+119,98,4753,4,391,154,Fried Ice Cream,2000,2,,1,5
+120,104,4718,4,377,153,Pounded Corns,2500,2,,2,5
+121,237,4718,3,169,153,Pounded Corns,2500,2,,2,5
+122,105,4719,1,377,153,Pounded Papaya,1800,2,,1,5
+123,106,4720,6,377,153,Pounded Cuttlefish,3500,2,,1,5
+124,107,4721,2,377,153,Pounded Prawn,3500,2,,1,5
+125,108,817,3,141,34,Shan Noodle,1500,2,,1,5
+126,109,5155,9,336,172,Fried Rice with Steamed Chicken Curry,2000,2,,2,5
+127,128,5155,6,220,172,Fried Rice with Steamed Chicken Curry,2000,2,,2,5
+128,110,5156,1,336,172,Fried Rice with Duck Egg Curry,1000,2,,2,5
+129,129,5156,1,220,172,Fried Rice with Duck Egg Curry,1000,2,,2,5
+130,111,5157,1,336,172,Fried Rice with Dry Mutton Meat,1800,2,,2,5
+131,130,5157,6,220,172,Fried Rice with Dry Mutton Meat,1800,2,,2,5
+132,112,5158,6,336,172,Fried Rice with Fishcake Curry,1500,2,,2,5
+133,131,5158,5,220,172,Fried Rice with Fishcake Curry,1500,2,,2,5
+134,113,5159,3,336,172,Fried Rice with Pork Curry,1500,2,,1,5
+135,114,6789,7,192,223,Fried Rice,2000,2,,2,5
+136,115,6789,4,385,223,Fried Rice,2000,2,,2,5
+137,116,6790,2,385,223,Fried Noodle,2000,2,,1,5
+138,117,6791,7,385,223,Fried Vermicelli,2000,2,,1,5
+139,118,7664,10,368,240,Small Bottle Yogurt,750,2,,1,5
+140,119,7665,7,368,240,Big Bottle Yogurt,1400,2,,1,5
+141,120,7666,3,368,240,Oh lay Yogurt,2300,2,,1,5
+142,121,4385,3,112,143,Tea Leaf Rice Salad with Egg,1500,2,,1,5
+143,122,4386,1,112,143,Mala Xiang Guo,2000,2,,1,5
+144,123,1176,1,276,46,Fried Shrimp Salad,5500,2,,1,5
+145,124,1177,1,276,46,Sweet & Sour Chicken,5000,2,,1,5
+146,125,1178,6,276,46,Grilled Pork Neck,6000,2,,1,5
+147,126,1179,4,276,46,ငါးခေါင်းဟင်းချို,6000,2,,1,5
+148,127,1180,1,276,46,Hot & Spicy Eel,6000,2,,1,5
+149,132,7127,9,346,234,Beef Tea LEave Pounded,6500,2,,1,5
+150,133,810,6,33,33,Farr Huu Noodle,2900,2,,2,5
+151,134,810,3,329,33,Farr Huu Noodle,2900,2,,2,5
+152,135,811,6,329,33,Shan Sticky Rice Noodle Salad,1700,2,,1,5
+153,136,812,10,329,33,Shan Non Sticky Rice Noodle Salad,1700,2,,1,5
+154,137,813,7,329,33,Garlic Oil Wheat Noodle Salad,2000,2,,1,5
+155,138,814,2,329,33,Warm & Soft Tofu Rice Noodle Salad,1700,2,,1,5
+156,139,3255,10,162,109,Hti Mi Gwi Mala Xiang Guo,5500,2,,2,5
+157,232,3255,2,143,109,Hti Mi Gwi Mala Xiang Guo,5500,2,,2,5
+158,140,1695,2,78,62,Thai Style Pounded Papaya,1800,2,,1,5
+159,141,1696,5,78,62,Shan Noodle Soup,1500,2,,1,5
+160,142,4214,5,186,139,Chicken Tetsuta Salad,4300,2,,2,5
+161,250,4214,6,24,139,Chicken Tetsuta Salad,4300,2,,2,5
+162,143,4215,9,186,139,Chinese Sesami Chilli Salad,4300,2,,2,5
+163,251,4215,5,24,139,Chinese Sesami Chilli Salad,4300,2,,2,5
+164,144,4216,6,186,139,A1 Soysauce Flavour Soup,5500,2,,1,5
+165,145,1781,6,319,65,Fried Water Spinach,2500,2,,1,5
+166,146,1782,9,319,65,Grilled Soft Pork Ribs,6000,2,,1,5
+167,147,1283,7,26,48,Homemade Ricotta Pizza,10500,2,,1,5
+168,148,1284,3,26,48,Homemade Salami Pizza,13500,2,,1,5
+169,149,1285,7,26,48,Homemade Gnocchi Pesto,9000,2,,1,5
+170,150,448,1,146,14,Thai Style Pounded Papaya,1500,2,,1,5
+171,152,5447,7,387,182,Fried Beef Meatball,3000,2,,2,5
+172,239,5447,9,274,182,Fried Beef Meatball,3000,2,,2,5
+173,153,5448,5,387,182,Braised Mutton Recipe,4000,2,,2,5
+174,240,5448,10,274,182,Braised Mutton Recipe,4000,2,,2,5
+175,154,5449,2,387,182,Mutton with Chickpea Curry,3000,2,,2,5
+176,241,5449,7,274,182,Mutton with Chickpea Curry,3000,2,,2,5
+177,155,5450,3,387,182,Braised Beef Recipe,2500,2,,1,5
+178,156,5910,10,79,195,Mango Salad,1500,2,,1,5
+179,157,5911,7,79,195,Lime Salad,1500,2,,1,5
+180,158,5912,8,79,195,Steamed Common Plum Salad,1500,2,,1,5
+181,159,2034,2,384,72,Tea Leaf Salad,1800,2,,1,5
+182,160,2035,4,384,72,Ginger Salad,1800,2,,1,5
+183,161,2036,3,384,72,Burger,5000,2,,1,5
+184,162,2037,4,384,72,Hotdog,4800,2,,1,5
+185,163,4632,2,319,150,Mawlamyine Mohinga,1500,2,,1,5
+186,164,4633,4,319,150,Coconut Milk Noodle,1500,2,,1,5
+187,165,4634,4,319,150,Noodle Salad,1000,2,,1,5
+188,166,1,7,274,1,Mala Grilled Burmese Chicken,10000,2,,1,5
+189,167,2,4,274,1,Mala French Fries,3500,2,,1,5
+190,168,3,3,274,1,Rakhine Seafood Salad,6000,2,,1,5
+191,169,4,3,274,1,Steamed Chicken Leg,5000,2,,1,5
+192,170,5,10,274,1,Mala Grilled Prawn,12000,2,,1,5
+193,171,2966,1,263,96,Mala Xiang Guo,2800,2,,1,5
+194,172,2967,4,263,96,Grilled Mala Salad,3300,2,,1,5
+195,173,2968,1,263,96,Spicy Mala Tikka Salad,3000,2,,1,5
+196,174,2969,4,263,96,Enoki Mushroom with Mala,3000,2,,1,5
+197,179,7685,3,319,244,Corn Salad,2000,2,,1,5
+198,180,7686,8,319,244,Chicken Leg Salad,2500,2,,1,5
+199,181,1617,9,324,58,Seafood Pizza,12900,2,,1,5
+200,182,1618,4,324,58,Pepperoni Pizza,11900,2,,1,5
+201,183,1619,5,324,58,BBQ Pizza,12900,2,,1,5
+202,184,1620,2,324,58,Pepperoni Pizza,11900,2,,1,5
+203,185,1621,9,324,58,BBQ Pizza,12900,2,,1,5
+204,186,3447,3,367,114,Madalay Mee Shay,30603600,2,,1,5
+205,187,3448,2,367,114,Ko Taung Thin Rice Noodle,26353100,2,,1,5
+206,188,3449,5,367,114,Mandalay Thin Rice Noodle Soup,30603600,2,,1,5
+207,189,3450,7,367,114,Shwe Taung Noodle,30603600,2,,1,5
+208,190,3451,5,367,114,Fried Mixed Fritters,30603600,2,,1,5
+209,191,4911,9,72,161,Lor Mee,1500,2,,1,5
+210,192,4912,9,72,161,Shwe Taung Noodle,1500,2,,1,5
+211,193,1732,10,237,64,Falooda,3000,2,,1,5
+212,194,1733,4,237,64,Bread with Ice Cream,2500,2,,1,5
+213,195,1734,4,237,64,Mixed Fruit Falooda,3800,2,,1,5
+214,196,1735,1,237,64,Domino,3800,2,,1,5
+215,197,1403,2,111,52,Steamed Chicken with Kway Teow,3200,2,,1,5
+216,198,1404,10,111,52,Steamed Pork with Kway Teow,3700,2,,1,5
+217,199,1405,10,111,52,Meatball Kway Teow,2500,2,,1,5
+218,200,3256,9,295,110,Fried Vermicelli,3500,2,,1,5
+219,201,3257,9,295,110,Chinese Style Fried Rice,3500,2,,1,5
+220,202,3258,2,295,110,Spicy Fried Rice,3500,2,,1,5
+221,203,4196,1,18,137,Grande Nachos,3500,2,,2,5
+222,255,4196,10,260,137,Grande Nachos,3500,2,,2,5
+223,204,4197,4,18,137,Mexican Burger,6500,2,,1,5
+224,205,4198,7,18,137,Fresh Lime and Honey,2500,2,,1,5
+225,206,4199,1,18,137,Fresh Watermelon,2500,2,,1,5
+226,207,3506,10,313,116,ပန်းတောင်းထမင်းသုပ်,2000,2,,1,5
+227,208,3507,10,313,116,စိန်ပန်းသုပ်,2000,2,,1,5
+228,209,6194,7,277,204,Strawberry Smoothie,2400,2,,1,5
+229,210,6195,7,277,204,Passion Smoothie,2400,2,,1,5
+230,211,6196,1,277,204,Honey Lemon Smoothie,2400,2,,1,5
+231,212,699,9,371,26,Pounded Green Papaya Salad,2200,2,,1,5
+232,213,700,1,371,26,Pounded Corn Salad,2200,2,,1,5
+233,217,325,10,199,8,Shwe Taung Noodle,1800,2,,1,5
+234,221,2281,6,318,79,Butter Rice,4680,2,,1,5
+235,222,2282,8,318,79,Mohinga,3250,2,,1,5
+236,223,2283,5,318,79,Pork Skewers,13000,2,,1,5
+237,224,5805,6,205,191,Egg Noodle with Roast Pork,4000,2,,1,5
+238,225,5806,5,205,191,Beef Floss Rice Set,6000,2,,1,5
+239,226,5807,9,205,191,Beef Stew,6000,2,,1,5
+240,227,5808,1,205,191,Steamed Dumplings,3000,2,,1,5
+241,228,5809,3,205,191,Thai Papaya Spicy Salad,6000,2,,1,5
+242,229,636,4,376,23,Tom Yum Soup,5500,2,,1,5
+243,230,637,9,376,23,Herbal Chicken Soup,8500,2,,1,5
+244,231,638,2,376,23,Salmon Fish Head Soup,8000,2,,1,5
+245,233,5532,5,294,185,Tom Yum Soup,6500,2,,2,5
+246,287,5532,7,99,185,Tom Yum Soup,6500,2,,2,5
+247,234,5533,7,294,185,Fish Head Soup,6000,2,,2,5
+248,288,5533,4,99,185,Fish Head Soup,6000,2,,2,5
+249,235,5534,5,294,185,Sea Food Hot & Sour Soup,8000,2,,2,5
+250,289,5534,7,99,185,Sea Food Hot & Sour Soup,8000,2,,2,5
+251,236,5173,4,95,173,Chicken Lormee,2500,2,,1,5
+252,242,7124,1,244,233,Kyay Oh,4500,2,,1,5
+253,243,7125,3,244,233,Garlic Oiled Kyay Oh,4500,2,,1,5
+254,244,7126,7,244,233,Normal Garlic Oil,1800,2,,1,5
+255,245,5306,1,260,180,Grilled Pork Neck Salad,7500,2,,1,5
+256,246,5307,1,260,180,Grilled Three Layered Pork Meat Salad,6000,2,,1,5
+257,247,5308,1,260,180,Pork Main Intestines Salad,6000,2,,1,5
+258,248,5309,6,260,180,Sweet Pork Intestines Salad,6000,2,,1,5
+259,249,5310,3,260,180,Pork Intestines Salad,6500,2,,1,5
+260,252,3398,10,289,112,Single Pot,15000,2,,1,5
+261,253,3399,10,289,112,Twin Pot,17000,2,,1,5
+262,254,3400,5,289,112,Mercedes Pot,13000,2,,1,5
+263,256,789,2,248,29,Mohinga Plain,1000,2,,1,5
+264,259,5492,9,126,184,Tofu Salad,1000,2,,1,5
+265,260,5493,3,126,184,Bean Curd Salad,1000,2,,1,5
+266,261,846,2,265,37,Set Meal A Person,30000,2,,1,5
+267,262,2546,6,50,85,Mala Xiang Guo,5000,2,,1,5
+268,263,2547,4,50,85,Mohinga,1000,2,,1,5
+269,264,2548,1,50,85,Burmese Yellow Sticky Rice,700,2,,1,5
+270,265,3078,9,66,99,Mala Xiang Guo with Mixed Grilled,2500,2,,1,5
+271,266,3079,9,66,99,Mala Xiang Guo with Mixed Grilled Pork,4000,2,,1,5
+272,267,3080,8,66,99,Mala Xiang Guo with Mixed Grilled Chicken,4000,2,,1,5
+273,268,3081,8,66,99,Spicy Sour and Salted Mala Curry,1500,2,,1,5
+274,269,3082,6,66,99,Mee Shay in Clay Pot with Chicken,1500,2,,1,5
+275,270,7641,8,94,239,Bubble Milk Tea,2000,2,,1,5
+276,271,7642,6,94,239,Bubble Green Tea,2000,2,,1,5
+277,275,1157,5,179,45,Tea Leaf Salad,1200,2,,1,5
+278,276,1158,7,179,45,Lemon Salad,1200,2,,1,5
+279,277,1159,4,179,45,Snow Mushroom Salad,1200,2,,1,5
+280,278,1160,3,179,45,Tea Leaf Rice Salad,1200,2,,1,5
+281,279,1161,1,179,45,Pennywort Salad,1200,2,,1,5
+282,280,4943,9,233,167,Fritters with Pot Duck Egg and Mohinga,1500,2,,1,5
+283,281,4944,3,233,167,Mixed Salad,1200,2,,1,5
+284,282,6754,2,229,220,Fresh Spring Rolls with Crab,4300,2,,1,5
+285,283,6755,10,229,220,Fresh Spring Rolls with Egg,3800,2,,1,5
+286,284,6756,3,229,220,Ku Ku Special Sticky Rice with Pork,3800,2,,1,5
+287,285,6757,4,229,220,Prawn with Pork Balls,4300,2,,1,5
+288,286,6758,6,229,220,Fresh Springrolls With Shrimp,4300,2,,1,5
+289,290,5535,4,99,185,Farmer Soup,6000,2,,1,5
+290,291,5536,8,99,185,Corm Cream Soup,6000,2,,1,5
+291,292,6908,4,67,229,Samosa,1200,2,,1,5
+292,293,6785,4,391,222,Red Velvet,5500,2,,1,5
+293,294,6786,6,391,222,Chocolate Cake,5000,2,,1,5
+294,295,6787,3,391,222,Brownei,4000,2,,1,5
+295,303,5174,5,25,174,Tea Leaf Salad,1200,2,,1,5
+296,304,5176,5,25,174,Tomato Salad,1000,2,,1,5
+297,305,859,5,25,39,Red Velvet Cake,1900,2,,5,5
+298,308,859,5,399,39,Red Velvet Cake,1900,2,,5,5
+299,311,859,5,25,39,Red Velvet Cake,1900,2,,5,5
+300,314,859,5,4,39,Red Velvet Cake,1900,2,,5,5
+301,317,859,5,376,39,Red Velvet Cake,1900,2,,5,5
+302,307,874,5,25,39,Hot Americano,2000,2,,1,5
+303,309,860,5,399,39,Powdered Blueberry Filled,1900,2,,3,5
+304,312,860,5,25,39,Powdered Blueberry Filled,1900,2,,3,5
+305,315,860,5,4,39,Powdered Blueberry Filled,1900,2,,3,5
+306,310,861,5,399,39,White Chocolate Iced,1900,2,,3,5
+307,313,861,5,25,39,White Chocolate Iced,1900,2,,3,5
+308,316,861,5,4,39,White Chocolate Iced,1900,2,,3,5
+309,318,78,5,4,4,Pork Slice Teppanyaki,6250,2,,1,5
