@@ -70,7 +70,9 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 													`rating` int(3),
 													`deliveryType` int(2),
 													`cartStatus` int(2),
-													`paymentStatus` int(2)
+													`paymentStatus` int(2),
+													`date` date NOT NULL,
+  												`time` time NOT NULL
 												) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\n"""
 		f.write(create_cart)
 		insert_into_cart = """INSERT INTO `cart` 
@@ -85,7 +87,9 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 													`rating`,
 													`deliveryType`,
 													`cartStatus`,
-													`paymentStatus`) VALUES"""
+													`paymentStatus`,
+													`date`,
+													`time`) VALUES"""
 
 		create_foodorder = """CREATE TABLE `foodorder` (
 													`foodorderID` int(11) NOT NULL,
@@ -109,6 +113,8 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 		restaurant_id = 1
 		restaurant_food_dict = {}
 		cart_restaurant_dict = {}
+		cart_total_dict = {}
+		food_price_dict = {}
 
 
 		for i in range(len(data)):
@@ -143,6 +149,7 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 					product_name = dish_card.find('h3', class_="dish-name").text
 					str_price = dish_card.find('span', class_="price p-price").text
 					price = int(str_price.replace(',', '').replace('from ', '').replace('MMK ', ''))
+					food_price_dict[food_id] = price
 					restaurant_food_dict[restaurant_id].append(food_id)
 					insert_into_food = insert_into_food + f"""\n({food_id}, {restaurant_id}, "{product_name}", {price}, {2}, ""),"""
 					food_id += 1
@@ -152,7 +159,7 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 		insert_into_food = insert_into_food[:-1] + ";" + "\n\n"
 		f.write(insert_into_restaurant)
 		f.write(insert_into_food)
-		last_restaurant_id = restaurant_id
+		last_restaurant_id = restaurant_id - 1
 
 
 		userRole_name = ["Customer", "Admin", "Super Admin"]
@@ -182,29 +189,52 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 		f.write(insert_into_user)
 		last_user_id = user_id
 	
-
-
-		for i in range(50):
+		for i in range(100):
 			print("Getting data for cart, ", i, " th loop")
 			cart_id = i + 1
-			user_id = rand.randint(1, last_user_id)
 			restaurant_id = rand.randint(1, last_restaurant_id)
 			cart_restaurant_dict[cart_id] = restaurant_id
-			insert_into_cart = insert_into_cart + f"""\n({cart_id}, {user_id}, {restaurant_id}, {1}, {0}, "", {1}, {1}, {3}, {0}, {0}, {0}),"""
-		insert_into_cart = insert_into_cart[:-1] + ";" + "\n\n"
-		f.write(insert_into_cart)
+			cart_total_dict[cart_id] = 0
 		last_cart_id = cart_id
 
-		for i in range(300):
-			print("Getting data for foodorder, ", i, " th loop with restaurant_id ", restaurant_id)
-			foodorder_id = i + 1
-			cart_id = rand.randint(1, last_cart_id)
+		# for i, cart_id in enumerate(cart_restaurant_dict.keys()):
+		# 	print("Getting one data for foodorder, ", i, " th loop with restaurant_id ", restaurant_id)
+		# 	foodorder_id = i + 1
+		# 	restaurant_id = cart_restaurant_dict[cart_id]
+		# 	food_id = rand.randint(restaurant_food_dict[restaurant_id][0], restaurant_food_dict[restaurant_id][-1])
+		# 	cart_total_dict[cart_id] += food_price_dict[food_id]
+		# 	rating = rand.randint(1, 5)
+		# 	insert_into_foodorder = insert_into_foodorder + f"""\n({foodorder_id}, {food_id}, {cart_id}, {1}, {rating}),"""
+
+		foodorder_id = 0
+		for i, cart_id in enumerate(cart_restaurant_dict.keys()):
 			restaurant_id = cart_restaurant_dict[cart_id]
-			food_id = rand.randint(restaurant_food_dict[restaurant_id][0], restaurant_food_dict[restaurant_id][-1])
-			rating = rand.randint(1, 10)
-			insert_into_foodorder = insert_into_foodorder + f"""\n({foodorder_id}, {food_id}, {cart_id}, {1}, {rating}),"""
+			print("Getting data for foodorder, ", i, " th loop with cart_id ", cart_id, " and restaurant_id ", restaurant_id)
+			rand_loop_count = rand.randint(1, 5)
+			for j in range(rand_loop_count):
+				if j >= len(restaurant_food_dict[restaurant_id]):
+					continue
+				foodorder_id = foodorder_id + 1
+				food_id = restaurant_food_dict[restaurant_id][j]
+				cart_total_dict[cart_id] += food_price_dict[food_id]
+				rating = rand.randint(1, 10)
+				insert_into_foodorder = insert_into_foodorder + f"""\n({foodorder_id}, {food_id}, {cart_id}, {1}, {rating}),"""
 		insert_into_foodorder = insert_into_foodorder[:-1] + ";" + "\n\n"
 		f.write(insert_into_foodorder)
-			
-				
+
+		year = '2022'
+		month = '10'
+		day = 10
+		for cart_id in cart_restaurant_dict:
+			print("Fixing cart totalAmount of cart id ", cart_id)
+			user_id = rand.randint(1, last_user_id)
+			restaurant_id = cart_restaurant_dict[cart_id]
+			totalAmount = cart_total_dict[cart_id]
+			# '2022-02-23', '09:43:07'
+			output_day = str(int(day + cart_id/10))
+			date = year + '-' + month + '-' + output_day
+			time = '09:43:07'
+			insert_into_cart = insert_into_cart + f"""\n({cart_id}, {user_id}, {restaurant_id}, {1}, {totalAmount}, "", {1}, {1}, {3}, {0}, {0}, {0}, "{date}", "{time}"),"""
+		insert_into_cart = insert_into_cart[:-1] + ";" + "\n\n"
+		f.write(insert_into_cart)
 				
