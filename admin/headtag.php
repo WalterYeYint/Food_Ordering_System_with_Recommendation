@@ -23,5 +23,7 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
   <script type="text/javascript" src="constants.js?v=2"></script>
-  <script type="text/javascript" src="custom_functions.js?v=2"></script>
+  <script type="text/javascript" src="custom_functions.js?v=1"></script>
+
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </head>

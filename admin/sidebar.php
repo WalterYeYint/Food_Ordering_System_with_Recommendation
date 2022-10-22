@@ -157,8 +157,8 @@ if ($_SESSION['auth_rolename']) {
   <ul class="nav">
     <li class="nav-item">
       <a class="nav-link" href="dashboard.php">
-        <i class="mdi mdi-view-dashboard menu-icon"></i>
-        <span class="menu-title">Dashboard</span>
+        <i class="mdi mdi-history menu-icon"></i>
+        <span class="menu-title">Recent Orders</span>
       </a>
     </li>
     <li class="nav-item">
@@ -198,9 +198,9 @@ if ($_SESSION['auth_rolename']) {
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="departmentadd.php">
-        <i class="mdi mdi-view-list menu-icon"></i>
-        <span class="menu-title">View Orders</span>
+      <a class="nav-link" href="statistics.php">
+        <i class="mdi mdi-chart-bar-stacked menu-icon"></i>
+        <span class="menu-title">Statistics</span>
       </a>
     </li>
 
