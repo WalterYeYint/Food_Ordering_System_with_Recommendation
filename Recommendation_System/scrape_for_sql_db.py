@@ -18,8 +18,8 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 													`userID` int(11) NOT NULL,
 													`restaurantName` varchar(50) NOT NULL,
 													`address` varchar(250),
-													`latitude` float(20),
-													`longitude` float(20),
+													`latitude` double,
+													`longitude` double,
 													`image` varchar(200),
 													`KPayPhoneNo` varchar(20)
 												) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\n"""
@@ -52,8 +52,8 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 													`email` varchar(40) NOT NULL,
 													`password` varchar(30) NOT NULL,
 													`address` varchar(250),
-													`latitude` float(20),
-													`longitude` float(20)
+													`latitude` double,
+													`longitude` double
 												) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\n"""
 		f.write(create_user)
 		insert_into_user = """INSERT INTO `user` (`userID`, `userRoleID`, `firstName`, `lastName`, `email`, `password`, `address`, `latitude`, `longitude`) VALUES"""
@@ -65,8 +65,8 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 													`paymentTypeID` int(11) NOT NULL,
 													`totalAmount` int(11),
 													`address` varchar(250),
-													`latitude` float(20),
-													`longitude` float(20),
+													`latitude` double,
+													`longitude` double,
 													`rating` int(3),
 													`deliveryType` int(2),
 													`cartStatus` int(2),

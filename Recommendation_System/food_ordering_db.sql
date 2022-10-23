@@ -3,8 +3,8 @@ CREATE TABLE `restaurant` (
 													`userID` int(11) NOT NULL,
 													`restaurantName` varchar(50) NOT NULL,
 													`address` varchar(250),
-													`latitude` float(20),
-													`longitude` float(20),
+													`latitude` double,
+													`longitude` double,
 													`image` varchar(200),
 													`KPayPhoneNo` varchar(20)
 												) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -31,8 +31,8 @@ CREATE TABLE `user` (
 													`email` varchar(40) NOT NULL,
 													`password` varchar(30) NOT NULL,
 													`address` varchar(250),
-													`latitude` float(20),
-													`longitude` float(20)
+													`latitude` double,
+													`longitude` double
 												) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `cart` (
@@ -42,8 +42,8 @@ CREATE TABLE `cart` (
 													`paymentTypeID` int(11) NOT NULL,
 													`totalAmount` int(11),
 													`address` varchar(250),
-													`latitude` float(20),
-													`longitude` float(20),
+													`latitude` double,
+													`longitude` double,
 													`rating` int(3),
 													`deliveryType` int(2),
 													`cartStatus` int(2),
@@ -8876,11 +8876,11 @@ INSERT INTO `cart`
 (98, 99, 185, 1, 32500, "", 1, 1, 3, 0, 0, 0, "2022-10-19", "09:43:07"),
 (99, 67, 229, 1, 1200, "", 1, 1, 3, 0, 0, 0, "2022-10-19", "09:43:07"),
 (100, 391, 222, 1, 14500, "", 1, 1, 3, 0, 0, 0, "2022-10-20", "09:43:07"),
-(102, 25, 174, 2, 5685, 'Pearl Condo C, Kabar Aye Pagoda Road, Yangon, Myanmar (Burma)', 16.8172, 96.1565, 3, 1, 0, 0, "2022-10-22", "09:43:07"),
-(103, 25, 39, 1, 9548, 'Pearl Condo C, Kabar Aye Pagoda Road, Yangon, Myanmar (Burma)', 16.8172, 96.1565, 3, 1, 0, 0, "2022-10-19", "09:43:07"),
-(104, 399, 39, 1, 9066, 'Thazin Condo', 16.7848, 96.1332, 3, 0, 0, 0, "2022-10-20", "09:43:07"),
-(105, 25, 39, 1, 7548, 'Pearl Condo C, Kabar Aye Pagoda Road, Yangon, Myanmar (Burma)', 16.8172, 96.1565, 3, 0, 0, 0, "2022-10-21", "09:43:07"),
-(106, 4, 39, 1, 9066, 'Thazin Condo', 16.7848, 96.1332, 3, 0, 0, 0, "2022-10-22", "09:43:07"),
-(107, 376, 39, 1, 5266, 'Thazin Condo', 16.7848, 96.1332, 3, 0, 0, 0, "2022-10-22", "09:43:07"),
-(108, 4, 4, 1, 17209, 'Thazin Condo', 16.7848, 96.1332, 3, 1, 0, 0, "2022-10-22", "09:43:07");
+(102, 25, 174, 2, 5685, 'Pearl Condo C, Kabar Aye Pagoda Road, Yangon, Myanmar (Burma)', 16.817043140670485, 96.15659235736575, 3, 1, 0, 0, "2022-10-22", "09:43:07"),
+(103, 25, 39, 1, 9548, 'Pearl Condo C, Kabar Aye Pagoda Road, Yangon, Myanmar (Burma)', 16.817043140670485, 96.15659235736575, 3, 1, 0, 0, "2022-10-19", "09:43:07"),
+(104, 399, 39, 1, 9066, 'Thazin Condo', 16.78465562981076, 96.15540468203353, 3, 0, 0, 0, "2022-10-20", "09:43:07"),
+(105, 25, 39, 1, 7548, 'Pearl Condo C, Kabar Aye Pagoda Road, Yangon, Myanmar (Burma)', 16.817043140670485, 96.15659235736575, 3, 0, 0, 0, "2022-10-21", "09:43:07"),
+(106, 4, 39, 1, 9066, 'Thazin Condo', 16.78465562981076, 96.15540468203353, 3, 0, 0, 0, "2022-10-22", "09:43:07"),
+(107, 376, 39, 1, 5266, 'Thazin Condo', 16.78465562981076, 96.15540468203353, 3, 0, 0, 0, "2022-10-22", "09:43:07"),
+(108, 4, 4, 1, 17209, 'Thazin Condo', 16.78465562981076, 96.15540468203353, 3, 1, 0, 0, "2022-10-22", "09:43:07");
 
