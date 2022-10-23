@@ -162,11 +162,12 @@
 				</div>
 				<div class="form-group">
 					<label for="name">Latitude <span style="color: red;">*</span></label>
-					<input type="number" class="form-control" name="txtlatitude" id="latitude" value="<?php echo $tlatitude ?>" placeholder="Latitude" required="">
+					<input type="number" step="any" class="form-control" name="txtlatitude" id="latitude" value="<?php echo $tlatitude ?>" placeholder="Latitude" required="">
 				</div>
 				<div class="form-group">
 					<label for="name">Longitude <span style="color: red;">*</span></label>
-					<input type="number" class="form-control" name="txtlongitude" id="longitude" value="<?php echo $tlongitude ?>" placeholder="Longitude" onchange="reloadMap()" required="">
+					<input type="number" step="any" class="form-control" name="txtlongitude" id="longitude" value="<?php echo $tlongitude ?>" placeholder="Longitude" onchange="reloadMap()" required="">
+					<i class="fa fa-question-circle" style="font-size:12px"><a href="img/map_tutorial.png">Don't know how? Check here</a></i>
 				</div>
 				<iframe
 					id="map"

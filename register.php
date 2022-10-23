@@ -90,6 +90,7 @@ if(isset($_POST['btnsubmit'])){
 							<div class="form-group text_box">
 								<label class="f_p text_c f_400">Longitude</label>
 								<input type="text" name="txtlongitude" placeholder="Longitude" required="">
+								<i class="fa fa-question-circle" style="font-size:12px"><a href="img/map_tutorial.png">Don't know how? Check here</a></i>
 							</div>
 							<div class="form-group text_box">
 								<label class="f_p text_c f_400">Email Address</label>
