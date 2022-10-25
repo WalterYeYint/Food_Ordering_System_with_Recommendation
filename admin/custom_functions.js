@@ -94,3 +94,22 @@ function reloadMap(){
 	// alert("latitude is "+latitude+", longitude is "+longitude);
 	alert("Map reloaded!!!")
 }
+
+function getCurrentLocation(){
+	var latitude = document.getElementById('latitude');
+	var longitude = document.getElementById('longitude');
+	if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+		alert("Location Acquired !");
+  } else { 
+		alert("Geolocation is not supported by this browser !");
+  }
+
+	function showPosition(position) {
+		latitude.value = position.coords.latitude;
+		longitude.value = position.coords.longitude;
+		var iframe = document.getElementById('map');
+		iframe.removeAttribute("hidden");
+		iframe.src = "https://maps.google.com/maps?q="+position.coords.latitude+","+position.coords.longitude+"&z=18&output=embed"
+	}
+}

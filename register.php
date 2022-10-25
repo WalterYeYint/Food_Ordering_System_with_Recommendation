@@ -42,15 +42,14 @@ if(isset($_POST['btnsubmit'])){
 					VALUES 
 					('$userID','$userRoleID','$txtfirstName','$txtlastName','$txtemail','$txtpassword','$txtaddress','$txtlatitude','$txtlongitude')";
 			$result=mysqli_query($connection,$insert);
-			echo "Here!!";
-			// if ($result) {
-			// 	echo "<script>window.alert('Registered Successfully!')</script>";
-			// 	echo "<script>window.location='index.php'</script>";
-			// }
+			if ($result) {
+				echo "<script>window.alert('Registered Successfully!')</script>";
+				echo "<script>window.location='index.php'</script>";
+			}
 	
-			// else{
-			// 	echo "<p>Something went wrong in Register Process : " . mysqli_error($connection) . "</p>";
-			// }   
+			else{
+				echo "<p>Something went wrong in Register Process : " . mysqli_error($connection) . "</p>";
+			}   
 		}
 	}
 }
@@ -85,16 +84,29 @@ if(isset($_POST['btnsubmit'])){
 							</div>
 							<div class="form-group text_box">
 								<label class="f_p text_c f_400">Latitude</label>
-								<input type="text" name="txtlatitude" placeholder="Latitude" required="">
+								<input type="number" step="any" name="txtlatitude" id="latitude" placeholder="Latitude" required="">
 							</div>
 							<div class="form-group text_box">
 								<label class="f_p text_c f_400">Longitude</label>
-								<input type="text" name="txtlongitude" placeholder="Longitude" required="">
-								<i class="fa fa-question-circle" style="font-size:12px"><a href="img/map_tutorial.png">Don't know how? Check here</a></i>
+								<input type="number" step="any" name="txtlongitude" id="longitude" placeholder="Longitude" onchange="reloadMap()" required="">
+								<i class="fa fa-question-circle" style="font-size:12px"><a href="img/map_tutorial.png">Don't know how to get these? Check here&emsp;&emsp;</a></i>
+								<button type="button" onclick="getCurrentLocation()">Get Current Location</button>
 							</div>
+							<iframe
+								id="map"
+								width="400"
+								height="300"
+								style="border:0"
+								loading="lazy"
+								allowfullscreen
+								referrerpolicy="no-referrer-when-downgrade"
+								src=""
+								hidden>
+							</iframe>
+							<br/><br/>
 							<div class="form-group text_box">
 								<label class="f_p text_c f_400">Email Address</label>
-								<input type="text" name="txtemail" placeholder="JakeSully@gmail.com" required="">
+								<input type="email" name="txtemail" placeholder="JakeSully@gmail.com" required="">
 							</div>
 							<div class="form-group text_box">
 								<label class="f_p text_c f_400">Password</label>
