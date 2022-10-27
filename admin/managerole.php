@@ -73,8 +73,8 @@ if (isset($_POST['btnsubmit'])) {
               <label for="rname">Role Name <span style="color: red;">*</span></label>
               <input type="text" class="form-control" id="userrolename" name="txtuserrolename" placeholder="Role Name" required="">
             </div>             
-            <button type="submit" class="btn btn-primary me-2" name="btnsubmit">Submit</button>
-            <button type="reset" class="btn btn-secondary" name="btnreset">Cancel</button>
+            <button type="submit" class="btn btn-success me-2" name="btnsubmit">Submit</button>
+            <button type="reset" class="btn btn-outline-dark" name="btnreset">Cancel</button>
           </form>
         </div>
       </div>
@@ -144,7 +144,7 @@ else{
               <td><?php echo $userRoleName ?></td>
               <td>
                   <!--  <a href="roleedit.php?userroleid=<?=$userroleid?>"class="btn btn-success">Edit</a> -->
-                  <a href="managerole.php?userRoleID=<?=$userRoleID?>&mode=delete" class="btn btn-danger" onclick="return confirm_delete('<?php echo $userRoleName ?>')">
+                  <a href="managerole.php?userRoleID=<?=$userRoleID?>&mode=delete" class="btn btn-danger btn-rounded" onclick="return confirm_delete('<?php echo $userRoleName ?>')">
                   Delete</a>
               </td>
           </tr>

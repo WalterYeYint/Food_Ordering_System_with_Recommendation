@@ -248,16 +248,16 @@
 				<?php
 				if(isset($_GET['cartID'])){
 				?>
-					<button type="submit" class="btn btn-primary me-2" name="btnupdate">Update</button>	
+					<button type="submit" class="btn btn-success me-2" name="btnupdate">Update</button>	
 				<?php
 				}
 				else{
 				?>
-					<button type="submit" class="btn btn-primary me-2" name="btnsubmit">Submit</button>
+					<button type="submit" class="btn btn-success me-2" name="btnsubmit">Submit</button>
 				<?php
 				}
 				?>
-				<button type="reset" class="btn btn-secondary" id="reset" name="btnreset">Cancel</button>
+				<button type="reset" class="btn btn-outline-dark" id="reset" name="btnreset">Cancel</button>
 			</form>
 		</div>
 	</div>
@@ -381,8 +381,8 @@ else{
 								<td><?php echo $cart_status_str_arr[$cartStatus] ?></td>
 								<td><?php echo $payment_status_str_arr[$paymentStatus] ?></td>
 								<td>
-									<a href="managecart.php?cartID=<?=$cartID?>&mode=edit" class="btn btn-success">Edit</a>
-									<a href="managecart.php?cartID=<?=$cartID?>&mode=delete" class="btn btn-danger" onclick="return confirm_delete('<?php echo $cartID ?>')">Delete</a>
+									<a href="managecart.php?cartID=<?=$cartID?>&mode=edit" class="btn btn-info btn-rounded">Edit</a>
+									<a href="managecart.php?cartID=<?=$cartID?>&mode=delete" class="btn btn-danger btn-rounded" onclick="return confirm_delete('<?php echo $cartID ?>')">Delete</a>
 								</td>
 						</tr>
 					<?php 

@@ -193,16 +193,16 @@
 				<?php
 				if(isset($_GET['foodID'])){
 				?>
-					<button type="submit" class="btn btn-primary me-2" name="btnupdate">Update</button>	
+					<button type="submit" class="btn btn-success me-2" name="btnupdate">Update</button>	
 				<?php
 				}
 				else{
 				?>
-					<button type="submit" class="btn btn-primary me-2" name="btnsubmit">Submit</button>
+					<button type="submit" class="btn btn-success me-2" name="btnsubmit">Submit</button>
 				<?php
 				}
 				?>
-				<button type="reset" class="btn btn-secondary" id="reset" name="btnreset">Cancel</button>
+				<button type="reset" class="btn btn-outline-dark" id="reset" name="btnreset">Cancel</button>
 			</form>
 		</div>
 	</div>
@@ -292,8 +292,8 @@ else{
 								<td><?php echo $price ?></td>
 								<td><?php echo $image ?></td>
 								<td>
-									<a href="managefood.php?foodID=<?=$foodID?>&mode=edit" class="btn btn-success">Edit</a>
-									<a href="managefood.php?foodID=<?=$foodID?>&mode=delete" class="btn btn-danger" onclick="return confirm_delete('<?php echo $foodName ?>')">Delete</a>
+									<a href="managefood.php?foodID=<?=$foodID?>&mode=edit" class="btn btn-info btn-rounded">Edit</a>
+									<a href="managefood.php?foodID=<?=$foodID?>&mode=delete" class="btn btn-danger btn-rounded" onclick="return confirm_delete('<?php echo $foodName ?>')">Delete</a>
 								</td>
 						</tr>
 					<?php 

@@ -306,7 +306,7 @@ $foodorder_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
 						}
 						else{
 							?>
-							<button type="submit" class="btn btn-primary me-2" name="btncartsearch">Search</button>
+							<button type="submit" class="btn btn-success me-2" name="btncartsearch">Search</button>
 						<?php
 						}
 						?>
@@ -390,19 +390,19 @@ $foodorder_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
 						<?php
 						if(isset($_GET['foodorderID'])){
 							?>
-							<button type="submit" class="btn btn-primary me-2" name="btnupdate">Update</button>	
+							<button type="submit" class="btn btn-success me-2" name="btnupdate">Update</button>	
 						<?php
 						}
 						else{
 							?>
-							<button type="submit" class="btn btn-primary me-2" name="btnsubmit">Submit</button>
+							<button type="submit" class="btn btn-success me-2" name="btnsubmit">Submit</button>
 						<?php
 						}
 						?>
-						<button type="reset" class="btn btn-secondary" id="reset" name="btnreset">Cancel</button>
+						<button type="reset" class="btn btn-outline-dark" id="reset" name="btnreset">Cancel</button>
 					</div>
 					<br/><br/>
-					<a href="managefoodorder.php" class="btn btn-success">Search View</a>
+					<a href="managefoodorder.php" class="btn btn-primary">Search View</a>
 				</form>
 			<?php
 			}
@@ -503,10 +503,10 @@ $foodorder_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
 									?>                      
 							</select>
 				</div>   
-				<button type="submit" class="btn btn-primary me-2" name="btnsearch">Search</button>
-				<button type="reset" class="btn btn-secondary" id="reset" name="btnreset">Cancel</button>
+				<button type="submit" class="btn btn-success me-2" name="btnsearch">Search</button>
+				<button type="reset" class="btn btn-outline-dark" id="reset" name="btnreset">Cancel</button>
 				<br/><br/>
-				<a href="managefoodorder.php?mode=form" class="btn btn-success">Form View</a>
+				<a href="managefoodorder.php?mode=form" class="btn btn-primary">Form View</a>
 			</form>
 			<?php
 			}
@@ -583,8 +583,8 @@ else{
 								<td><?php echo $quantity ?></td>
 								<td><?php echo $rating ?></td>
 								<td>
-									<a href="managefoodorder.php?foodorderID=<?=$foodorderID?>&mode=edit" class="btn btn-success">Edit</a>
-									<a href="managefoodorder.php?foodorderID=<?=$foodorderID?>&foodID=<?=$foodID?>&cartID=<?=$cartID?>&quantity=<?=$quantity?>&mode=delete" class="btn btn-danger" onclick="return confirm_delete('<?php echo $foodorderID ?>')">Delete</a>
+									<a href="managefoodorder.php?foodorderID=<?=$foodorderID?>&mode=edit" class="btn btn-info btn-rounded">Edit</a>
+									<a href="managefoodorder.php?foodorderID=<?=$foodorderID?>&foodID=<?=$foodID?>&cartID=<?=$cartID?>&quantity=<?=$quantity?>&mode=delete" class="btn btn-danger btn-rounded" onclick="return confirm_delete('<?php echo $foodorderID ?>')">Delete</a>
 								</td>
 						</tr>
 					<?php 
