@@ -78,7 +78,14 @@
 			$realdir="../img/restaurants/";
 			$dirname=$realdir . basename($image);
 
-			// $copied=copy($_FILES['newphoto']['tmp_name'], $FileName);
+			// Copying the uploaded image into specified directory
+			$copied=copy($_FILES['newphoto']['tmp_name'], $dirname);
+			echo $_FILES['newphoto']['tmp_name'];
+			if(!$copied) 
+			{
+				echo "<p>Restaurant Photo Cannot Upload!</p>";
+				exit();
+			}
 		}
 		else{
 			$FileName = $oldphoto;
@@ -90,15 +97,6 @@
 		// } else {
 		// 	echo "<script>window.alert('Sorry, there was an error uploading your file.')</script>";
 		// }	
-
-		// Copying the uploaded image into specified directory
-		$copied=copy($_FILES['newphoto']['tmp_name'], $dirname);
-		echo $_FILES['newphoto']['tmp_name'];
-		if(!$copied) 
-		{
-			echo "<p>Restaurant Photo Cannot Upload!</p>";
-			exit();
-		}
 
 		if(isset($_POST['btnupdate'])){
 			$update = "UPDATE restaurant SET 
