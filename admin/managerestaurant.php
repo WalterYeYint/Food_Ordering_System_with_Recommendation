@@ -5,6 +5,15 @@
 	include '../dbconnect.php';
 ?>
 <?php
+	$admin = ADMIN;
+	$select = "SELECT u.*, ur.* 
+						FROM user u, userRole ur
+						WHERE u.userRoleID = ur.userRoleID
+						AND ur.userRoleName = '$admin'";
+	$result = mysqli_query($connection,$select);
+	$user_count=mysqli_num_rows($result);
+	$user_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
+
 	if(isset($_GET['restaurantID'])){
 		if($_GET['mode'] == 'edit'){
 			$restaurantID=$_GET['restaurantID'];
@@ -47,7 +56,7 @@
 	}
 	if (isset($_POST['btnsubmit']) OR isset($_POST['btnupdate'])) {
 		$txtrestaurantID = $_POST['txtrestaurantid'];
-		$txtuserID = $_POST['txtuserid'];
+		$sltuserID = $_POST['sltuserid'];
 		$txtrestaurantName = $_POST['txtrestaurantname'];
 		$txtaddress = $_POST['txtaddress'];
 		$txtlatitude = $_POST['txtlatitude'];
@@ -60,9 +69,11 @@
 			$oldphoto="img/restaurants/default_img.jpg";
 		}
 		if ($_FILES['newphoto']['name']){
-			$image = $_FILES['photo']['name'];
+			$image = $_FILES['newphoto']['name'];
 			$FolderName="img/restaurants/"; 
-			$FileName=$FolderName . $image;
+			$FileName=$FolderName . basename($image);
+			$realdir="../img/restaurants/";
+			$dirname=$realdir . basename($image);
 
 			// $copied=copy($_FILES['newphoto']['tmp_name'], $FileName);
 		}
@@ -70,19 +81,26 @@
 			$FileName = $oldphoto;
 		}
 
-	// // Copying the uploaded image into specified directory
-	// $copied=copy($_FILES['photo']['tmp_name'], $FileName);
-	// echo $_FILES['photo']['tmp_name'];
-	// if(!$copied) 
-	// {
-	//   echo "<p>Restaurant Photo Cannot Upload!</p>";
-	//   exit();
-	// }
+		// if (move_uploaded_file($_FILES["newphoto"]["tmp_name"], $dirname)) {
+		// 	echo "<script>window.alert('The file ".htmlspecialchars( basename( $_FILES['newphoto']['name']))." has been uploaded.')</script>";
+		// 	// "The file ". htmlspecialchars( basename( $_FILES['newphoto']['name'])). " has been uploaded.";
+		// } else {
+		// 	echo "<script>window.alert('Sorry, there was an error uploading your file.')</script>";
+		// }	
+
+		// Copying the uploaded image into specified directory
+		$copied=copy($_FILES['newphoto']['tmp_name'], $dirname);
+		echo $_FILES['newphoto']['tmp_name'];
+		if(!$copied) 
+		{
+			echo "<p>Restaurant Photo Cannot Upload!</p>";
+			exit();
+		}
 
 		if(isset($_POST['btnupdate'])){
 			$update = "UPDATE restaurant SET 
 								restaurantID = '$txtrestaurantID',
-								userID = '$txtuserID',
+								userID = '$sltuserID',
 								restaurantName = '$txtrestaurantName',
 								address = '$txtaddress',
 								latitude = '$txtlatitude',
@@ -114,7 +132,7 @@
 				$insert="INSERT INTO restaurant 
 						(`restaurantID`, `userID`, `restaurantName`, `address`, `latitude`, `longitude`, `image`)
 						VALUES 
-						('$txtrestaurantID','$txtuserID','$txtrestaurantName','$txtaddress','$txtlatitude','$txtlongitude','$FileName')";
+						('$txtrestaurantID','$sltuserID','$txtrestaurantName','$txtaddress','$txtlatitude','$txtlongitude','$FileName')";
 				$result=mysqli_query($connection,$insert);
 				if ($result) {
 					echo "<script>window.alert('Restaurant Added Successfully!')</script>";
@@ -141,13 +159,22 @@
 				</div>
 				<div class="form-group">
 					<label for="id">User ID <span style="color: red;">*</span></label>
-					<input type="text" class="form-control" name="txtuserid" id="id" value="<?php echo $tuserID ?>" placeholder="ID" required=""
-					<?php
-					if($userRoleName_sess == ADMIN){
-						echo "readonly";
-					}
-					?>
-					>
+					<select class="form-select" id="sltuserid" name="sltuserid" required="">
+						<?php
+						for ($i=0; $i<$user_count; $i++) { 
+							$row=$user_arr[$i];
+							$userID=$row['userID'];
+							$email=$row['email'];
+						?>
+							<option value=<?php echo $userID ?>
+						<?php
+							if ($tuserID == $userID) {
+								echo "selected";
+							}
+							echo ">$email (ID-$userID)</option>";
+						}
+						?>
+					</select>
 				</div>
 				<div class="form-group">
 					<label for="name">Restaurant Name <span style="color: red;">*</span></label>
@@ -159,11 +186,13 @@
 				</div>
 				<div class="form-group">
 					<label for="name">Latitude <span style="color: red;">*</span></label>
-					<input type="text" class="form-control" name="txtlatitude" id="latitude" value="<?php echo $tlatitude ?>" placeholder="Latitude" required="">
+					<input type="number" step="any" class="form-control" name="txtlatitude" id="latitude" value="<?php echo $tlatitude ?>" placeholder="Latitude" required="">
 				</div>
 				<div class="form-group">
 					<label for="name">Longitude <span style="color: red;">*</span></label>
-					<input type="text" class="form-control" name="txtlongitude" id="longitude" value="<?php echo $tlongitude ?>" placeholder="Longitude" onchange="reloadMap()" required="">
+					<input type="number" step="any" class="form-control" name="txtlongitude" id="longitude" value="<?php echo $tlongitude ?>" placeholder="Longitude" onchange="reloadMap()" required="">
+					<i class="mdi mdi-help-circle-outline" style="font-size:15px"><a href="img/map_tutorial.png">Don't know how to get these? Check here&emsp;&emsp;</a></i>
+					<button type="button" onclick="getCurrentLocation()">Get Current Location</button>
 				</div>
 				<iframe
 					id="map"
@@ -189,35 +218,41 @@
 				}
 				?>
 				<div class="form-group">
-					<label for="photo">Photo <span style="color: red;">*</span></label><br>
-					<input type="file" name="photo" id="photo">
+					<label for="photo">Photo</label><br>
+					<input type="file" name="newphoto" id="photo">
 				</div>
 				<?php
 				if(isset($_GET['restaurantID'])){
 				?>
-					<button type="submit" class="btn btn-primary me-2" name="btnupdate">Update</button>	
+					<button type="submit" class="btn btn-success me-2" name="btnupdate">Update</button>	
 				<?php
 				}
 				else{
 				?>
-					<button type="submit" class="btn btn-primary me-2" name="btnsubmit">Submit</button>
+					<button type="submit" class="btn btn-success me-2" name="btnsubmit">Submit</button>
 				<?php
 				}
 				?>
-				<button type="reset" class="btn btn-secondary" name="btnreset">Cancel</button>
+				<button type="reset" class="btn btn-outline-dark" name="btnreset">Cancel</button>
 			</form>
 		</div>
 	</div>
 </div>
 <?php
 if($userRoleName_sess == ADMIN){
-	$query = "SELECT * FROM restaurant
-						WHERE userID = '$userID_sess'
-						ORDER BY restaurantID DESC";
+	$query = "SELECT r.*,
+						u.userID, u.email
+						FROM restaurant r, user u
+						WHERE r.userID = u.userID
+						AND r.userID = '$userID_sess'
+						ORDER BY r.restaurantID DESC";
 }
 else{
-	$query = "SELECT * FROM restaurant
-						ORDER BY restaurantID DESC";
+	$query = "SELECT r.*,
+						u.userID, u.email 
+						FROM restaurant r, user u
+						WHERE r.userID = u.userID
+						ORDER BY r.restaurantID DESC";
 }
 $result = mysqli_query($connection, $query);
 $count = mysqli_num_rows($result);
@@ -265,7 +300,7 @@ else{
 					<thead>
 						<tr>
 							<th>ID</th>
-							<th>User ID</th>
+							<th>User Email</th>
 							<th>Restaurant Name</th>
 							<th>Address</th>
 							<th>Latitude</th>
@@ -281,6 +316,7 @@ else{
 						$restaurantID = $rows['restaurantID'];
 						$userID = $rows['userID'];
 						$restaurantName = $rows['restaurantName'];  
+						$email = $rows['email'];
 						$address = $rows['address'];   
 						$latitude = $rows['latitude'];  
 						$longitude = $rows['longitude'];  
@@ -288,15 +324,15 @@ else{
 					?>
 						<tr>
 								<th><?php echo $restaurantID ?></th>
-								<th><?php echo $userID ?></th>
+								<td><?php echo $email.'(ID-'.$userID.')' ?></td>
 								<td><?php echo $restaurantName ?></td>
 								<td><?php echo $address ?></td>
 								<td><?php echo $latitude ?></td>
 								<td><?php echo $longitude ?></td>
 								<td><?php echo $image ?></td>
 								<td>
-										<a href="managerestaurant.php?restaurantID=<?=$restaurantID?>&mode=edit"class="btn btn-success">Edit</a>
-										<a href="managerestaurant.php?restaurantID=<?=$restaurantID?>&mode=delete" class="btn btn-danger" onclick="return confirm_delete('<?php echo $restaurantName ?>')">Delete</a>
+										<a href="managerestaurant.php?restaurantID=<?=$restaurantID?>&mode=edit"class="btn btn-info btn-rounded">Edit</a>
+										<a href="managerestaurant.php?restaurantID=<?=$restaurantID?>&mode=delete" class="btn btn-danger btn-rounded" onclick="return confirm_delete('<?php echo $restaurantName ?>')">Delete</a>
 								</td>
 						</tr>
 					<?php 

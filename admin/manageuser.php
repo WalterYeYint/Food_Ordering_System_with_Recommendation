@@ -167,7 +167,8 @@
 				<div class="form-group">
 					<label for="name">Longitude <span style="color: red;">*</span></label>
 					<input type="number" step="any" class="form-control" name="txtlongitude" id="longitude" value="<?php echo $tlongitude ?>" placeholder="Longitude" onchange="reloadMap()" required="">
-					<i class="fa fa-question-circle" style="font-size:12px"><a href="img/map_tutorial.png">Don't know how? Check here</a></i>
+					<i class="mdi mdi-help-circle-outline" style="font-size:15px"><a href="img/map_tutorial.png">Don't know how to get these? Check here&emsp;&emsp;</a></i>
+					<button type="button" onclick="getCurrentLocation()">Get Current Location</button>
 				</div>
 				<iframe
 					id="map"
@@ -200,7 +201,6 @@
 				<div class="form-group">
 					<label for="role">Role <span style="color: red;">*</span></label>
 					<select class="form-select" id="userrole" name="sltuserrole" required="">
-						<option >-- Select Role --</option>
 						<?php 
 						$roledata="SELECT * FROM userRole";
 						$result=mysqli_query($connection,$roledata);
@@ -225,16 +225,16 @@
 				<?php
 				if(isset($_GET['userID'])){
 				?>
-					<button type="submit" class="btn btn-primary me-2" name="btnupdate">Update</button>	
+					<button type="submit" class="btn btn-success me-2" name="btnupdate">Update</button>	
 				<?php
 				}
 				else{
 				?>
-					<button type="submit" class="btn btn-primary me-2" name="btnsubmit">Submit</button>
+					<button type="submit" class="btn btn-success me-2" name="btnsubmit">Submit</button>
 				<?php
 				}
 				?>
-				<button type="reset" class="btn btn-secondary" name="btnreset">Cancel</button>
+				<button type="reset" class="btn btn-outline-dark" name="btnreset">Cancel</button>
 			</form>
 		</div>
 	</div>
@@ -324,8 +324,8 @@ else{
 										<td><?php echo $longitude ?></td>
 										<td><?php echo $userRoleName ?></td>
 										<td>
-											<a href="manageuser.php?userID=<?=$userID?>&mode=edit"class="btn btn-success">Edit</a>
-											<a href="manageuser.php?userID=<?=$userID?>&mode=delete" class="btn btn-danger" onclick="return confirm_delete('<?php echo $email ?>')">Delete</a>
+											<a href="manageuser.php?userID=<?=$userID?>&mode=edit"class="btn btn-info btn-rounded">Edit</a>
+											<a href="manageuser.php?userID=<?=$userID?>&mode=delete" class="btn btn-danger btn-rounded" onclick="return confirm_delete('<?php echo $email ?>')">Delete</a>
 										</td>
 									</tr>
 								<?php 

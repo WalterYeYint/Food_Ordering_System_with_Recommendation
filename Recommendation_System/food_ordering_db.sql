@@ -8049,7 +8049,7 @@ INSERT INTO `paymentType` (`paymentTypeID`, `paymentType`) VALUES
 
 INSERT INTO `user` (`userID`, `userRoleID`, `firstName`, `lastName`, `email`, `password`, `address`, `latitude`, `longitude`) VALUES
 (1, 1, "James", "Smith", "JamesSmith@gmail.com", "12345", "", 1, 1),
-(2, 1, "Michael", "Smith", "MichaelSmith@gmail.com", "12345", "", 1, 1),
+(2, 2, "Michael", "Smith", "MichaelSmith@gmail.com", "12345", "", 1, 1),
 (3, 1, "Robert", "Smith", "RobertSmith@gmail.com", "12345", "", 1, 1),
 (4, 1, "David", "Smith", "DavidSmith@gmail.com", "12345", "", 1, 1),
 (5, 1, "James", "Johnson", "JamesJohnson@gmail.com", "12345", "", 1, 1),
