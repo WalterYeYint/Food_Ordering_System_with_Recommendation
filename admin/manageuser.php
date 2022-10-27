@@ -83,7 +83,15 @@
 		}
 		else
 		{
-			if(isset($_POST['btnupdate'])){
+			// Check Validation
+			$check="SELECT * FROM user WHERE userID != '$txtuserID' AND email='$email'";
+			$result=mysqli_query($connection,$check);
+			$count=mysqli_num_rows($result);
+			if ($count>0) {
+				echo "<script>window.alert('User Email Already Exists!')</script>";
+				echo "<script>window.location='managerestaurant.php'</script>";
+			}
+			elseif(isset($_POST['btnupdate'])){
 				$update = "UPDATE user SET 
 								userID = '$txtuserID',
 								userRoleID = '$sltuserRole',
@@ -108,12 +116,12 @@
 				}
 			}
 			else{
-				//Check Validation
-				$check="SELECT * FROM user WHERE userID='$txtuserID' OR email='$txtemail'";
+				//ID Check Validation
+				$check="SELECT * FROM user WHERE userID='$txtuserID'";
 				$result=mysqli_query($connection,$check);
 				$count=mysqli_num_rows($result);
 				if ($count>0) {
-					echo "<script>window.alert('User Already Exists!')</script>";
+					echo "<script>window.alert('User ID Already Exists!')</script>";
 					echo "<script>window.location='manageuser.php'</script>";
 				}
 				else{

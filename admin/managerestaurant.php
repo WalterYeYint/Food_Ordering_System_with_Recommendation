@@ -97,8 +97,24 @@
 		// } else {
 		// 	echo "<script>window.alert('Sorry, there was an error uploading your file.')</script>";
 		// }	
+		
+		// Check Validation
+		$check="SELECT * FROM restaurant WHERE restaurantID != '$txtrestaurantID' AND restaurantName='$txtrestaurantName'";
+		$result=mysqli_query($connection,$check);
+		$count=mysqli_num_rows($result);
 
-		if(isset($_POST['btnupdate'])){
+		$kpay_check="SELECT * FROM restaurant WHERE restaurantID != '$txtrestaurantID' AND KPayPhoneNo='$txtkpayphoneno'";
+		$kpay_result=mysqli_query($connection,$kpay_check);
+		$kpay_result_count=mysqli_num_rows($kpay_result);
+		if ($count>0) {
+			echo "<script>window.alert('Restaurant Name Already Exists!')</script>";
+			echo "<script>window.location='managerestaurant.php'</script>";
+		}
+		elseif($kpay_result_count > 0){
+			echo "<script>window.alert('KPay Phone No. Already Exists!')</script>";
+			echo "<script>window.location='managerestaurant.php'</script>";
+		}
+		elseif(isset($_POST['btnupdate'])){
 			$update = "UPDATE restaurant SET 
 								restaurantID = '$txtrestaurantID',
 								userID = '$sltuserID',
@@ -122,12 +138,12 @@
 			}
 		}
 		else{
-			//Check Validation
-			$check="SELECT * FROM restaurant WHERE restaurantID='$txtrestaurantID' OR restaurantName='$txtrestaurantName'";
+			//ID Check Validation
+			$check="SELECT * FROM restaurant WHERE restaurantID='$txtrestaurantID'";
 			$result=mysqli_query($connection,$check);
 			$count=mysqli_num_rows($result);
 			if ($count>0) {
-				echo "<script>window.alert('Restaurant Already Exists!')</script>";
+				echo "<script>window.alert('Restaurant ID Already Exists!')</script>";
 				echo "<script>window.location='managerestaurant.php'</script>";
 			}
 			else{
