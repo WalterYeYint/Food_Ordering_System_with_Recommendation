@@ -28,6 +28,7 @@
 			$taddress = $arr['address'];
 			$tlatitude = $arr['latitude'];
 			$tlongitude = $arr['longitude'];
+			$tkpayphoneno = $arr['KPayPhoneNo'];
 		}
 		elseif($_GET['mode'] == 'delete'){
 			$restaurantID=$_GET['restaurantID'];
@@ -53,6 +54,7 @@
 		$taddress = "";
 		$tlatitude = "";
 		$tlongitude = "";
+		$tkpayphoneno = "";
 	}
 	if (isset($_POST['btnsubmit']) OR isset($_POST['btnupdate'])) {
 		$txtrestaurantID = $_POST['txtrestaurantid'];
@@ -61,6 +63,7 @@
 		$txtaddress = $_POST['txtaddress'];
 		$txtlatitude = $_POST['txtlatitude'];
 		$txtlongitude = $_POST['txtlongitude'];
+		$txtkpayphoneno = $_POST['txtkpayphoneno'];
 		
 		if(isset($_POST['btnupdate'])){
 			$oldphoto=$_POST['oldphoto'];
@@ -105,7 +108,8 @@
 								address = '$txtaddress',
 								latitude = '$txtlatitude',
 								longitude = '$txtlongitude',
-								image = '$FileName'    
+								image = '$FileName',
+								KPayPhoneNo = '$txtkpayphoneno'
 								WHERE restaurantID = '$txtrestaurantID'";
 			$result = mysqli_query($connection,$update);
 
@@ -130,9 +134,9 @@
 			}
 			else{
 				$insert="INSERT INTO restaurant 
-						(`restaurantID`, `userID`, `restaurantName`, `address`, `latitude`, `longitude`, `image`)
+						(`restaurantID`, `userID`, `restaurantName`, `address`, `latitude`, `longitude`, `image`, `KPayPhoneNo`)
 						VALUES 
-						('$txtrestaurantID','$sltuserID','$txtrestaurantName','$txtaddress','$txtlatitude','$txtlongitude','$FileName')";
+						('$txtrestaurantID','$sltuserID','$txtrestaurantName','$txtaddress','$txtlatitude','$txtlongitude','$FileName','$txtkpayphoneno')";
 				$result=mysqli_query($connection,$insert);
 				if ($result) {
 					echo "<script>window.alert('Restaurant Added Successfully!')</script>";
@@ -206,6 +210,10 @@
 					hidden>
 				</iframe>
 				<br/><br/>
+				<div class="form-group">
+					<label for="name">KPay Phone No <span style="color: red;">*</span></label>
+					<input type="number" class="form-control" name="txtkpayphoneno" id="kpayphoneno" value="<?php echo $tkpayphoneno ?>" placeholder="kpayphoneno" required="">
+				</div>
 				<?php
 				if(isset($_GET['restaurantID'])){
 				?>
@@ -306,6 +314,7 @@ else{
 							<th>Latitude</th>
 							<th>Longitude</th>
 							<th>Image</th>
+							<th>KPayPhoneNo</th>
 							<th>Action</th>
 					</thead>
 					<tbody>
@@ -321,6 +330,7 @@ else{
 						$latitude = $rows['latitude'];  
 						$longitude = $rows['longitude'];  
 						$image = $rows['image'];  
+						$kpayphoneno = $rows['KPayPhoneNo'];
 					?>
 						<tr>
 								<th><?php echo $restaurantID ?></th>
@@ -330,6 +340,7 @@ else{
 								<td><?php echo $latitude ?></td>
 								<td><?php echo $longitude ?></td>
 								<td><?php echo $image ?></td>
+								<td><?php echo $kpayphoneno ?></td>
 								<td>
 										<a href="managerestaurant.php?restaurantID=<?=$restaurantID?>&mode=edit"class="btn btn-info btn-rounded">Edit</a>
 										<a href="managerestaurant.php?restaurantID=<?=$restaurantID?>&mode=delete" class="btn btn-danger btn-rounded" onclick="return confirm_delete('<?php echo $restaurantName ?>')">Delete</a>
