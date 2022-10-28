@@ -37,4 +37,9 @@
 	const SEARCH_TYPE_RESTAURANT_ID = "2";
 	const SEARCH_TYPE_FOOD_ORDER_ID = "3";
 	const SEARCH_TYPE_CART_ID = "4";
+
+	// Stock
+	const OUT_OF_STOCK = 0;
+	const IN_STOCK = 2;
+	$stock_str_arr = array("Out of Stock", "foo", "In Stock");
 ?>

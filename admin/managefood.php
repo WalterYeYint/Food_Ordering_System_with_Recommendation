@@ -30,6 +30,7 @@
 			$trestaurantID = $arr['restaurantID'];
 			$tfoodName = $arr['foodName'];
 			$tprice = $arr['price'];
+			$tstock = $arr['stock'];
 		}
 		elseif($_GET['mode'] == 'delete'){
 			$foodID=$_GET['foodID'];
@@ -53,25 +54,36 @@
 		$trestaurantID = "";
 		$tfoodName = "";
 		$tprice = "";
+		$tstock = IN_STOCK;
 	}
 	if (isset($_POST['btnsubmit']) OR isset($_POST['btnupdate'])) {
 		$txtfoodID = $_POST['txtfoodid'];
 		$txtrestaurantID = $_POST['sltrestaurant'];
 		$txtfoodName = $_POST['txtfoodname'];
 		$txtprice = $_POST['txtprice'];
+		$rdostock = $_POST['rdostock'];
 		
 		if(isset($_POST['btnupdate'])){
 			$oldphoto=$_POST['oldphoto'];
 		}
 		else{
-			$oldphoto="img/restaurants/default_img.jpg";
+			$oldphoto="img/food/default_img.jpeg";
 		}
 		if ($_FILES['newphoto']['name']){
-			$image = $_FILES['photo']['name'];
+			$image = $_FILES['newphoto']['name'];
 			$FolderName="img/food/"; 
-			$FileName=$FolderName . $image;
+			$FileName=$FolderName . basename($image);
+			$realdir="../img/food/";
+			$dirname=$realdir . basename($image);
 
-			// $copied=copy($_FILES['newphoto']['tmp_name'], $FileName);
+			// Copying the uploaded image into specified directory
+			$copied=copy($_FILES['newphoto']['tmp_name'], $dirname);
+			echo $_FILES['newphoto']['tmp_name'];
+			if(!$copied) 
+			{
+				echo "<p>Restaurant Photo Cannot Upload!</p>";
+				exit();
+			}
 		}
 		else{
 			$FileName = $oldphoto;
@@ -86,12 +98,25 @@
 	//   exit();
 	// }
 
-		if(isset($_POST['btnupdate'])){
+
+		//Check Validation
+		$check="SELECT * FROM food 
+				WHERE foodID != '$txtfoodID'
+				AND restaurantID = '$txtrestaurantID'
+				AND foodName = '$txtfoodName'";
+		$result=mysqli_query($connection,$check);
+		$count=mysqli_num_rows($result);
+		if ($count>0) {
+		echo "<script>window.alert('Food Already Exists!')</script>";
+		echo "<script>window.location='managefood.php'</script>";
+		}
+		elseif(isset($_POST['btnupdate'])){
 			$update = "UPDATE food SET 
 								foodID = '$txtfoodID',
 								restaurantID = '$txtrestaurantID',
 								foodName = '$txtfoodName',
 								price = '$txtprice',
+								stock = '$rdostock',
 								image = '$FileName'    
 								WHERE foodID = '$txtfoodID'";
 			$result = mysqli_query($connection,$update);
@@ -107,22 +132,20 @@
 			}
 		}
 		else{
-			//Check Validation
+			//ID Check Validation
 			$check="SELECT * FROM food 
-							WHERE foodID = '$txtfoodID'
-							OR (restaurantID = '$txtrestaurantID'
-							AND foodName = '$txtfoodName')";
+							WHERE foodID = '$txtfoodID'";
 			$result=mysqli_query($connection,$check);
 			$count=mysqli_num_rows($result);
 			if ($count>0) {
-				echo "<script>window.alert('Food Already Exists!')</script>";
+				echo "<script>window.alert('Food ID Already Exists!')</script>";
 				echo "<script>window.location='managefood.php'</script>";
 			}
 			else{
 				$insert="INSERT INTO food 
-						(`foodID`, `restaurantID`, `foodName`, `price`, `image`)
+						(`foodID`, `restaurantID`, `foodName`, `price`, `stock`, `image`)
 						VALUES 
-						('$txtfoodID','$txtrestaurantID','$txtfoodName','$txtprice','$FileName')";
+						('$txtfoodID','$txtrestaurantID','$txtfoodName','$txtprice','$rdostock','$FileName')";
 				$result=mysqli_query($connection,$insert);
 				if ($result) {
 					echo "<script>window.alert('Food Added Successfully!')</script>";
@@ -150,7 +173,6 @@
 				<div class="form-group">
 					<label for="role">Restaurant Name <span style="color: red;">*</span></label>
 					<select class="form-select" id="restaurantid" name="sltrestaurant" required="">
-						<option >-- Select Restaurant --</option>
 						<?php
 						for ($i=0; $i<$restaurant_count; $i++) { 
 							$row=$restaurant_arr[$i];
@@ -162,7 +184,7 @@
 							if ($trestaurantID == $restaurantID) {
 								echo "selected";
 							}
-							echo ">$restaurantName</option>";
+							echo ">$restaurantName (ID-$restaurantID)</option>";
 						}
 						?>
 					</select>
@@ -173,7 +195,25 @@
 				</div>
 				<div class="form-group">
 					<label for="name">Price <span style="color: red;">*</span></label>
-					<input type="text" class="form-control" name="txtprice" id="price" value="<?php echo $tprice ?>" placeholder="Price" required="">
+					<input type="number" class="form-control" name="txtprice" id="price" value="<?php echo $tprice ?>" placeholder="Price" required="">
+				</div>
+				<div class="form-group">
+					<input type="radio" id="instock" name="rdostock" value="<?php echo IN_STOCK ?>"
+						<?php
+						if ($tstock == IN_STOCK) {
+							echo "checked";
+						}
+						echo ">";
+						?>
+					<label for="instock">In Stock</label><br>
+					<input type="radio" id="outofstock" name="rdostock" value="<?php echo OUT_OF_STOCK?>"
+						<?php
+						if ($tstock == OUT_OF_STOCK) {
+							echo "checked";
+						}
+						echo ">";
+						?>
+					<label for="outofstock">Out of Stock</label><br>
 				</div>
 				<?php
 				if(isset($_GET['foodID'])){
@@ -187,8 +227,8 @@
 				}
 				?>
 				<div class="form-group">
-					<label for="photo">Photo <span style="color: red;">*</span></label><br>
-					<input type="file" name="photo" id="photo">
+					<label for="photo">Photo</label><br>
+					<input type="file" name="newphoto" id="photo">
 				</div>
 				<?php
 				if(isset($_GET['foodID'])){
@@ -214,12 +254,18 @@ if($userRoleName_sess == ADMIN){
 		array_push($restaurantName_list, $row['restaurantID']);
 	}
 
-	$query = "SELECT * FROM food
-						WHERE restaurantID IN (".implode(',', $restaurantName_list).")
-						ORDER BY foodID DESC";
+	$query = "SELECT f.*, 
+						r.restaurantID, r.restaurantName
+						FROM food f, restaurant r
+						WHERE f.restaurantID = r.restaurantID
+						AND r.restaurantID IN (".implode(',', $restaurantName_list).")
+						ORDER BY f.foodID DESC";
 }
 else{
-	$query = "SELECT * FROM food
+	$query = "SELECT f.*, 
+						r.restaurantID, r.restaurantName 
+						FROM food f, restaurant r
+						WHERE f.restaurantID = r.restaurantID
 						ORDER BY foodID DESC";
 }
 $result = mysqli_query($connection, $query);
@@ -268,9 +314,10 @@ else{
 					<thead>
 						<tr>
 							<th>ID</th>
-							<th>Restaurant ID</th>
+							<th>Restaurant Name</th>
 							<th>Food Name</th>
 							<th>Price</th>
+							<th>Stock</th>
 							<th>Image</th>
 							<th>Action</th>
 					</thead>
@@ -281,15 +328,18 @@ else{
 						$rows=$food_arr[$i];
 						$foodID = $rows['foodID'];
 						$restaurantID = $rows['restaurantID'];
+						$restaurantName = $rows['restaurantName'];
 						$foodName = $rows['foodName'];  
 						$price = $rows['price'];
+						$stock = $rows['stock'];
 						$image = $rows['image'];  
 					?>
 						<tr>
 								<th><?php echo $foodID ?></th>
-								<th><?php echo $restaurantID ?></th>
+								<td><?php echo $restaurantName.'(ID-'.$restaurantID.')' ?></td>
 								<td><?php echo $foodName ?></td>
 								<td><?php echo $price ?></td>
+								<td><?php echo $stock_str_arr[$stock] ?></td>
 								<td><?php echo $image ?></td>
 								<td>
 									<a href="managefood.php?foodID=<?=$foodID?>&mode=edit" class="btn btn-info btn-rounded">Edit</a>
