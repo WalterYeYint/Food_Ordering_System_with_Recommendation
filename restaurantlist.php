@@ -31,27 +31,6 @@
 		$_SESSION['chosen_latitude'] = $chosen_latitude;
 		$_SESSION['chosen_longitude'] = $chosen_longitude;
 	}
-	
-	$select = "SELECT fo.*, c.*, f.*
-							FROM foodorder fo, cart c, food f
-							WHERE fo.cartID = c.cartID
-							AND fo.foodID = f.foodID
-							AND c.userID = $userID_sess
-							ORDER BY fo.foodorderID DESC LIMIT 1";
-	$result=mysqli_query($connection,$select);
-	$count=mysqli_num_rows($result);
-	$prev_foodorder_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
-	$prev_foodID = $prev_foodorder_arr[0]["foodID"];
-	$prev_foodName = $prev_foodorder_arr[0]["foodName"];
-	
-	$id = 4924;
-	$url = "http://127.0.0.1:5000/get_recommendation/{$prev_foodID}";
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_URL, $url);
-	$result = curl_exec($ch);
-	$recommended_food_dict = json_decode($result, $assoc=true);
-	curl_close($ch);
 ?>
 <section class="breadcrumb_area">
 	<img class="breadcrumb_shap" src="img/breadcrumb/banner_bg.png" alt="">
@@ -93,7 +72,7 @@
 		<div class="row align-items-center">
 			<div class="col-lg-6 col-sm-5">
 				<div class="shop_menu_left">
-					<p>Showing 4–14 of 32 results</p>
+					<p>Showing all results</p>
 				</div>
 			</div>
 			<div class="col-lg-6 col-sm-7">
@@ -166,7 +145,7 @@
 										<del><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>18.00</span></del>
 										<ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>16.00</span></ins>
 									</div> -->
-									<div class="ratting">
+									<div>
 										<a href="#"></a>
 									</div>
 								</div>
@@ -176,55 +155,6 @@
 			<?php
 				}
 			?>
-			<div class="hr"></div>
-			<h3>You might also like (Recommendations for <?php echo $prev_foodName ?>):</h3>
-			<br/>
-			<div class="row">
-				<?php
-					# Get recommended foodID from database and display them
-					$select="SELECT *
-							FROM food
-							WHERE foodID IN (".implode(',', $recommended_food_dict).")";
-					$query=mysqli_query($connection,$select);
-					$count=mysqli_num_rows($query);
-					for($i=0; $i<$count; $i++){
-						$row = mysqli_fetch_array($query);
-						$foodName = $row['foodName'];
-						$foodImage = $row['image'];
-				?>
-					<div class="col-lg-3 col-sm-4">
-							<div class="single_product_item">
-								<div class="product_img">
-									<?php 
-										if($foodImage == ""){
-											$foodImage = "img/food/default_img.jpeg";
-										}
-									?>
-									<img class="img-fluid" src=<?php echo $foodImage ?> alt="">
-									<div class="hover_content">
-										<a href="#"><i class="ti-heart"></i></a>
-										<a href="#" title="Add to cart"><i class="ti-bag"></i></a>
-										<a href="#"><i class="ti-eye"></i></a>
-									</div>
-								</div>
-								<div class="single_pr_details">
-									<a href="#">
-										<h3 class="f_p f_500 f_size_16"><?php echo $foodName ?></h3>
-									</a>
-									<div class="price">
-										<!-- <del><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>20.00</span></del> -->
-										<ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>4.00</span></ins>
-									</div>
-									<div class="ratting">
-										<a href="#"></a>
-									</div>
-								</div>
-							</div>
-						</div>
-				<?php
-					}
-				?>
-			</div>
 			<div class="col-lg-12">
 				<ul class="list-unstyled page-numbers shop_page_number">
 					<li><span aria-current="page" class="page-numbers current">1</span></li>
