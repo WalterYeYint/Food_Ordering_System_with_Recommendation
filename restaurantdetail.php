@@ -117,13 +117,14 @@
 										<ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span><?php echo $price ?></span></ins>
 								</div>
 								<span class="stock">in stock</span>
-								<p class="f_300 f_size_15">The full monty brilliant young delinquent burke naff 
+								<br/>
+								<!-- <p class="f_300 f_size_15">The full monty brilliant young delinquent burke naff 
 									baking cakes the wireless argy-bargy smashing!</p>
 								<div class="product-qty">
-									<!-- <button class="ar_top" type="button"><i class="ti-angle-up"></i></button> -->
-									<!-- <input type="number" name="qty" id=<?php echo "rd_qty_$index" ?> value=<?php echo $price ?> title="Quantity:" class="manual-adjust"> -->
-									<!-- <button class="ar_down" type="button"><i class="ti-angle-down"></i></button> -->
-								</div>
+									<button class="ar_top" type="button"><i class="ti-angle-up"></i></button>
+									<input type="number" name="qty" id=<?php echo "rd_qty_$index" ?> value=<?php echo $price ?> title="Quantity:" class="manual-adjust">
+									<button class="ar_down" type="button"><i class="ti-angle-down"></i></button>
+								</div> -->
 								<div class="cart_button">
 										<?php
 										if(in_array($foodID, $_SESSION['food_ID_list'])){
