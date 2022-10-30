@@ -53,6 +53,8 @@
 		$foodID_list_sess = $_SESSION['food_ID_list'];
 		$quantity_list_sess = $_SESSION['quantity_list'];
 		$foodID_list_count = count($foodID_list_sess);
+		$date = date('Y-m-d');
+		$time = date('h:i:s');
 
 		// Insert a new cart
 		$insert = "INSERT INTO cart
@@ -67,9 +69,11 @@
 								`rating`,
 								`deliveryType`,
 								`cartStatus`,
-								`paymentStatus`)
+								`paymentStatus`,
+								`date`,
+								`time`)
 								VALUES
-								('$cartID','$userID_sess', '$restaurantID', '$rdopayment', '$totalAmount', '$chosen_address', '$chosen_latitude', '$chosen_longitude', 3, '$rdodelivery', '$cart_checked_out', 0)";
+								('$cartID','$userID_sess', '$restaurantID', '$rdopayment', '$totalAmount', '$chosen_address', '$chosen_latitude', '$chosen_longitude', 3, '$rdodelivery', '$cart_checked_out', 0, '$date', '$time')";
 		$result=mysqli_query($connection,$insert);
 		if($result) {
 			echo "<script>window.alert('Cart Added Successfully!')</script>";
