@@ -153,7 +153,7 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 					restaurant_food_dict[restaurant_id].append(food_id)
 					insert_into_food = insert_into_food + f"""\n({food_id}, {restaurant_id}, "{product_name}", {price}, {2}, ""),"""
 					food_id += 1
-				insert_into_restaurant = insert_into_restaurant + f"""\n({restaurant_id}, 2, "{name}", "", {latitude}, {longitude}, "", "09382956183"),"""
+				insert_into_restaurant = insert_into_restaurant + f"""\n({restaurant_id}, {restaurant_id}, "{name}", "", {latitude}, {longitude}, "", "09382956183"),"""
 				restaurant_id += 1
 		insert_into_restaurant = insert_into_restaurant[:-1] + ";" + "\n\n"
 		insert_into_food = insert_into_food[:-1] + ";" + "\n\n"
@@ -184,7 +184,8 @@ with open("missed_data_for_db" + ".csv", "w") as m:
 			first_name = name_data.FirstName[i]
 			surname = name_data.Surname[i]
 			email = first_name + surname + "@gmail.com"
-			insert_into_user = insert_into_user + f"""\n({user_id}, {1}, "{first_name}", "{surname}", "{email}", "12345", "", {1}, {1}),"""
+			user_role_id = 2 if user_id <=245 else 1
+			insert_into_user = insert_into_user + f"""\n({user_id}, {user_role_id}, "{first_name}", "{surname}", "{email}", "12345", "", {1}, {1}),"""
 		insert_into_user = insert_into_user[:-1] + ";" + "\n\n"
 		f.write(insert_into_user)
 		last_user_id = user_id
