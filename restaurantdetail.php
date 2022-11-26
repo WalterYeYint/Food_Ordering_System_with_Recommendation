@@ -21,9 +21,19 @@
 			$restaurantImage = "img/restaurants/default_img.jpg";
 		}
 
-		$chosen_address = $_SESSION['chosen_address'];
-		$chosen_latitude = $_SESSION['chosen_latitude'];
-		$chosen_longitude = $_SESSION['chosen_longitude'];
+		if(isset($_GET['mode'])){
+			$user_address = $_SESSION['auth_user']['address'];
+			$user_latitude = $_SESSION['auth_user']['user_latitude'];
+			$user_longitude = $_SESSION['auth_user']['user_longitude'];
+			$_SESSION['chosen_address'] = $user_address;
+			$_SESSION['chosen_latitude'] = $user_latitude;
+			$_SESSION['chosen_longitude'] = $user_longitude;
+		}
+		else{
+			$chosen_address = $_SESSION['chosen_address'];
+			$chosen_latitude = $_SESSION['chosen_latitude'];
+			$chosen_longitude = $_SESSION['chosen_longitude'];
+		}
 
 		if(isset($_SESSION['restaurantID']) AND ($_SESSION['restaurantID'] != $restaurantID)){
 			$cartID = $_SESSION["cartID"];

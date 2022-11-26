@@ -72,7 +72,7 @@
 					$restaurantID = $row['restaurantID'];
 					$foodImage = $row['image'];
 			?>
-				<a href="restaurantdetail.php?restaurantID=<?=$restaurantID?>">
+				<a href="restaurantdetail.php?restaurantID=<?=$restaurantID?>&mode=recommend">
 					<div class="col-lg-3 col-sm-4">
 						<div class="single_product_item">
 							<div class="product_img">
