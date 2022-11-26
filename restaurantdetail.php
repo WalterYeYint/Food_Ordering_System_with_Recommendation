@@ -128,7 +128,7 @@
 								</a>
 								<div class="price">
 										<!-- <del><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>18.00</span></del> -->
-										<ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span><?php echo $price ?></span></ins>
+										<ins><span class="woocommerce-Price-amount amount"><?php echo $price ?><span class="woocommerce-Price-currencySymbol">Kyats</span></span></ins>
 								</div>
 								<?php
 								if($stock > 0){
