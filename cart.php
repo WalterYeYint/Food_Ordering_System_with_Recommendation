@@ -25,19 +25,19 @@
 			<div class="cart_title">
 					<div class="row">
 							<div class="col-md-2 col-2">
-									<h6 class="f_p">ID</h6>
+									<h6 class="f_p">&emsp;ID</h6>
 							</div>
 							<div class="col-md-4 col-2">
-									<h6 class="f_p">PRODUCT</h6>
+									<h6 class="f_p">&emsp;PRODUCT</h6>
 							</div>
 							<div class="col-md-2 col-3">
 									<h6 class="f_p">PRICE</h6>
 							</div>
 							<div class="col-md-2 col-3">
-									<h6 class="f_p"> QUANTITY</h6>
+									<h6 class="f_p">&emsp;QUANTITY</h6>
 							</div>
 							<div class="col-md-2 col-2">
-									<h6 class="f_p">TOTAL</h6>
+									<h6 class="f_p">&emsp;TOTAL</h6>
 							</div>
 							<!-- <div class="col-md-2 col-2">
 									<h6 class="f_p">_____</h6>
@@ -48,7 +48,8 @@
 	<div class="container">
 		<form action="#" class="woocommerce-cart-form">
 				<div class="table-responsive">
-						<table class="row table cart_table mb-0">
+					<br/>
+						<table class="cart_table mb-0">
 								<tbody>
 									<?php
 									$quantity_list = $_SESSION['quantity_list'];
@@ -84,7 +85,7 @@
 									?>
 										<tr>
 												<td class="col-lg-2 col-md-2 col-sm-2 col-xs-2" data-title="ID">
-														<div class="total"><?php echo $_SESSION['cartID'] ?></div>
+														<div class="total"><?php echo $i+1 ?></div>
 												</td>
 												<td class="product col-lg-6 col-md-5 col-sm-5 col-xs-5" data-title="PRODUCT">
 														<div class="media">
