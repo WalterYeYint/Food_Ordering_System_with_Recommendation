@@ -98,7 +98,7 @@ else{
 							<th>Cart ID</th>
 							<th>User ID</th>
 							<th>User Name</th>
-							<th>Restaurant Name</th>
+							<!-- <th>Restaurant Name</th> -->
 							<th>Payment Type</th>
 							<th>Total Amount</th>
 							<th>Address</th>
