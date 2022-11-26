@@ -2,7 +2,6 @@
 	include 'headtag.php';
 	include 'header.php';
 	include 'sidebar.php';
-	include '../dbconnect.php';
 
 	// Restaurants Query that are used more than once
 	if($userRoleName_sess == RESTAURANT_ADMIN OR $userRoleName_sess == CUSTOMER){
@@ -187,8 +186,8 @@
 					<input type="number" class="form-control" name="txtlongitude" id="longitude" value="<?php echo $tlongitude ?>" placeholder="Longitude" onchange="reloadMap()" required="" readonly>
 				</div>
 				<div class="form-group">
-					<label for="name">Rating <span style="color: red;">*</span></label>
-					<input type="number" class="form-control" name="txtrating" id="rating" value="<?php echo $trating ?>" placeholder="Rating" required="">
+					<!-- <label for="name">Rating <span style="color: red;">*</span></label> -->
+					<input type="hidden" class="form-control" name="txtrating" id="rating" value="<?php echo $trating ?>" placeholder="Rating" required="">
 				</div>
 				<div class="col-4 form-group">
 					<label for="id">Delivery Type <span style="color: red;">*</span></label>
@@ -249,15 +248,10 @@
 				if(isset($_GET['cartID'])){
 				?>
 					<button type="submit" class="btn btn-success me-2" name="btnupdate">Update</button>	
-				<?php
-				}
-				else{
-				?>
-					<button type="submit" class="btn btn-success me-2" name="btnsubmit">Submit</button>
+					<button type="reset" class="btn btn-outline-dark" id="reset" name="btnreset">Cancel</button>
 				<?php
 				}
 				?>
-				<button type="reset" class="btn btn-outline-dark" id="reset" name="btnreset">Cancel</button>
 			</form>
 		</div>
 	</div>
@@ -337,7 +331,7 @@ else{
 							<th>Address</th>
 							<th>Latitude</th>
 							<th>Longitude</th>
-							<th>Rating</th>
+							<!-- <th>Rating</th> -->
 							<th>Delivery Type</th>
 							<th>Cart Status</th>
 							<th>Payment Status</th>
@@ -358,6 +352,7 @@ else{
 						$paymentType = $rows['paymentType'];
 						$totalAmount = $rows['totalAmount'];
 						$address = $rows['address'];
+						$wrappedaddress = wordwrap($address, 20, "<br/>\n", true);
 						$latitude = $rows['latitude'];
 						$longitude = $rows['longitude'];
 						$rating = $rows['rating'];
@@ -373,10 +368,10 @@ else{
 								<td><?php echo $restaurantName ?></td>
 								<td><?php echo $paymentType ?></td>
 								<td><?php echo $totalAmount ?></td>
-								<td><?php echo $address ?></td>
+								<td><?php echo $wrappedaddress ?></td>
 								<td><?php echo $latitude ?></td>
 								<td><?php echo $longitude ?></td>
-								<td><?php echo $rating ?></td>
+								<!-- <td><?php echo $rating ?></td> -->
 								<td><?php echo $delivery_type_str_arr[$deliveryType] ?></td>
 								<td><?php echo $cart_status_str_arr[$cartStatus] ?></td>
 								<td><?php echo $payment_status_str_arr[$paymentStatus] ?></td>
