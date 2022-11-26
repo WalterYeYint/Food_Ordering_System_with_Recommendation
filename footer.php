@@ -6,7 +6,7 @@
                             <div class="f_widget company_widget">
                                 <a href="index.html" class="f-logo"><img src="img/streats_logo.png" srcset="img/streats_logo.png" alt=""></a>
                                 <div class="widget-wrap">
-                                    <p class="f_400 f_p f_size_15 mb-0 l_height34"><span>Email:</span> <a href="mailto:saasland@gmail.com" class="f_400">saasland@gmail.com</a></p>
+                                    <p class="f_400 f_p f_size_15 mb-0 l_height34"><span>Email:</span> <a href="mailto:htunh9609@gmail.com" class="f_400">htunh9609@gmail.com</a></p>
                                     <p class="f_400 f_p f_size_15 mb-0 l_height34"><span>Phone:</span> <a href="tel:948256347968" class="f_400">+948 256 347 968</a></p>
                                 </div>
                                 <form action="#" class="f_subscribe mailchimp" method="post">
@@ -19,40 +19,40 @@
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <div class="f_widget about-widget pl_40">
-                                <h3 class="f-title f_600 t_color f_size_18 mb_40">About Us</h3>
+                                <!-- <h3 class="f-title f_600 t_color f_size_18 mb_40">About Us</h3> -->
                                 <ul class="list-unstyled f_list">
                                     <li><a href="#">Company</a></li>
                                     <li><a href="#">Leadership</a></li>
-                                    <li><a href="#">Diversity</a></li>
+                                    <!-- <li><a href="#">Diversity</a></li>
                                     <li><a href="#">Jobs</a></li>
                                     <li><a href="#">Press</a></li>
-                                    <li><a href="#">Wavelength</a></li>
+                                    <li><a href="#">Wavelength</a></li> -->
                                 </ul>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <div class="f_widget about-widget">
-                                <h3 class="f-title f_600 t_color f_size_18 mb_40">Workflow Solutions</h3>
+                                <!-- <h3 class="f-title f_600 t_color f_size_18 mb_40">Workflow Solutions</h3> -->
                                 <ul class="list-unstyled f_list">
                                     <li><a href="#">Project Management</a></li>
-                                    <li><a href="#">Agile</a></li>
+                                    <!-- <li><a href="#">Agile</a></li>
                                     <li><a href="#">Task Management</a></li>
                                     <li><a href="#">Reporting</a></li>
                                     <li><a href="#">Work Tracking</a></li>
-                                    <li><a href="#">See All Uses</a></li>
+                                    <li><a href="#">See All Uses</a></li> -->
                                 </ul>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <div class="f_widget about-widget">
-                                <h3 class="f-title f_600 t_color f_size_18 mb_40">Team Solutions</h3>
+                                <!-- <h3 class="f-title f_600 t_color f_size_18 mb_40">Team Solutions</h3> -->
                                 <ul class="list-unstyled f_list">
                                     <li><a href="#">Engineering</a></li>
-                                    <li><a href="#">Designers</a></li>
+                                    <!-- <li><a href="#">Designers</a></li>
                                     <li><a href="#">Sales</a></li>
                                     <li><a href="#">Developers</a></li>
                                     <li><a href="#">Marketing</a></li>
-                                    <li><a href="#">See All Teams</a></li>
+                                    <li><a href="#">See All Teams</a></li> -->
                                 </ul>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-4 col-md-5 col-sm-6">
-                            <p class="mb-0 f_400">Copyright © 2018 Desing by <a href="#">DroitThemes</a></p>
+                            <p class="mb-0 f_400">Copyright © 2022 StrEats</p>
                         </div>
                         <div class="col-lg-4 col-md-3 col-sm-6">
                             <div class="f_social_icon_two text-center">
