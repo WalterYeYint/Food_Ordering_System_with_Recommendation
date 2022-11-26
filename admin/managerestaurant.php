@@ -103,11 +103,19 @@
 		$result=mysqli_query($connection,$check);
 		$count=mysqli_num_rows($result);
 
+		$same_user_check="SELECT * FROM restaurant WHERE restaurantID != '$txtrestaurantID' AND userID='$sltuserID'";
+		$same_user_result=mysqli_query($connection,$same_user_check);
+		$same_user_count=mysqli_num_rows($same_user_result);
+
 		$kpay_check="SELECT * FROM restaurant WHERE restaurantID != '$txtrestaurantID' AND KPayPhoneNo='$txtkpayphoneno'";
 		$kpay_result=mysqli_query($connection,$kpay_check);
 		$kpay_result_count=mysqli_num_rows($kpay_result);
 		if ($count>0) {
 			echo "<script>window.alert('Restaurant Name Already Exists!')</script>";
+			echo "<script>window.location='managerestaurant.php'</script>";
+		}
+		elseif($same_user_count > 0){
+			echo "<script>window.alert('User is already assigned with a restaurant!')</script>";
 			echo "<script>window.location='managerestaurant.php'</script>";
 		}
 		elseif($kpay_result_count > 0){
