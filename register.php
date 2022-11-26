@@ -69,12 +69,35 @@ if(isset($_POST['btnsubmit']) OR isset($_POST['btnupdate'])){
 	else
 	{
 		//Check Validation
-		$check="SELECT * FROM user WHERE email='$txtemail'";
+		$check="SELECT * FROM user WHERE userID != '$txtuserID' AND email='$email'";
 		$result=mysqli_query($connection,$check);
 		$count=mysqli_num_rows($result);
 		if ($count>0) {
 			echo "<script>window.alert('User with this email already exists!')</script>";
 			echo "<script>window.location='register.php'</script>";
+		}
+		elseif(isset($_POST['btnupdate'])){
+			$update = "UPDATE user SET 
+							userID = '$txtuserID',
+							firstName = '$txtfirstName',
+							lastName = '$txtlastName',
+							email = '$txtemail',
+							password = '$txtpassword',
+							address = '$txtaddress',
+							latitude = '$txtlatitude',
+							longitude = '$txtlongitude'      
+							WHERE userID = '$txtuserID'";
+			$result = mysqli_query($connection,$update);
+
+			if($result) 
+			{
+				echo "<script>window.alert('User Info Updated Successfully!')</script>";
+				echo "<script>window.location='index.php'</script>";
+			}
+			else
+			{
+				echo "<p>Something went wrong in Updating User Information : " . mysqli_error($connection) . "</p>";
+			}
 		}
 		else{
 			$insert="INSERT INTO user 
