@@ -53,6 +53,8 @@ $result = mysqli_query($connection, $query);
 $count = mysqli_num_rows($result);
 $cart_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
 
+$restaurantName = $cart_arr[0]['restaurantName'];
+
 // Defining required variables for pagination
 $paginate_array = paginate($count);
 $entry_count = $paginate_array[0];
@@ -69,7 +71,7 @@ else{
 	?>
 	<div class="card">
 		<div class="card-body">
-			<h4 class="card-title">Order Display</h4>
+			<h4 class="card-title">Order Display for <b><?php echo $restaurantName ?></b></h4>
 			<ul class="nav nav-tabs" role="tablist">
 				<a href="managecart.php?pgNo=<?=1?>" class="nav-link"><<</a>
 				<?php
@@ -113,7 +115,7 @@ else{
 						$firstName = $rows['firstName'];
 						$lastName = $rows['lastName'];
 						$fullName = $firstName . " " . $lastName;
-						$restaurantName = $rows['restaurantName'];
+						// $restaurantName = $rows['restaurantName'];
 						$paymentType = $rows['paymentType'];
 						$totalAmount = $rows['totalAmount'];
 						$address = $rows['address'];
@@ -126,7 +128,7 @@ else{
 								<th><?php echo $cartID ?></th>
 								<th><?php echo $userID ?></th>
 								<th><?php echo $fullName ?></th>
-								<td><?php echo $restaurantName ?></td>
+								<!-- <td><?php echo $restaurantName ?></td> -->
 								<td><?php echo $paymentType ?></td>
 								<td><?php echo $totalAmount ?></td>
 								<td><?php echo $wrappedaddress ?></td>
