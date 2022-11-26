@@ -255,12 +255,12 @@
 								<label class="l_text" for="squared2">create an account?</label>
 							</div>
 						</div> -->
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col-lg-12">
 								<label>Order Notes</label>
 								<textarea placeholder="Notes about your arder, e.g. special notes for delivery"></textarea>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<div class="col-md-7">
