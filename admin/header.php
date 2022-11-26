@@ -5,12 +5,25 @@
 	include '../constants.php';
 	include 'pagination.php';
   include 'restaurantfunctions.php';
+	include '../dbconnect.php';
   
   $userID_sess=$_SESSION['auth_user']['userID'];
   $firstName_sess=$_SESSION['auth_user']['firstName'];
   $lastName_sess=$_SESSION['auth_user']['lastName'];
   $userRoleID_sess=$_SESSION['auth_user']['userRoleID'];
   $userRoleName_sess=$_SESSION['auth_user']['userRoleName'];
+
+  if($userRoleName_sess == RESTAURANT_ADMIN){
+    $select = "SELECT * FROM restaurant WHERE userID = '$userID_sess'";
+    $result = mysqli_query($connection,$select);
+    $restaurant_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
+    $restaurantName = $restaurant_arr[0]['restaurantName'];
+
+    $welcome_sub_text = "StrEats Admin Panel for <b>$restaurantName</b>";
+  }
+  else{
+    $welcome_sub_text = "StrEats Super Admin Panel";
+  }
 ?>
 <body>
   <div class="container-scroller"> 
@@ -35,7 +48,7 @@
         <ul class="navbar-nav">
           <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
             <h1 class="welcome-text">Welcome, <span class="text-black fw-bold"><?php echo $firstName_sess . " " . $lastName_sess ?></span></h1>
-            <h3 class="welcome-sub-text">StrEats Admin Panel </h3>
+            <h3 class="welcome-sub-text"><?php echo $welcome_sub_text?> </h3>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
@@ -174,9 +187,9 @@
                 <p class="fw-light text-muted mb-0"><?php echo $userRoleName_sess ?></p>
               </div>
               <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
-              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
-              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
-              <a href="../index.php" class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i>To Frontend</a>
+              <!-- <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
+              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a> -->
+              <a href="../index.php" class="dropdown-item"><i class="dropdown-item-icon mdi mdi-page-layout-body text-primary me-2"></i>To Frontend</a>
               <a class="dropdown-item" href="../logout.php"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
             </div>
           </li>
