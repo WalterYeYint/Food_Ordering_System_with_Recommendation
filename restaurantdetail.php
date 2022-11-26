@@ -13,8 +13,9 @@
 		$restaurantName = $restaurant_data_arr[0]["restaurantName"];
 		$restaurant_latitude = $restaurant_data_arr[0]["latitude"];
 		$restaurant_longitude = $restaurant_data_arr[0]["longitude"];
+		$address = $restaurant_data_arr[0]["address"];
 		$KPayPhoneNo = $restaurant_data_arr[0]["KPayPhoneNo"];
-		$restaurantImage = $arr['image'];
+		$restaurantImage = $restaurant_data_arr[0]['image'];
 
 		if($restaurantImage == ""){
 			$restaurantImage = "img/restaurants/default_img.jpg";
@@ -66,7 +67,7 @@
 	}
 ?>
 <section class="breadcrumb_area">
-	<img class="breadcrumb_shap" src=<?php echo $restaurantImage?> alt="">
+	<img class="breadcrumb_shap" src=<?php echo $restaurantImage?> alt="" style="width:100%; padding-top:75px;">
 	<div class="container">
 		<!-- <div class="breadcrumb_content text-center">
 				<h1 class="f_p f_700 f_size_50 w_color l_height50 mb_20"><?php echo $trestaurantName ?></h1>
@@ -76,6 +77,8 @@
 </section>
 <section class="product_details_area bg_color sec_pad">
 	<div class="container">
+		<h6>Address: <?php echo $address ?></h6>
+		<h6>Phone Number: <?php echo $KPayPhoneNo ?></h6>
 		<h1 class="f_700 t_color3 mb_40 wow"><?php echo $restaurantName ?></h1>
 			<?php
 			$query = "SELECT * FROM food
