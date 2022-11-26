@@ -19,7 +19,7 @@
 			$count = mysqli_num_rows($result);
 			$restaurant_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
 
-			$restaurantID = $restaurant_arr[2]['restaurantID'];
+			$restaurantID = $restaurant_arr[0]['restaurantID'];
 			
 			$query = "SELECT * FROM food
 								WHERE restaurantID = '$restaurantID'
