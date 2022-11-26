@@ -9,20 +9,20 @@
                                     <p class="f_400 f_p f_size_15 mb-0 l_height34"><span>Email:</span> <a href="mailto:htunh9609@gmail.com" class="f_400">htunh9609@gmail.com</a></p>
                                     <p class="f_400 f_p f_size_15 mb-0 l_height34"><span>Phone:</span> <a href="tel:948256347968" class="f_400">+948 256 347 968</a></p>
                                 </div>
-                                <form action="#" class="f_subscribe mailchimp" method="post">
+                                <!-- <form action="#" class="f_subscribe mailchimp" method="post">
                                     <input type="text" name="EMAIL" class="form-control memail" placeholder="Email">
                                     <button class="btn btn-submit" type="submit"><i class="ti-arrow-right"></i></button>
                                     <p class="mchimp-errmessage" style="display: none;"></p>
                                     <p class="mchimp-sucmessage" style="display: none;"></p>
-                                </form>
+                                </form> -->
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <div class="f_widget about-widget pl_40">
                                 <!-- <h3 class="f-title f_600 t_color f_size_18 mb_40">About Us</h3> -->
                                 <ul class="list-unstyled f_list">
-                                    <li><a href="#">Company</a></li>
-                                    <li><a href="#">Leadership</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="#">Terms of Use</a></li>
                                     <!-- <li><a href="#">Diversity</a></li>
                                     <li><a href="#">Jobs</a></li>
                                     <li><a href="#">Press</a></li>
@@ -34,7 +34,8 @@
                             <div class="f_widget about-widget">
                                 <!-- <h3 class="f-title f_600 t_color f_size_18 mb_40">Workflow Solutions</h3> -->
                                 <ul class="list-unstyled f_list">
-                                    <li><a href="#">Project Management</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Press</a></li>
                                     <!-- <li><a href="#">Agile</a></li>
                                     <li><a href="#">Task Management</a></li>
                                     <li><a href="#">Reporting</a></li>
@@ -47,7 +48,8 @@
                             <div class="f_widget about-widget">
                                 <!-- <h3 class="f-title f_600 t_color f_size_18 mb_40">Team Solutions</h3> -->
                                 <ul class="list-unstyled f_list">
-                                    <li><a href="#">Engineering</a></li>
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="#">Join Us</a></li>
                                     <!-- <li><a href="#">Designers</a></li>
                                     <li><a href="#">Sales</a></li>
                                     <li><a href="#">Developers</a></li>
@@ -73,12 +75,12 @@
                                 <a href="#"><i class="ti-pinterest"></i></a>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12">
+                        <!-- <div class="col-lg-4 col-md-4 col-sm-12">
                             <ul class="list-unstyled f_menu text-right">
                                 <li><a href="#">Terms of Use</a></li>
                                 <li><a href="#">Privacy Policy</a></li>
                             </ul>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
