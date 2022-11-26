@@ -1,6 +1,6 @@
 <?php
 	const CUSTOMER = "Customer";
-	const ADMIN = "Admin";
+	const RESTAURANT_ADMIN = "Restaurant Admin";
 	const SUPER_ADMIN = "Super Admin";
 
 	// Constants for pagination.php

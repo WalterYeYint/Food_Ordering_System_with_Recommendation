@@ -1,7 +1,7 @@
 
 <?php
 function generate_restaurant_query($userID_sess, $userRoleName_sess){
-	if($userRoleName_sess == ADMIN OR $userRoleName_sess == CUSTOMER){
+	if($userRoleName_sess == RESTAURANT_ADMIN OR $userRoleName_sess == CUSTOMER){
 		$query = "SELECT * FROM restaurant
 							WHERE userID = '$userID_sess'";
 	}

@@ -5,7 +5,7 @@
 	include '../dbconnect.php';
 
 	// Restaurants Query that are used more than once
-	if($userRoleName_sess == ADMIN OR $userRoleName_sess == CUSTOMER){
+	if($userRoleName_sess == RESTAURANT_ADMIN OR $userRoleName_sess == CUSTOMER){
 		$query = "SELECT * FROM restaurant
 							WHERE userID = '$userID_sess'";
 	}

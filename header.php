@@ -123,31 +123,22 @@
 							$userRoleName_sess=$_SESSION['auth_user']['userRoleName'];
 
 							$cart_item_count = $_SESSION['cart_item_count'];
-							if($_SESSION['auth_rolename'] =="Staff" || $_SESSION['auth_rolename'] =="Teacher"){
-								echo "<li class='nav-item dropdown submenu active' style='list-style-type: none;'>";
-								echo "<a class=\"btn_get btn_hover hidden-sm hidden-xs nav-link dropdown-toggle\" data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='logout.php'>$firstName_sess $lastName_sess</a>";
-								echo"<ul class=\"dropdown-menu\"> 
-										<li class='nav-item'><a href='logout.php' class='nav-link' style='color:black; font-size:13px;'>Logout</a></li> 
-										 </ul>
-								</li>                                             
-								";
+							echo "<li class='nav-item dropdown submenu active' style='list-style-type: none;'>";
+							echo "<a class=\"btn_get btn_hover hidden-sm hidden-xs nav-link dropdown-toggle\" data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='logout.php'>$firstName_sess $lastName_sess</a>";
+							echo"<ul class=\"dropdown-menu\"> ";
+							if($_SESSION['auth_rolename'] == RESTAURANT_ADMIN || $_SESSION['auth_rolename'] == SUPER_ADMIN){
+								echo "<li class='nav-item'><a href='admin/dashboard.php' class='nav-link' style='color:black; font-size:13px;'>Admin Panel </a></li> ";
 							}
-							else{
-								 //echo "<b style='color:black'>Hi, $username_sess</b>";
-								 
-								echo "<li class='nav-item dropdown submenu active' style='list-style-type: none;'>";
-								echo "<a class=\"btn_get btn_hover hidden-sm hidden-xs nav-link dropdown-toggle\" data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='logout.php'>$firstName_sess $lastName_sess</a>";
-								echo"<ul class=\"dropdown-menu\"> 
-										<li class='nav-item'><a href='admin/dashboard.php' class='nav-link' style='color:black; font-size:13px;'>Admin Panel </a></li> 
+							echo "<li class='nav-item'><a href='profile.php' class='nav-link' style='color:black; font-size:13px;'>My Profile </a></li> 
+										<li class='nav-item'><a href='myorders.php' class='nav-link' style='color:black; font-size:13px;'>My Orders </a></li> 
 										<li class='nav-item'><a href='logout.php' class='nav-link' style='color:black; font-size:13px;'>Logout</a></li> 
-										 </ul>
-								</li>                                                
-								";
-								?>
-								<a href="cart.php"><i class="fas fa-shopping-cart" style="font-size:40px;color:black"></i></i></a>
-								<span class='badge badge-warning' id='lblCartCount'><?php echo $cart_item_count ?></span>
+										</ul>
+							</li>                                                
+							";
+							?>
+							<a href="cart.php"><i class="fas fa-shopping-cart" style="font-size:40px;color:black"></i></i></a>
+							<span class='badge badge-warning' id='lblCartCount'><?php echo $cart_item_count ?></span>
 							<?php
-							} 
 						}
 						else
 						{

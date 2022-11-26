@@ -5,7 +5,7 @@
 	include '../dbconnect.php';
 ?>
 <?php
-	$admin = ADMIN;
+	$admin = RESTAURANT_ADMIN;
 	$select = "SELECT u.*, ur.* 
 						FROM user u, userRole ur
 						WHERE u.userRoleID = ur.userRoleID
@@ -261,7 +261,7 @@
 	</div>
 </div>
 <?php
-if($userRoleName_sess == ADMIN){
+if($userRoleName_sess == RESTAURANT_ADMIN){
 	$query = "SELECT r.*,
 						u.userID, u.email
 						FROM restaurant r, user u

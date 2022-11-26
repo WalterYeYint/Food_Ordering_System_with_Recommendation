@@ -6,7 +6,7 @@
 ?>
 <?php
 	// Restaurants Query that are used more than once
-	if($userRoleName_sess == ADMIN){
+	if($userRoleName_sess == RESTAURANT_ADMIN){
 		$query = "SELECT * FROM restaurant
 							WHERE userID = '$userID_sess'";
 	}
@@ -248,7 +248,7 @@
 	</div>
 </div>
 <?php
-if($userRoleName_sess == ADMIN){
+if($userRoleName_sess == RESTAURANT_ADMIN){
 	$restaurantName_list = array();
 	foreach($restaurant_arr as $row){
 		array_push($restaurantName_list, $row['restaurantID']);

@@ -11,7 +11,7 @@ $userRoleID_sess=$_SESSION['auth_user']['userRoleID'];
 $userRoleName_sess=$_SESSION['auth_user']['userRoleName'];
 
 // Restaurants Query that are used more than once
-if($userRoleName_sess == ADMIN OR $userRoleName_sess == CUSTOMER){
+if($userRoleName_sess == RESTAURANT_ADMIN OR $userRoleName_sess == CUSTOMER){
   $query = "SELECT * FROM restaurant
             WHERE userID = '$userID_sess'";
 }
