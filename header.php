@@ -129,8 +129,10 @@
 							if($_SESSION['auth_rolename'] == RESTAURANT_ADMIN || $_SESSION['auth_rolename'] == SUPER_ADMIN){
 								echo "<li class='nav-item'><a href='admin/dashboard.php' class='nav-link' style='color:black; font-size:13px;'>Admin Panel </a></li> ";
 							}
-							echo "<li class='nav-item'><a href='register.php?userID=$userID_sess' class='nav-link' style='color:black; font-size:13px;'>My Profile </a></li> 
-										<li class='nav-item'><a href='myorders.php' class='nav-link' style='color:black; font-size:13px;'>My Orders </a></li> 
+							else{
+								echo "<li class='nav-item'><a href='register.php?userID=$userID_sess' class='nav-link' style='color:black; font-size:13px;'>My Profile </a></li>";
+							}
+							echo "<li class='nav-item'><a href='myorders.php' class='nav-link' style='color:black; font-size:13px;'>My Orders </a></li> 
 										<li class='nav-item'><a href='logout.php' class='nav-link' style='color:black; font-size:13px;'>Logout</a></li> 
 										</ul>
 							</li>                                                
