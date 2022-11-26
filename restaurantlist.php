@@ -48,6 +48,8 @@
 					<input type="text" name="txtlatitude" id="latitude" value="<?php echo $chosen_latitude ?>" placeholder="Enter latitudee" required>
 					<br/><br/>
 					<input type="text" name="txtlongitude" id="longitude" value="<?php echo $chosen_longitude ?>" placeholder="Enter longitude" onchange="reloadMap()" required>
+					<i class="fa fa-question-circle" style="font-size:12px"><a href="img/map_tutorial.png">Don't know how to get these? Check here&emsp;&emsp;</a></i>
+					<button type="button" onclick="getCurrentLocation()">Get Current Location</button>
 				</div>
 				<div class="form-group col-lg-6">
 					<iframe
