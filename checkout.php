@@ -113,7 +113,7 @@
 		unset($_SESSION['KPayPhoneNo']);
 		$_SESSION['cart_item_count'] = 0;
 		?>
-		<script>document.getElementById('lblCartCount').innerText = <?php echo $_SESSION['cart_item_count'] ?></script>
+		<script>document.getElementById('lblCartCount').innerText = "<?php echo $_SESSION['cart_item_count'] ?>"</script>
 		<?php
 		echo "<script>window.alert('Cart checked out Successfully!')</script>";
 		echo "<script>window.location='restaurantlist.php'</script>";
@@ -177,11 +177,11 @@
 						<div class="row">
 							<div class="col-md-6">
 								First Name
-								<input type="text" value=<?php echo $firstName_sess ?> placeholder="First Name" readonly>
+								<input type="text" value="<?php echo $firstName_sess ?>" placeholder="First Name" readonly>
 							</div>
 							<div class="col-md-6">
 								Last Name
-								<input type="text" value=<?php echo $lastName_sess ?> placeholder="Last Name" readonly>
+								<input type="text" value="<?php echo $lastName_sess ?>"" placeholder="Last Name" readonly>
 							</div>
 							<!-- <div class="col-md-12">
 								Company Name (Optional)
@@ -191,7 +191,7 @@
 						<div class="row">
 							<div class="col-lg-12">
 								Email
-								<input type="text" value=<?php echo $email_sess ?> placeholder="Email address">
+								<input type="text" value="<?php echo $email_sess ?>" placeholder="Email address">
 							</div>
 						</div>
 						<!-- <div class="row">
@@ -216,7 +216,7 @@
 							<div class="col-md-12">
 								<label>Delivery Address<abbr class="required" title="required">*</abbr></label>
 								Full Address
-								<input type="text" value=<?php echo $chosen_address ?> placeholder="Full Address" readonly>
+								<input type="text" value="<?php echo $chosen_address ?>" placeholder="Full Address" readonly>
 								<!-- <select class="selectpickers">
 									<option value="menu_order">District</option>
 									<option value="popularity">Dhaka</option>
@@ -229,11 +229,11 @@
 						<div class="row">
 							<div class="col-lg-6">
 								Latitude
-								<input type="text" value=<?php echo $chosen_latitude ?> placeholder="Latitude" readonly>
+								<input type="text" value="<?php echo $chosen_latitude ?>" placeholder="Latitude" readonly>
 							</div>
 							<div class="col-lg-6">
 							  Longitude	
-							  <input type="text" value=<?php echo $chosen_longitude ?> placeholder="Longitude" readonly>
+							  <input type="text" value="<?php echo $chosen_longitude ?>" placeholder="Longitude" readonly>
 							</div>
 						</div>
 						<div class="row">
@@ -337,14 +337,14 @@
 							<ul class="list-unstyled payment_list">
 								<li class="payment">
 									<div class="radio-btn">
-										<input type="radio" value=<?php echo DELIVERY ?> id="deli" name="rdodelivery" checked>
+										<input type="radio" value="<?php echo DELIVERY ?>" id="deli" name="rdodelivery" checked>
 										<label for="deli"></label>
 									</div>
 									<h6>Delivery</h6>
 								</li>
 								<li class="payment">
 									<div class="radio-btn">
-										<input type="radio" value=<?php echo PICK_UP ?> id="pickup" name="rdodelivery">
+										<input type="radio" value="<?php echo PICK_UP ?>" id="pickup" name="rdodelivery">
 										<label for="pickup"></label>
 									</div>
 									<h6>Pick Up</h6>
@@ -366,7 +366,7 @@
 								?>
 									<li class="payment">
 										<div class="radio-btn">
-											<input type="radio" value=<?php echo $paymentTypeID ?> id=<?php echo $paymentTypeID ?> name="rdopayment" 
+											<input type="radio" value="<?php echo $paymentTypeID ?>" id=<?php echo $paymentTypeID ?> name="rdopayment" 
 															<?php
 															if($paymentType == CASH_ON_DELIVERY){
 																echo "checked";
