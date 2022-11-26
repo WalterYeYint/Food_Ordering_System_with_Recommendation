@@ -155,30 +155,46 @@ if ($_SESSION['auth_rolename']) {
 ?>
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
-    <li class="nav-item">
-      <a class="nav-link" href="dashboard.php">
-        <i class="mdi mdi-history menu-icon"></i>
-        <span class="menu-title">Recent Orders</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="managerole.php">
-        <i class="mdi mdi-account-star menu-icon"></i>
-        <span class="menu-title">Role</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="manageuser.php">
-        <i class="mdi mdi-account-plus menu-icon"></i>
-        <span class="menu-title">User</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="managerestaurant.php">
-        <i class="mdi mdi-silverware-fork-knife menu-icon"></i>
-        <span class="menu-title">Restaurant</span>
-      </a>
-    </li>
+    <?php
+    if($userRoleName_sess == RESTAURANT_ADMIN){
+      ?>
+      <li class="nav-item">
+        <a class="nav-link" href="dashboard.php">
+          <i class="mdi mdi-history menu-icon"></i>
+          <span class="menu-title">Recent Orders</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="statistics.php">
+          <i class="mdi mdi-chart-bar-stacked menu-icon"></i>
+          <span class="menu-title">Statistics</span>
+        </a>
+      </li>
+      <?php
+    }
+    else{
+      ?>
+      <li class="nav-item">
+        <a class="nav-link" href="managerole.php">
+          <i class="mdi mdi-account-star menu-icon"></i>
+          <span class="menu-title">Role</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="manageuser.php">
+          <i class="mdi mdi-account-plus menu-icon"></i>
+          <span class="menu-title">User</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="managerestaurant.php">
+          <i class="mdi mdi-silverware-fork-knife menu-icon"></i>
+          <span class="menu-title">Restaurant</span>
+        </a>
+      </li>
+      <?php
+    }
+    ?>
     <li class="nav-item">
       <a class="nav-link" href="managefood.php">
         <i class="mdi mdi-food menu-icon"></i>
@@ -197,13 +213,6 @@ if ($_SESSION['auth_rolename']) {
         <span class="menu-title">Orders in Cart</span>
       </a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="statistics.php">
-        <i class="mdi mdi-chart-bar-stacked menu-icon"></i>
-        <span class="menu-title">Statistics</span>
-      </a>
-    </li>
-
   </ul>
 </nav>
 <?php }
