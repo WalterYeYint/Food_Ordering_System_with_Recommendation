@@ -16,6 +16,7 @@ if(isset($_GET['userID'])){
 	$result = mysqli_query($connection,$query);
 	$arr = mysqli_fetch_array($result);
 
+	$tuserID = $arr['userID'];
 	$tfirstName = $arr['firstName'];
 	$tlastName = $arr['lastName'];
 	$taddress = $arr['address'];
@@ -32,6 +33,7 @@ else{
 	$disabled = "disabled='disabled'";
 	$readonly = "";
 
+	$tuserID = AutoID('user','userID');
 	$tfirstName = "";
 	$tlastName = "";
 	$taddress = "";
@@ -42,7 +44,7 @@ else{
 }
 
 if(isset($_POST['btnsubmit']) OR isset($_POST['btnupdate'])){
-	$userID = AutoID('user', 'userID');
+	$txtuserID = $_POST['txtuserid'];
 	
 	$userRoleName = CUSTOMER;
 	$check="SELECT * FROM userRole WHERE userRoleName='$userRoleName'";
@@ -78,7 +80,7 @@ if(isset($_POST['btnsubmit']) OR isset($_POST['btnupdate'])){
 			$insert="INSERT INTO user 
 					(`userID`, `userRoleID`, `firstName`, `lastName`, `email`, `password`, `address`, `latitude`, `longitude`) 
 					VALUES 
-					('$userID','$userRoleID','$txtfirstName','$txtlastName','$txtemail','$txtpassword','$txtaddress','$txtlatitude','$txtlongitude')";
+					('$txtuserID','$userRoleID','$txtfirstName','$txtlastName','$txtemail','$txtpassword','$txtaddress','$txtlatitude','$txtlongitude')";
 			$result=mysqli_query($connection,$insert);
 			if ($result) {
 				echo "<script>window.alert('Registered Successfully!')</script>";
@@ -108,6 +110,7 @@ if(isset($_POST['btnsubmit']) OR isset($_POST['btnupdate'])){
 					<div class="login_info">
 						<h2 class="f_p f_600 f_size_24 t_color3 mb_40"><?php echo $txt_1 ?></h2>
 						<form action="register.php" class="login-form sign-in-form" method="post" name="registerform" enctype="multipart/form-data">
+							<input type="hidden" name="txtuserid" value="<?php echo $tuserID ?>" required="">
 							<div class="form-group text_box">
 								<label class="f_p text_c f_400">First Name</label>
 								<input type="text" name="txtfirstname" placeholder="First Name" value="<?php echo $tfirstName ?>" required="">
