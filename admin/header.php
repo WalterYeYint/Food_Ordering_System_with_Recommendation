@@ -186,7 +186,7 @@
                 <p class="mb-1 mt-3 font-weight-semibold"><?php echo $firstName_sess . " " . $lastName_sess ?></p>
                 <p class="fw-light text-muted mb-0"><?php echo $userRoleName_sess ?></p>
               </div>
-              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
+              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile</a>
               <!-- <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
               <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a> -->
               <a href="../index.php" class="dropdown-item"><i class="dropdown-item-icon mdi mdi-page-layout-body text-primary me-2"></i>To Frontend</a>

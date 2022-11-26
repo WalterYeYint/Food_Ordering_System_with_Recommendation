@@ -106,11 +106,11 @@
 								</a>
 							</li>
 
-							<li class="nav-item ">
+							<!-- <li class="nav-item ">
 								<a class="nav-link " href="idea.php" role="button">
 									About
 								</a>
-							</li>
+							</li> -->
 						</ul>
 						<?php 
 						if(isset($_SESSION['auth_user']))
@@ -126,8 +126,11 @@
 							echo "<li class='nav-item dropdown submenu active' style='list-style-type: none;'>";
 							echo "<a class=\"btn_get btn_hover hidden-sm hidden-xs nav-link dropdown-toggle\" data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='logout.php'>$firstName_sess $lastName_sess</a>";
 							echo"<ul class=\"dropdown-menu\"> ";
-							if($_SESSION['auth_rolename'] == RESTAURANT_ADMIN || $_SESSION['auth_rolename'] == SUPER_ADMIN){
+							if($_SESSION['auth_rolename'] == RESTAURANT_ADMIN){
 								echo "<li class='nav-item'><a href='admin/dashboard.php' class='nav-link' style='color:black; font-size:13px;'>Admin Panel </a></li> ";
+							}
+							elseif($_SESSION['auth_rolename'] == SUPER_ADMIN){
+								echo "<li class='nav-item'><a href='admin/managerole.php' class='nav-link' style='color:black; font-size:13px;'>Admin Panel </a></li> ";
 							}
 							else{
 								echo "<li class='nav-item'><a href='register.php?userID=$userID_sess' class='nav-link' style='color:black; font-size:13px;'>My Profile </a></li>";
