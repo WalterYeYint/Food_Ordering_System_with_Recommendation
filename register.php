@@ -2,8 +2,46 @@
 include 'headtag.php';
 include 'header.php';
 include 'dbconnect.php';
+if(isset($_GET['userID'])){
 
-if(isset($_POST['btnsubmit'])){
+	$txtbanner = "Edit Profile";
+	$txt_1 = "Edit Profile Info";
+	$txt_2 = "";
+	$txt_3 = "";
+	$disabled = "disabled='disabled'";
+	$readonly = "readonly";
+
+	$userID=$_GET['userID'];
+	$query = "SELECT * FROM user WHERE userID='$userID'";
+	$result = mysqli_query($connection,$query);
+	$arr = mysqli_fetch_array($result);
+
+	$tfirstName = $arr['firstName'];
+	$tlastName = $arr['lastName'];
+	$taddress = $arr['address'];
+	$tlatitude = $arr['latitude'];
+	$tlongitude = $arr['longitude'];
+	$temail = $arr['email'];
+	$tpassword = $arr['password'];
+}
+else{
+	$txtbanner = "Edit Profile";
+	$txt_1 = "Sign Up";
+	$txt_2 = "Already have an account?";
+	$txt_3 = "<a href='login.php'><u>Login Now</u></a> and<br>";
+	$disabled = "disabled='disabled'";
+	$readonly = "";
+
+	$tfirstName = "";
+	$tlastName = "";
+	$taddress = "";
+	$tlatitude = "";
+	$tlongitude = "";
+	$temail = "";
+	$tpassword = "";
+}
+
+if(isset($_POST['btnsubmit']) OR isset($_POST['btnupdate'])){
 	$userID = AutoID('user', 'userID');
 	
 	$userRoleName = CUSTOMER;
@@ -58,7 +96,7 @@ if(isset($_POST['btnsubmit'])){
 	<img class="breadcrumb_shap" src="img/breadcrumb/banner_bg.png" alt="">
 	<div class="container">
 		<div class="breadcrumb_content text-center">
-			<h1 class="f_p f_700 f_size_50 w_color l_height50 mb_20">Sign Up</h1>
+			<h1 class="f_p f_700 f_size_50 w_color l_height50 mb_20"><?php echo $txtbanner ?></h1>
 		</div>
 	</div>
 </section>
@@ -68,27 +106,27 @@ if(isset($_POST['btnsubmit'])){
 			<div class="row">
 				<div class="col-lg-7">
 					<div class="login_info">
-						<h2 class="f_p f_600 f_size_24 t_color3 mb_40">Sign Up</h2>
+						<h2 class="f_p f_600 f_size_24 t_color3 mb_40"><?php echo $txt_1 ?></h2>
 						<form action="register.php" class="login-form sign-in-form" method="post" name="registerform" enctype="multipart/form-data">
 							<div class="form-group text_box">
 								<label class="f_p text_c f_400">First Name</label>
-								<input type="text" name="txtfirstname" placeholder="First Name" required="">
+								<input type="text" name="txtfirstname" placeholder="First Name" value="<?php echo $tfirstName ?>" required="">
 							</div>
 							<div class="form-group text_box">
 								<label class="f_p text_c f_400">Last Name</label>
-								<input type="text" name="txtlastname" placeholder="Last Name" required="">
+								<input type="text" name="txtlastname" placeholder="Last Name" value="<?php echo $tlastName ?>" required="">
 							</div>
 							<div class="form-group text_box">
 								<label class="f_p text_c f_400">Full Address</label>
-								<input type="text" name="txtaddress" placeholder="Full Address" required="">
+								<input type="text" name="txtaddress" placeholder="Full Address" value="<?php echo $taddress ?>" required="">
 							</div>
 							<div class="form-group text_box">
 								<label class="f_p text_c f_400">Latitude</label>
-								<input type="number" step="any" name="txtlatitude" id="latitude" placeholder="Latitude" required="">
+								<input type="number" step="any" name="txtlatitude" id="latitude" placeholder="Latitude" value="<?php echo $tlatitude ?>" required="">
 							</div>
 							<div class="form-group text_box">
 								<label class="f_p text_c f_400">Longitude</label>
-								<input type="number" step="any" name="txtlongitude" id="longitude" placeholder="Longitude" onchange="reloadMap()" required="">
+								<input type="number" step="any" name="txtlongitude" id="longitude" placeholder="Longitude" value="<?php echo $tlongitude ?>" onchange="reloadMap()" required="">
 								<i class="fa fa-question-circle" style="font-size:12px"><a href="img/map_tutorial.png">Don't know how to get these? Check here&emsp;&emsp;</a></i>
 								<button type="button" onclick="getCurrentLocation()">Get Current Location</button>
 							</div>
@@ -106,26 +144,37 @@ if(isset($_POST['btnsubmit'])){
 							<br/><br/>
 							<div class="form-group text_box">
 								<label class="f_p text_c f_400">Email Address</label>
-								<input type="email" name="txtemail" placeholder="JakeSully@gmail.com" required="">
+								<input type="email" name="txtemail" placeholder="JakeSully@gmail.com" value="<?php echo $temail ?>" required="" <?php echo $readonly?>>
 							</div>
 							<div class="form-group text_box">
 								<label class="f_p text_c f_400">Password</label>
-								<input type="password" name="txtpassword" placeholder="******" required="">
+								<input type="password" name="txtpassword" placeholder="******" value="<?php echo $tpassword ?>" required="">
 							</div>
 							<div class="form-group text_box">
 								<label class="f_p text_c f_400">Confirm Password</label>
-								<input type="password" name="txtconfirm" placeholder="******" required="">
+								<input type="password" name="txtconfirm" placeholder="******" value="<?php echo $tpassword ?>" required="">
 							</div>
 							<div class="d-flex justify-content-between align-items-center">
-								<button type="submit" name="btnsubmit" class="app_btn btn_hover">&emsp;&emsp; Sign Up for StrEats &emsp;&emsp;</button>
+								<?php
+								if(isset($_GET['userID'])){
+									?>
+									<button type="submit" name="btnupdate" class="app_btn btn_hover">&emsp;&emsp; Update Info &emsp;&emsp;</button>
+									<?php
+								}
+								else{
+									?>
+									<button type="submit" name="btnsubmit" class="app_btn btn_hover">&emsp;&emsp; Sign Up for StrEats &emsp;&emsp;</button>
+									<?php
+								}
+								?>
 							</div>
 						</form>
 					</div>
 				</div>
 				<div class="col-lg-5">
 					<div class="sign_info_content">
-						<h3 class="f_p f_600 f_size_24 t_color3 mb_40">Already have an account?</h3>
-						<h2 class="f_p f_400 f_size_30 mb-30"><a href="login.php"><u>Login Now</u></a> and<br> <span class="f_700">Start Ordering</span></h2>
+						<h3 class="f_p f_600 f_size_24 t_color3 mb_40"><?php echo $txt_2 ?></h3>
+						<h2 class="f_p f_400 f_size_30 mb-30"><?php echo $txt_3 ?> <span class="f_700">Start Ordering</span></h2>
 						<ul class="list-unstyled mb-0">
 							<li><i class="ti-check"></i> Order from more than 40 different restaurants across Yangon</li>
 							<li><i class="ti-check"></i> Order from Anywhere</li>
