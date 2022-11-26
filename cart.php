@@ -8,6 +8,11 @@
 	$restaurant_longitude = $_SESSION['restaurant_longitude'];
 	$chosen_latitude = $_SESSION['chosen_latitude'];
 	$chosen_longitude = $_SESSION['chosen_longitude'];
+
+	if(!isset($_SESSION['auth_user'])){
+		echo "<script>window.alert('Please login first!')</script>";
+		echo "<script>window.location='login.php'</script>";
+	}
 ?>
 <section class="breadcrumb_area">
 		<img class="breadcrumb_shap" src="img/breadcrumb/banner_bg.png" alt="">
@@ -52,76 +57,81 @@
 						<table class="cart_table mb-0">
 								<tbody>
 									<?php
-									$quantity_list = $_SESSION['quantity_list'];
-									$foodID_list = $_SESSION['food_ID_list'];
-									$foodID_list_count = count($foodID_list);
-									if($foodID_list_count <=0){
+									if(!isset($_SESSION['food_ID_list'])){
 										echo "<h4>No order in cart</h4>";
 									}
-									// $query = "SELECT * FROM food
-									// 					WHERE foodID IN (".implode(',', $foodID_list).")";
-									// $result = mysqli_query($connection, $query);
-									// $count = mysqli_num_rows($result);
-									// $food_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
-									for($i=0; $i<$foodID_list_count; $i++){
-										$foodID = $foodID_list[$i];
-										$query = "SELECT * FROM food
-															WHERE foodID = '$foodID'";
-										$result = mysqli_query($connection, $query);
-										$count = mysqli_num_rows($result);
-										$food_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
-										$row = $food_arr[0];
-										$foodID = $row['foodID'];
-										$foodName = $row['foodName'];
-										$price = $row['price'];
-										$image = $row['image'];
-										$quantity = $quantity_list[$i];
-										$total = $price * $quantity;
-										$sub_total += $total;
-
-										if($image == ""){
-											$image = "img/food/default_img.jpeg";
+									else{
+										$quantity_list = $_SESSION['quantity_list'];
+										$foodID_list = $_SESSION['food_ID_list'];
+										$foodID_list_count = count($foodID_list);
+										if($foodID_list_count <=0){
+											echo "<h4>No order in cart</h4>";
 										}
-									?>
-										<tr>
-												<td class="col-lg-2 col-md-2 col-sm-2 col-xs-2" data-title="ID">
-														<div class="total"><?php echo $i+1 ?></div>
-												</td>
-												<td class="product col-lg-6 col-md-5 col-sm-5 col-xs-5" data-title="PRODUCT">
-														<div class="media">
-																<div class="media-left">
-																		<img src=<?php echo $image ?> alt="">
-																</div>
-																<div class="media-body">
-																		<h5 class="mb-0"><?php echo $foodName ?></h5>
-																</div>
-														</div>
-												</td>
-												<td class="col-lg-2 col-md-2 col-sm-2 col-xs-2" data-title="PRICE">
-														<div class="total" id=<?php echo "price_$i" ?>><?php echo $price ?></div>
-												</td>
-												<td class="col-lg-2 col-md-2 col-sm-2 col-xs-2" data-title="QUANTITY">
-														<div class="quantity">
-																<div class="product-qty">
-																		<!-- <button class="ar_top" type="button" onclick="incrementValue(<?php echo $i ?>)"><i class="ti-angle-up"></i></button> -->
-																		<input type="number" name="qty" id=<?php echo "qty_$i" ?> value=<?php echo $quantity ?> onchange="calculateTotal(<?php echo $i.','.$foodID_list_count ?>)" title="Quantity:" class="manual-adjust">
-																		<!-- <button class="ar_down" type="button" onclick="decrementValue(<?php echo $i ?>)"><i class="ti-angle-down"></i></button> -->
-																</div>
-														</div>
+										// $query = "SELECT * FROM food
+										// 					WHERE foodID IN (".implode(',', $foodID_list).")";
+										// $result = mysqli_query($connection, $query);
+										// $count = mysqli_num_rows($result);
+										// $food_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
+										for($i=0; $i<$foodID_list_count; $i++){
+											$foodID = $foodID_list[$i];
+											$query = "SELECT * FROM food
+																WHERE foodID = '$foodID'";
+											$result = mysqli_query($connection, $query);
+											$count = mysqli_num_rows($result);
+											$food_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
+											$row = $food_arr[0];
+											$foodID = $row['foodID'];
+											$foodName = $row['foodName'];
+											$price = $row['price'];
+											$image = $row['image'];
+											$quantity = $quantity_list[$i];
+											$total = $price * $quantity;
+											$sub_total += $total;
 
-												</td>
-												<td class="col-lg-2 col-md-3 col-sm-3 col-xs-3" data-title="TOTAL">
-														<div class="del-item">
-															<i class="total" id=<?php echo "total_$i" ?>><?php echo $total ?></i>
-															<!-- <button id=<?php echo "del_$i" ?> onclick="removefromcart(<?php echo $i ?>)"><i class="icon_close"></i></button> -->
-															<a href="" id=<?php echo "del_$i" ?> onclick="removefromcart(<?php echo $i ?>)"><i class="icon_close"></i></a>
-															<!-- <a href="" class="del_btn" id=<?php echo "del_$i" ?>><i class="icon_close"></i></a> -->
-															<!-- <i class="icon_close" id=<?php echo "del_$i" ?> onclick="removefromcart(<?php echo $i ?>)"></i> -->
-															<!-- <a href="#" class="del_btn" id=<?php echo "del_$i" ?>><i class="icon_close"></i></a> -->
-														</div>
-												</td>
-										</tr>
-									<?php
+											if($image == ""){
+												$image = "img/food/default_img.jpeg";
+											}
+										?>
+											<tr>
+													<td class="col-lg-2 col-md-2 col-sm-2 col-xs-2" data-title="ID">
+															<div class="total"><?php echo $i+1 ?></div>
+													</td>
+													<td class="product col-lg-6 col-md-5 col-sm-5 col-xs-5" data-title="PRODUCT">
+															<div class="media">
+																	<div class="media-left">
+																			<img src=<?php echo $image ?> alt="">
+																	</div>
+																	<div class="media-body">
+																			<h5 class="mb-0"><?php echo $foodName ?></h5>
+																	</div>
+															</div>
+													</td>
+													<td class="col-lg-2 col-md-2 col-sm-2 col-xs-2" data-title="PRICE">
+															<div class="total" id=<?php echo "price_$i" ?>><?php echo $price ?></div>
+													</td>
+													<td class="col-lg-2 col-md-2 col-sm-2 col-xs-2" data-title="QUANTITY">
+															<div class="quantity">
+																	<div class="product-qty">
+																			<!-- <button class="ar_top" type="button" onclick="incrementValue(<?php echo $i ?>)"><i class="ti-angle-up"></i></button> -->
+																			<input type="number" name="qty" id=<?php echo "qty_$i" ?> value=<?php echo $quantity ?> onchange="calculateTotal(<?php echo $i.','.$foodID_list_count ?>)" title="Quantity:" class="manual-adjust">
+																			<!-- <button class="ar_down" type="button" onclick="decrementValue(<?php echo $i ?>)"><i class="ti-angle-down"></i></button> -->
+																	</div>
+															</div>
+
+													</td>
+													<td class="col-lg-2 col-md-3 col-sm-3 col-xs-3" data-title="TOTAL">
+															<div class="del-item">
+																<i class="total" id=<?php echo "total_$i" ?>><?php echo $total ?></i>
+																<!-- <button id=<?php echo "del_$i" ?> onclick="removefromcart(<?php echo $i ?>)"><i class="icon_close"></i></button> -->
+																<a href="" id=<?php echo "del_$i" ?> onclick="removefromcart(<?php echo $i ?>)"><i class="icon_close"></i></a>
+																<!-- <a href="" class="del_btn" id=<?php echo "del_$i" ?>><i class="icon_close"></i></a> -->
+																<!-- <i class="icon_close" id=<?php echo "del_$i" ?> onclick="removefromcart(<?php echo $i ?>)"></i> -->
+																<!-- <a href="#" class="del_btn" id=<?php echo "del_$i" ?>><i class="icon_close"></i></a> -->
+															</div>
+													</td>
+											</tr>
+										<?php
+										}
 									}
 									?>
 								</tbody>
