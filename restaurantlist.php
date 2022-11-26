@@ -76,10 +76,10 @@
 		<div class="row align-items-center">
 			<div class="col-lg-6 col-sm-5">
 				<div class="shop_menu_left">
-					<p>Showing all results</p>
+					<p>Showing results:</p>
 				</div>
 			</div>
-			<div class="col-lg-6 col-sm-7">
+			<!-- <div class="col-lg-6 col-sm-7">
 				<div class="shop_menu_right d-flex align-items-center justify-content-end">
 					<h5>Sort by </h5>
 					<form method="get" action="#">
@@ -101,7 +101,7 @@
 					</div>
 
 				</div>
-			</div>
+			</div> -->
 		</div>
 		<div class="row">
 			<?php
@@ -136,7 +136,7 @@
 											$restaurantImage = "img/restaurants/default_img.jpg";
 										}
 									?>
-									<img class="img-fluid" src=<?php echo $restaurantImage ?> alt="">
+									<img class="img-fluid" style="width:300px; height:300px; object-fit: contain;" src=<?php echo $restaurantImage ?> alt="">
 									<!-- <div class="hover_content">
 										<a href="#"><i class="ti-heart"></i></a>
 										<a href="#" title="Add to cart"><i class="ti-bag"></i></a>
@@ -159,13 +159,13 @@
 			<?php
 				}
 			?>
-			<div class="col-lg-12">
+			<!-- <div class="col-lg-12">
 				<ul class="list-unstyled page-numbers shop_page_number">
 					<li><span aria-current="page" class="page-numbers current">1</span></li>
 					<li><a class="page-numbers" href="#">2</a></li>
 					<li><a class="next page-numbers" href="#"><i class="ti-arrow-right"></i></a></li>
 				</ul>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </section>
