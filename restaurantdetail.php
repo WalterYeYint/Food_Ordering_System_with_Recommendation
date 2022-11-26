@@ -99,6 +99,7 @@
 					$foodName = $rows['foodName'];  
 					$price = $rows['price'];
 					$image = $rows['image'];
+					$stock = $rows['stock'];
 
 					$index += 1;
 
@@ -116,8 +117,34 @@
 										<!-- <del><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>18.00</span></del> -->
 										<ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span><?php echo $price ?></span></ins>
 								</div>
-								<span class="stock">in stock</span>
-								<br/>
+								<?php
+								if($stock > 0){
+									?>
+									<span class="stock">In stock</span>
+									<br/>
+									<div class="cart_button">
+											<?php
+											if(in_array($foodID, $_SESSION['food_ID_list'])){
+												?>
+												<button class="cart_btn" data-id="<?php echo $foodID ?>" disabled>Already in Cart</button>
+											<?php
+											}
+											else{
+												?>
+												<button class="cart_btn" data-id="<?php echo $foodID ?>">Add to Cart</button>
+											<?php
+											}
+											?>
+											<!-- <a href="#" class="wish_list" data-toggle="tooltip" data-placement="top" title="ADD WISH LIST"><i class="ti-heart"></i></a> -->
+									</div>
+									<?php
+								}
+								else{
+									?>
+									<span class="stock">Out of stock</span>
+									<?php
+								}
+								?>
 								<!-- <p class="f_300 f_size_15">The full monty brilliant young delinquent burke naff 
 									baking cakes the wireless argy-bargy smashing!</p>
 								<div class="product-qty">
@@ -125,21 +152,6 @@
 									<input type="number" name="qty" id=<?php echo "rd_qty_$index" ?> value=<?php echo $price ?> title="Quantity:" class="manual-adjust">
 									<button class="ar_down" type="button"><i class="ti-angle-down"></i></button>
 								</div> -->
-								<div class="cart_button">
-										<?php
-										if(in_array($foodID, $_SESSION['food_ID_list'])){
-											?>
-											<button class="cart_btn" data-id="<?php echo $foodID ?>" disabled>Already in Cart</button>
-										<?php
-										}
-										else{
-											?>
-											<button class="cart_btn" data-id="<?php echo $foodID ?>">Add to Cart</button>
-										<?php
-										}
-										?>
-										<a href="#" class="wish_list" data-toggle="tooltip" data-placement="top" title="ADD WISH LIST"><i class="ti-heart"></i></a>
-								</div>
 						</div>
 					</div>
 				<?php
