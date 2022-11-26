@@ -4,26 +4,28 @@
 	include 'dbconnect.php'; 
 
 
-	$select = "SELECT fo.*, c.*, f.*
-							FROM foodorder fo, cart c, food f
-							WHERE fo.cartID = c.cartID
-							AND fo.foodID = f.foodID
-							AND c.userID = $userID_sess
-							ORDER BY fo.foodorderID DESC LIMIT 1";
-	$result=mysqli_query($connection,$select);
-	$count=mysqli_num_rows($result);
-	$prev_foodorder_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
-	$prev_foodID = $prev_foodorder_arr[0]["foodID"];
-	$prev_foodName = $prev_foodorder_arr[0]["foodName"];
-	
-	$id = 4924;
-	$url = "http://127.0.0.1:5000/get_recommendation/{$prev_foodID}";
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_URL, $url);
-	$result = curl_exec($ch);
-	$recommended_food_dict = json_decode($result, $assoc=true);
-	curl_close($ch);
+	if(isset($_SESSION['auth_user'])){
+		$select = "SELECT fo.*, c.*, f.*
+				FROM foodorder fo, cart c, food f
+				WHERE fo.cartID = c.cartID
+				AND fo.foodID = f.foodID
+				AND c.userID = $userID_sess
+				ORDER BY fo.foodorderID DESC LIMIT 1";
+		$result=mysqli_query($connection,$select);
+		$count=mysqli_num_rows($result);
+		$prev_foodorder_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
+		$prev_foodID = $prev_foodorder_arr[0]["foodID"];
+		$prev_foodName = $prev_foodorder_arr[0]["foodName"];
+
+		$id = 4924;
+		$url = "http://127.0.0.1:5000/get_recommendation/{$prev_foodID}";
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		$result = curl_exec($ch);
+		$recommended_food_dict = json_decode($result, $assoc=true);
+		curl_close($ch);
+	}
 ?>
 <section class="breadcrumb_area">
 	<img class="breadcrumb_shap" src="img/breadcrumb/banner_bg.png" alt="">
@@ -36,10 +38,22 @@
 </section>
 <section class="shop_grid_area sec_pad">
 	<div class="container">
-		<div class="hr"></div>
-		<h3>You might also like (Recommendations for <?php echo $prev_foodName ?>):</h3>
-		<br/>
-		<div class="row">
+		<div>
+			<h2>Order food from the best restaurants in Yangon</h2>
+			<br/>
+			<p>Fancy some Kyay Oh? How about a scrumptious bowl of Shan noodles and roasted duck?
+				We have plenty of restaurants in Yangon available for you to order food online and delivered straight to your location.
+			</p>
+			<a href="restaurantlist.php"><button class="btn_four">Start Shopping Now !</button></a>
+			<br/><br/>
+		</div>
+		<?php
+		if(isset($_SESSION['auth_user'])){
+			?>
+			<div class="hr"></div>
+			<h3>You might also like (Recommendations for <?php echo $prev_foodName ?>):</h3>
+			<br/>
+			<div class="row">
 			<?php
 				# Get recommended foodID from database and display them
 				$select="SELECT *
@@ -82,6 +96,9 @@
 				}
 			?>
 		</div>
+			<?php
+		}
+		?>
 	</div>
 </section>
 <?php include 'footer.php'; ?>

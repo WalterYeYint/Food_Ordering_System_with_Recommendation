@@ -7,7 +7,11 @@
 	$user_latitude = $_SESSION['auth_user']['user_latitude'];
 	$user_longitude = $_SESSION['auth_user']['user_longitude'];
 
-	if(isset($_POST['btnsubmit'])){
+	if(!isset($_SESSION['auth_user'])){
+		echo "<script>window.alert('Please login first!')</script>";
+		echo "<script>window.location='login.php'</script>";
+	}
+	elseif(isset($_POST['btnsubmit'])){
 		$_SESSION['chosen_address'] = $_POST['txtaddress'];
 		$_SESSION['chosen_latitude'] = $_POST['txtlatitude'];
 		$_SESSION['chosen_longitude'] = $_POST['txtlongitude'];
