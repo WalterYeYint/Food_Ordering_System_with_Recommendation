@@ -90,8 +90,8 @@
 		$count = $foodID_list_info_arr[1];
 		$foodName_list = $foodID_list_info_arr[2];
 		$price_list = $foodID_list_info_arr[3];
-
-		send_email('sam.wilson42@yahoo.com', $firstName_sess, $lastName_sess, $restaurantName, $cartID, $count, $foodName_list, $price_list, 
+		# mail to send: 'sam.wilson42@yahoo.com'
+		send_email($email_sess, $firstName_sess, $lastName_sess, $restaurantName, $cartID, $count, $foodName_list, $price_list, 
 								$quantity_list_sess, $deliveryFee, $payment_type_str_arr[$rdopayment], $foodID_list_sess, $totalAmount, $chosen_address, $chosen_latitude, 
 								$chosen_longitude, $delivery_type_str_arr[$rdodelivery]);
 		echo "<script>window.alert('Email Successfully Sent!')</script>";
