@@ -24,8 +24,8 @@ def read_data_and_model():
 app = Flask(__name__)
 
 def thread_two_func(n, name):
-	training_hour = 5
-	training_minute = 55
+	training_hour = 10
+	training_minute = 35
 	global server
 	global restarted
 	global model_is_retrained
@@ -33,15 +33,16 @@ def thread_two_func(n, name):
 		current_time = datetime.datetime.now()
 		current_hour = current_time.hour
 		current_minute = current_time.minute
-		print("printing ", current_time)
+		# print("printing ", current_time)
 		time.sleep(1)
 		if training_hour == current_hour and training_minute == current_minute:
-			if model_is_retrained == False:
+			if restarted == True and model_is_retrained == False:
 				server.terminate()
 				print("Server terminated !!!")
 				os.system("python Recommendation_System/Recommendation_Model/knn_model.py")
 				time.sleep(5)
 				restarted = False
+				model_is_retrained = True
 		else:
 			model_is_retrained = False
 
@@ -73,5 +74,6 @@ if __name__ == "__main__":
 			server.start()
 			restarted = True
 			model_is_retrained = True
+		time.sleep(10)
 
 	# app.run(debug=False)
