@@ -24,8 +24,8 @@ def read_data_and_model():
 app = Flask(__name__)
 
 def thread_two_func(n, name):
-	training_hour = 10
-	training_minute = 35
+	training_hour = 5
+	training_minute = 55
 	global server
 	global restarted
 	global model_is_retrained
