@@ -122,7 +122,16 @@ else{
 						$wrappedaddress = wordwrap($address, 20, "<br/>\n", true);
 						$paymentStatus = $rows['paymentStatus'];
 						$cartStatus = $rows['cartStatus'];
-						$lblPaymentStatus = 'togglePaymentStatus';
+						$lblPaymentStatus = "";
+
+						switch($paymentStatus){
+							case UNPAID:
+								$lblPaymentStatus = "Set Paid";
+								break;
+							case PAID:
+								$lblPaymentStatus = "Set Unpaid";
+								break;
+						}
 						?>
 						<tr>
 								<th><?php echo $cartID ?></th>
@@ -132,10 +141,10 @@ else{
 								<td><?php echo $paymentType ?></td>
 								<td><?php echo $totalAmount ?></td>
 								<td><?php echo $wrappedaddress ?></td>
-								<td><?php echo $paymentStatus ?></td>
-								<td><?php echo $cartStatus ?></td>
+								<td><?php echo $payment_status_str_arr[$paymentStatus] ?></td>
+								<td><?php echo $cart_status_str_arr[$cartStatus] ?></td>
 								<td>
-									<button class="btn btn-primary me-2" id=<?php echo "paystat_$i" ?> onclick="updateStatus(<?php echo $cartID ?>, '<?php echo $lblPaymentStatus ?>')">Set Paid</button>
+									<button class="btn btn-primary me-2" id=<?php echo "paystat_$i" ?> onclick="updateStatus(<?php echo $cartID ?>, 'togglePaymentStatus')"><?php echo $lblPaymentStatus ?></button>
 									<!-- <a href="updatestatus.php?cartID=<?=$cartID?>&mode=togglePaymentStatus" class="btn btn-success">Set Paid</a> -->
 									<br/><br/>
 									<?php
@@ -153,7 +162,7 @@ else{
 											$disabled = "disabled='disabled'";
 											break;
 										case CART_CANCELLED:
-											$lblCartStatus = "Cart Cancelled";
+											$lblCartStatus = "Set Checked Out";
 											// $disabled = "disabled='disabled'";
 											break;
 									}
