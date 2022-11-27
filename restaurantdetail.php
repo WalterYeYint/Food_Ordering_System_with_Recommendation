@@ -189,7 +189,7 @@
 			var xml = new XMLHttpRequest();
 			xml.onreadystatechange = function(){
 				if(this.readyState == 4 && this.status == 200){
-					alert(this.responseText);
+					// alert(this.responseText);
 					target.innerText = "Already in cart";
 					target.disabled = true;
 					var cart_count = parseInt(document.getElementById('lblCartCount').innerText, 10);
