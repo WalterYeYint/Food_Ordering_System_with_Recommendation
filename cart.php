@@ -25,7 +25,13 @@
 <!--============= Shopping Cart ===============-->
 <section class="shopping_cart_area sec_pad bg_color">
 	<div class="container">
-			<h5 class="f_700 t_color3 mb_40 wow">Cart for: <?php echo $restaurantName ?></h5>
+			<?php
+				if(isset($_SESSION['restaurantName'])){
+					?>
+					<h5 class="f_700 t_color3 mb_40 wow">Cart for: <?php echo $restaurantName ?></h5>
+					<?php
+				}
+			?>
 			<div class="cart_title">
 					<div class="row">
 							<div class="col-md-2 col-2">
