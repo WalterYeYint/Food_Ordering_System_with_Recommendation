@@ -13,6 +13,10 @@
 		echo "<script>window.alert('Please login first!')</script>";
 		echo "<script>window.location='login.php'</script>";
 	}
+	elseif(!isset($_SESSION['restaurantName'])){
+		echo "<script>window.alert('Please select a shop first!')</script>";
+		echo "<script>window.location='restaurantlist.php'</script>";
+	}
 ?>
 <section class="breadcrumb_area">
 		<img class="breadcrumb_shap" src="img/breadcrumb/banner_bg.png" alt="">
@@ -25,13 +29,7 @@
 <!--============= Shopping Cart ===============-->
 <section class="shopping_cart_area sec_pad bg_color">
 	<div class="container">
-			<?php
-				if(isset($_SESSION['restaurantName'])){
-					?>
-					<h5 class="f_700 t_color3 mb_40 wow">Cart for: <?php echo $restaurantName ?></h5>
-					<?php
-				}
-			?>
+			<h5 class="f_700 t_color3 mb_40 wow">Cart for: <?php echo $restaurantName ?></h5>
 			<div class="cart_title">
 					<div class="row">
 							<div class="col-md-2 col-2">
