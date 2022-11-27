@@ -44,7 +44,11 @@
 	$distance = twopoints_on_earth($restaurant_latitude, $restaurant_longitude, $chosen_latitude, $chosen_longitude);
 	$deliveryFee = calculate_deliveryFee($distance);
 
-	if(isset($_POST['btnsubmit'])){
+	if($_SESSION['cart_item_count'] <= 0){
+		echo "<script>window.alert('No orders in cart!')</script>";
+		echo "<script>window.location='cart.php'</script>";
+	}
+	elseif(isset($_POST['btnsubmit'])){
 		$rdodelivery = $_POST['rdodelivery'];
 		$rdopayment = $_POST['rdopayment'];
 		$cartID = AutoID('cart', 'cartID');		// Cannot use the id in session since other users' carts might enter the db 
