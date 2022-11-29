@@ -375,8 +375,8 @@ $foodorder_arr = mysqli_fetch_all($result, MYSQLI_BOTH);
 							<input type="hidden" class="form-control" name="txtoldquantity" id="txtoldquantity" value="<?php echo $toldQuantity ?>" placeholder="Old Quantity" readonly>
 						</div>
 						<div class="form-group">
-							<label for="id">Rating <span style="color: red;">*</span></label>
-							<input type="number" class="form-control" name="txtrating" id="txtrating" value="<?php echo $trating ?>" placeholder="Rating" required=""
+							<!-- <label for="id">Rating <span style="color: red;">*</span></label> -->
+							<input type="hidden" class="form-control" name="txtrating" id="txtrating" value="<?php echo $trating ?>" placeholder="Rating" required=""
 							<?php
 							if($_GET['mode'] == 'edit'){
 								//do nothing
@@ -573,7 +573,7 @@ else{
 						$foodName = $rows['foodName'];
 						$cartID = $rows['cartID'];
 						$quantity = $rows['quantity'];
-						$rating = $rows['rating'];
+						// $rating = $rows['rating'];
 					?>
 						<tr>
 								<th><?php echo $foodorderID ?></th>
@@ -581,7 +581,7 @@ else{
 								<th><?php echo $foodName ?></th>
 								<th><?php echo $cartID ?></th>
 								<td><?php echo $quantity ?></td>
-								<td><?php echo $rating ?></td>
+								<!-- <td><?php echo $rating ?></td> -->
 								<td>
 									<a href="managefoodorder.php?foodorderID=<?=$foodorderID?>&mode=edit" class="btn btn-info btn-rounded">Edit</a>
 									<a href="managefoodorder.php?foodorderID=<?=$foodorderID?>&foodID=<?=$foodID?>&cartID=<?=$cartID?>&quantity=<?=$quantity?>&mode=delete" class="btn btn-danger btn-rounded" onclick="return confirm_delete('<?php echo $foodorderID ?>')">Delete</a>

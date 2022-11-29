@@ -332,6 +332,7 @@ else{
 							<th>Latitude</th>
 							<th>Longitude</th>
 							<!-- <th>Rating</th> -->
+							<th>Date</th>
 							<th>Delivery Type</th>
 							<th>Cart Status</th>
 							<th>Payment Status</th>
@@ -359,6 +360,7 @@ else{
 						$deliveryType = $rows['deliveryType'];
 						$cartStatus = $rows['cartStatus'];
 						$paymentStatus = $rows['paymentStatus'];
+						$date = $rows['date'];
 					?>
 						<tr>
 								<th><?php echo $cartID ?></th>
@@ -372,6 +374,7 @@ else{
 								<td><?php echo $latitude ?></td>
 								<td><?php echo $longitude ?></td>
 								<!-- <td><?php echo $rating ?></td> -->
+								<td><?php echo $date ?></td>
 								<td><?php echo $delivery_type_str_arr[$deliveryType] ?></td>
 								<td><?php echo $cart_status_str_arr[$cartStatus] ?></td>
 								<td><?php echo $payment_status_str_arr[$paymentStatus] ?></td>
