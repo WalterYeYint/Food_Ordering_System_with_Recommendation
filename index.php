@@ -90,7 +90,7 @@
 							</div>
 							<div class="single_pr_details">
 								<h3 class="f_p f_500 f_size_16"><?php echo $foodName ?></h3>
-								<h3 class="f_p f_500 f_size_16">From: <?php echo $restaurantName ?></h3>
+								<h3 class="f_p f_300" style="font-size:medium;"><u>From: <?php echo $restaurantName ?></u></h3>
 								<div class="price">
 									<!-- <del><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>20.00</span></del> -->
 									<!-- <ins><span class="woocommerce-Price-amount amount"><?php echo $price ?> Kyats</span></ins> -->
