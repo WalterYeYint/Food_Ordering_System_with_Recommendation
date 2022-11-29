@@ -54,7 +54,12 @@ def index():
 def get(foodID):
 	recommended_foodID_list = {}
 	row = data.loc[data.foodID == int(foodID)]
-	query_index = list(row.query_index)[0]
+	query_list = list(row.query_index)
+	if len(query_list) > 0:
+		query_index = query_list[0]
+	else:
+		recommended_foodID_list[f"{i}"] = str(0)
+		return recommended_foodID_list
 	distances, indices = model_knn.kneighbors(order_with_total_count_foodID_pivot.iloc[query_index,:].values.reshape(1, -1), n_neighbors = 6)
 	for i in range(0, len(distances.flatten())):
 		recommended_foodID = order_with_total_count_foodID_pivot.index[indices.flatten()[i]]
